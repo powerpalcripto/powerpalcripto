@@ -74,7 +74,7 @@
             display: none;
             flex: 1;
             padding: 25px 20px;
-            padding-bottom: 90px;
+            padding-bottom: 40px;
             animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -155,7 +155,7 @@
         .phone-number { width: 62%; }
 
         /* ==========================================================================
-           6. BUTTONS
+           6. BUTTONS & NAVIGATION
            ========================================================================== */
         .btn {
             width: 100%;
@@ -210,8 +210,91 @@
         }
         .switch-link span { color: var(--bright-yellow); font-weight: 700; text-decoration: underline; }
 
+        .back-btn {
+            background: transparent;
+            color: var(--bright-yellow);
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 5px 0;
+        }
+        .back-btn i { font-size: 16px; }
+
         /* ==========================================================================
-           7. CARDS & WIDGETS
+           7. DASHBOARD GRID & STATS
+           ========================================================================== */
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--dark-green-light), #1a5c40);
+            border-radius: var(--border-radius-md);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255,215,0,0.1);
+        }
+
+        .dashboard-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .dash-stat-box {
+            width: calc(50% - 6px);
+            background: rgba(0,0,0,0.25);
+            padding: 15px 10px;
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+        }
+
+        .dash-stat-box p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+        .dash-stat-box h3 { font-size: 20px; color: white; margin: 0; }
+        .dash-stat-box h3 span { color: var(--bright-yellow); }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .grid-item {
+            background: var(--dark-green-light);
+            border-radius: var(--border-radius-md);
+            padding: 20px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-speed);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .grid-item i {
+            font-size: 28px;
+            color: var(--bright-yellow);
+            margin-bottom: 12px;
+            transition: transform 0.2s;
+        }
+
+        .grid-item:hover { transform: translateY(-3px); background: #1a5c40; border-color: rgba(255,215,0,0.2); }
+        .grid-item:hover i { transform: scale(1.1); }
+
+        .grid-item span {
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================================================
+           8. CARDS & WIDGETS
            ========================================================================== */
         .card {
             background: var(--dark-green-light);
@@ -223,31 +306,18 @@
             transition: var(--transition-speed);
         }
 
-        .card:hover { box-shadow: var(--shadow-lg); }
-
-        .card-admin {
-            background: var(--admin-dark);
-            border-left: 4px solid var(--admin-color);
-        }
-
+        .card-admin { background: var(--admin-dark); border-left: 4px solid var(--admin-color); }
         .stat-box { display: flex; justify-content: space-between; margin-top: 15px; }
         .stat-item { text-align: center; width: 48%; background: rgba(0,0,0,0.2); padding: 15px 5px; border-radius: var(--border-radius-sm); }
         .stat-value { font-size: 22px; color: var(--bright-yellow); font-weight: 800; margin-top: 8px; }
         .stat-label { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .badge-active { background: rgba(46, 204, 113, 0.2); color: var(--success-green); border: 1px solid var(--success-green); }
         .badge-inactive { background: rgba(160, 170, 178, 0.2); color: var(--text-gray); border: 1px solid var(--text-gray); }
 
         /* ==========================================================================
-           8. STORE PACKAGES
+           9. STORE PACKAGES
            ========================================================================== */
         .package-card {
             background: linear-gradient(145deg, var(--dark-green-light), #1a5c40);
@@ -261,248 +331,90 @@
         }
         
         .package-card::after {
-            content: '';
-            position: absolute;
-            top: -50px; right: -50px;
-            width: 100px; height: 100px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 50%;
-            filter: blur(20px);
+            content: ''; position: absolute; top: -50px; right: -50px;
+            width: 100px; height: 100px; background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%; filter: blur(20px);
         }
 
         .package-title { font-size: 24px; font-weight: 900; color: var(--bright-yellow); margin-bottom: 5px; }
         .package-price { font-size: 32px; font-weight: 800; margin: 15px 0; color: white; }
         .package-price span { font-size: 16px; color: var(--text-gray); font-weight: 500; }
-        
-        .package-details { 
-            display: flex;
-            justify-content: space-between; 
-            margin-bottom: 20px; 
-            font-size: 13px; 
-            background: rgba(0,0,0,0.2);
-            padding: 15px;
-            border-radius: var(--border-radius-sm);
-        }
+        .package-details { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 13px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: var(--border-radius-sm); }
         .package-details strong { color: var(--success-green); font-size: 16px; display: block; margin-top: 5px; }
         .buy-btn { width: 100%; border-radius: 50px; }
-
-        /* ==========================================================================
-           9. NAVIGATION
-           ========================================================================== */
-        #bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            max-width: 480px;
-            background-color: rgba(18, 69, 47, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
-            z-index: 1000;
-        }
-        
-        .nav-item {
-            text-align: center;
-            color: var(--text-gray);
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 600;
-            transition: var(--transition-speed);
-            flex: 1;
-        }
-        
-        .nav-item i { 
-            display: block;
-            font-size: 22px; 
-            margin-bottom: 6px; 
-            transition: transform 0.2s;
-        }
-        
-        .nav-item.active { color: var(--bright-yellow); }
-        .nav-item.active i { transform: translateY(-3px); }
 
         /* ==========================================================================
            10. MODALS & TOAST NOTIFICATIONS
            ========================================================================== */
         .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            transition: opacity 0.3s;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+            backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s;
         }
-        
         .modal-overlay.show { display: flex; opacity: 1; }
-        
         .modal-content {
-            background: var(--dark-green);
-            width: 90%; max-width: 400px;
-            border-radius: var(--border-radius-lg);
-            padding: 30px;
-            text-align: center;
-            border: 1px solid var(--bright-yellow);
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--dark-green); width: 90%; max-width: 400px;
+            border-radius: var(--border-radius-lg); padding: 30px; text-align: center;
+            border: 1px solid var(--bright-yellow); position: relative;
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
         .modal-overlay.show .modal-content { transform: scale(1); }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px; right: 20px;
-            color: var(--text-gray); font-size: 28px; cursor: pointer;
-            transition: color 0.2s;
-        }
+        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-gray); font-size: 28px; cursor: pointer; transition: color 0.2s; }
         .close-modal:hover { color: white; }
 
         .qr-code { width: 180px; height: 180px; margin: 20px auto; background: white; padding: 10px; border-radius: 10px; }
         .wallet-address {
-            background: var(--dark-green-light);
-            padding: 15px; border-radius: var(--border-radius-sm);
-            font-family: monospace; font-size: 13px;
-            word-break: break-all; margin-bottom: 20px;
-            color: var(--bright-yellow);
-            border: 1px dashed rgba(255, 215, 0, 0.3);
+            background: var(--dark-green-light); padding: 15px; border-radius: var(--border-radius-sm);
+            font-family: monospace; font-size: 13px; word-break: break-all; margin-bottom: 20px;
+            color: var(--bright-yellow); border: 1px dashed rgba(255, 215, 0, 0.3);
         }
-        .warning-text { 
-            color: var(--bright-yellow);
-            font-size: 12px; margin-bottom: 15px; 
-            background: rgba(255,215,0,0.1); padding: 12px; border-radius: var(--border-radius-sm);
-            line-height: 1.5;
-        }
+        .warning-text { color: var(--bright-yellow); font-size: 12px; margin-bottom: 15px; background: rgba(255,215,0,0.1); padding: 12px; border-radius: var(--border-radius-sm); line-height: 1.5; }
 
-        /* Custom Toast Notification */
-        #toast-container {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 9999;
-            width: 90%;
-            max-width: 400px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            pointer-events: none;
-        }
-
+        #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast {
-            background: var(--dark-green-light);
-            color: white;
-            padding: 15px 20px;
-            border-radius: var(--border-radius-sm);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-left: 4px solid var(--bright-yellow);
-            animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
+            background: var(--dark-green-light); color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px;
+            border-left: 4px solid var(--bright-yellow); animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 14px; font-weight: 500; line-height: 1.4;
         }
-
         .toast.error { border-left-color: var(--error-red); }
         .toast.error i { color: var(--error-red); }
         .toast.success { border-left-color: var(--success-green); }
         .toast.success i { color: var(--success-green); }
-        .toast.info { border-left-color: var(--bright-yellow); }
-        .toast.info i { color: var(--bright-yellow); }
 
         /* ==========================================================================
            11. IMAGES & ANIMATIONS
            ========================================================================== */
-        .hero-image {
-            width: 100%;
-            max-width: 260px; 
-            margin: 10px auto 25px auto; 
-            display: block; 
-            border-radius: var(--border-radius-md); 
-            background: white; 
-            padding: 15px;
-            box-shadow: var(--shadow-md);
-        }
+        .hero-image { width: 100%; max-width: 260px; margin: 10px auto 25px auto; display: block; border-radius: var(--border-radius-md); background: white; padding: 15px; box-shadow: var(--shadow-md); }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes toastSlideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes toastFadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes toastSlideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes toastFadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
-        /* Profile Specific */
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid var(--bright-yellow);
-            border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
-            font-size: 36px; color: var(--bright-yellow);
-            margin: 0 auto 15px auto;
-        }
-        
-        .history-item {
-            display: flex;
-            justify-content: space-between; align-items: center;
-            padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        .profile-avatar { width: 80px; height: 80px; background: rgba(255, 215, 0, 0.1); border: 2px solid var(--bright-yellow); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; color: var(--bright-yellow); margin: 0 auto 15px auto; }
+        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .history-item:last-child { border-bottom: none; }
-        .history-icon { width: 35px; height: 35px; border-radius: 50%; background: rgba(46,204,113,0.1); color: var(--success-green); display: flex; justify-content: center; align-items: center; }
+        .history-icon { width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
 
         /* ==========================================================================
-           12. CALENDAR CHECK-IN
+           12. CALENDAR CHECK-IN & ENERGY TABLE
            ========================================================================== */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
-            gap: 6px;
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(0,0,0,0.2);
-            border-radius: var(--border-radius-sm);
-        }
-        .day-box {
-            width: 28px;
-            height: 28px;
-            background: white;
-            color: var(--dark-green);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 11px;
-            font-weight: 800;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-        .day-box.checked {
-            background: var(--bright-yellow);
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
-        }
-        .rewards-text p {
-            margin: 8px 0;
-            font-size: 12px;
-            text-align: left;
-            line-height: 1.4;
-        }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); gap: 6px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: var(--border-radius-sm); }
+        .day-box { width: 28px; height: 28px; background: white; color: var(--dark-green); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; border-radius: 4px; transition: all 0.3s; }
+        .day-box.checked { background: var(--bright-yellow); box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+        .rewards-text p { margin: 8px 0; font-size: 12px; text-align: left; line-height: 1.4; }
+
+        .table-container { background: linear-gradient(to bottom, #dcedc8, #aed581); padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); margin-top: 15px; }
+        .table-title { font-size: 22px; font-family: 'Times New Roman', Times, serif; margin-bottom: 20px; color: #000; text-align: center;}
+        .table-responsive { overflow-x: auto; }
+        .energy-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 13px; }
+        .energy-table th { background-color: #388e3c; color: white; padding: 10px 5px; border: 1px solid #c8e6c9; }
+        .energy-table td { padding: 10px 5px; border: 1px solid rgba(255,255,255,0.2); color: black; }
+        .plan-name { text-align: left; font-weight: bold; }
+        .row-dark { background-color: #607d8b; color: white; }
+        .row-dark td { color: white; }
+        .row-light { background-color: #c8e6c9; color: #000; }
+        .row-ultimate { background-color: #1b5e20; color: white; font-weight: bold; }
+        .row-ultimate td { color: white; }
     </style>
 </head>
 <body>
@@ -538,193 +450,10 @@
             <div class="phone-group">
                 <div class="input-wrapper phone-code">
                     <select id="login-country-code">
-                       <option value="+355">+355 (Albania 🇦🇱)</option>
-<option value="+213">+213 (Algeria 🇩🇿)</option>
-<option value="+1684">+1684 (American Samoa 🇦🇸)</option>
-<option value="+376">+376 (Andorra 🇦🇩)</option>
-<option value="+244">+244 (Angola 🇦🇴)</option>
-<option value="+1264">+1264 (Anguilla 🇦🇮)</option>
-<option value="+1268">+1268 (Antigua and Barbuda 🇦🇬)</option>
-<option value="+54">+54 (Argentina 🇦🇷)</option>
-<option value="+374">+374 (Armenia 🇦🇲)</option>
-<option value="+297">+297 (Aruba 🇦🇼)</option>
-<option value="+61">+61 (Australia 🇦🇺)</option>
-<option value="+43">+43 (Austria 🇦🇹)</option>
-<option value="+994">+994 (Azerbaijan 🇦🇿)</option>
-<option value="+1242">+1242 (Bahamas 🇧🇸)</option>
-<option value="+973">+973 (Bahrain 🇧🇭)</option>
-<option value="+880">+880 (Bangladesh 🇧🇩)</option>
-<option value="+1246">+1246 (Barbados 🇧🇧)</option>
-<option value="+375">+375 (Belarus 🇧🇾)</option>
-<option value="+32">+32 (Belgium 🇧🇪)</option>
-<option value="+501">+501 (Belize 🇧🇿)</option>
-<option value="+229">+229 (Benin 🇧🇯)</option>
-<option value="+1441">+1441 (Bermuda 🇧🇲)</option>
-<option value="+975">+975 (Bhutan 🇧🇹)</option>
-<option value="+591">+591 (Bolivia 🇧🇴)</option>
-<option value="+387">+387 (Bosnia and Herzegovina 🇧🇦)</option>
-<option value="+267">+267 (Botswana 🇧🇼)</option>
-<option value="+55">+55 (Brazil 🇧🇷)</option>
-<option value="+673">+673 (Brunei 🇧🇳)</option>
-<option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
-<option value="+226">+226 (Burkina Faso 🇧🇫)</option>
-<option value="+257">+257 (Burundi 🇧🇮)</option>
-<option value="+855">+855 (Cambodia 🇰🇭)</option>
-<option value="+237">+237 (Cameroon 🇨🇲)</option>
-<option value="+1">+1 (Canada 🇨🇦)</option>
-<option value="+238">+238 (Cape Verde 🇨🇻)</option>
-<option value="+1345">+1345 (Cayman Islands 🇰🇾)</option>
-<option value="+236">+236 (Central African Republic 🇨🇫)</option>
-<option value="+235">+235 (Chad 🇹🇩)</option>
-<option value="+56">+56 (Chile 🇨🇱)</option>
-<option value="+86">+86 (China 🇨🇳)</option>
-<option value="+57">+57 (Colombia 🇨🇴)</option>
-<option value="+269">+269 (Comoros 🇰🇲)</option>
-<option value="+242">+242 (Congo 🇨🇬)</option>
-<option value="+243">+243 (DR Congo 🇨🇩)</option>
-<option value="+506">+506 (Costa Rica 🇨🇷)</option>
-<option value="+385">+385 (Croatia 🇭🇷)</option>
-<option value="+53">+53 (Cuba 🇨🇺)</option>
-<option value="+357">+357 (Cyprus 🇨🇾)</option>
-<option value="+420">+420 (Czech Republic 🇨🇿)</option>
-<option value="+45">+45 (Denmark 🇩🇰)</option>
-<option value="+253">+253 (Djibouti 🇩🇯)</option>
-<option value="+1767">+1767 (Dominica 🇩🇲)</option>
-<option value="+1809">+1809 (Dominican Republic 🇩🇴)</option>
-<option value="+593">+593 (Ecuador 🇪🇨)</option>
-<option value="+20">+20 (Egypt 🇪🇬)</option>
-<option value="+503">+503 (El Salvador 🇸🇻)</option>
-<option value="+240">+240 (Equatorial Guinea 🇬🇶)</option>
-<option value="+291">+291 (Eritrea 🇪🇷)</option>
-<option value="+372">+372 (Estonia 🇪🇪)</option>
-<option value="+251">+251 (Ethiopia 🇪🇹)</option>
-<option value="+679">+679 (Fiji 🇫🇯)</option>
-<option value="+358">+358 (Finland 🇫🇮)</option>
-<option value="+33">+33 (France 🇫🇷)</option>
-<option value="+241">+241 (Gabon 🇬🇦)</option>
-<option value="+220">+220 (Gambia 🇬🇲)</option>
-<option value="+995">+995 (Georgia 🇬🇪)</option>
-<option value="+49">+49 (Germany 🇩🇪)</option>
-<option value="+233">+233 (Ghana 🇬🇭)</option>
-<option value="+350">+350 (Gibraltar 🇬🇮)</option>
-<option value="+30">+30 (Greece 🇬🇷)</option>
-<option value="+299">+299 (Greenland 🇬🇱)</option>
-<option value="+1473">+1473 (Grenada 🇬🇩)</option>
-<option value="+502">+502 (Guatemala 🇬🇹)</option>
-<option value="+224">+224 (Guinea 🇬🇳)</option>
-<option value="+245">+245 (Guinea-Bissau 🇬🇼)</option>
-<option value="+592">+592 (Guyana 🇬🇾)</option>
-<option value="+509">+509 (Haiti 🇭🇹)</option>
-<option value="+504">+504 (Honduras 🇭🇳)</option>
-<option value="+852">+852 (Hong Kong 🇭🇰)</option>
-<option value="+36">+36 (Hungary 🇭🇺)</option>
-<option value="+354">+354 (Iceland 🇮🇸)</option>
-<option value="+91">+91 (India 🇮🇳)</option>
-<option value="+62">+62 (Indonesia 🇮🇩)</option>
-<option value="+98">+98 (Iran 🇮🇷)</option>
-<option value="+964">+964 (Iraq 🇮🇶)</option>
-<option value="+353">+353 (Ireland 🇮🇪)</option>
-<option value="+972">+972 (Israel 🇮🇱)</option>
-<option value="+39">+39 (Italy 🇮🇹)</option>
-<option value="+225">+225 (Ivory Coast 🇨🇮)</option>
-<option value="+1876">+1876 (Jamaica 🇯🇲)</option>
-<option value="+81">+81 (Japan 🇯🇵)</option>
-<option value="+962">+962 (Jordan 🇯🇴)</option>
-<option value="+7">+7 (Kazakhstan 🇰🇿)</option>
-<option value="+254">+254 (Kenya 🇰🇪)</option>
-<option value="+686">+686 (Kiribati 🇰🇮)</option>
-<option value="+965">+965 (Kuwait 🇰🇼)</option>
-<option value="+996">+996 (Kyrgyzstan 🇰🇬)</option>
-<option value="+856">+856 (Laos 🇱🇦)</option>
-<option value="+371">+371 (Latvia 🇱🇻)</option>
-<option value="+961">+961 (Lebanon 🇱🇧)</option>
-<option value="+266">+266 (Lesotho 🇱🇸)</option>
-<option value="+231">+231 (Liberia 🇱🇷)</option>
-<option value="+218">+218 (Libya 🇱🇾)</option>
-<option value="+423">+423 (Liechtenstein 🇱🇮)</option>
-<option value="+370">+370 (Lithuania 🇱🇹)</option>
-<option value="+352">+352 (Luxembourg 🇱🇺)</option>
-<option value="+853">+853 (Macau 🇲🇴)</option>
-<option value="+389">+389 (North Macedonia 🇲🇰)</option>
-<option value="+261">+261 (Madagascar 🇲🇬)</option>
-<option value="+265">+265 (Malawi 🇲🇼)</option>
-<option value="+60">+60 (Malaysia 🇲🇾)</option>
-<option value="+960">+960 (Maldives 🇲🇻)</option>
-<option value="+223">+223 (Mali 🇲🇱)</option>
-<option value="+356">+356 (Malta 🇲🇹)</option>
-<option value="+222">+222 (Mauritania 🇲🇷)</option>
-<option value="+230">+230 (Mauritius 🇲🇺)</option>
-<option value="+52">+52 (Mexico 🇲🇽)</option>
-<option value="+373">+373 (Moldova 🇲🇩)</option>
-<option value="+377">+377 (Monaco 🇲🇨)</option>
-<option value="+976">+976 (Mongolia 🇲🇳)</option>
-<option value="+382">+382 (Montenegro 🇲🇪)</option>
-<option value="+212">+212 (Morocco 🇲🇦)</option>
-<option value="+258">+258 (Mozambique 🇲🇿)</option>
-<option value="+95">+95 (Myanmar 🇲🇲)</option>
-<option value="+264">+264 (Namibia 🇳🇦)</option>
-<option value="+977">+977 (Nepal 🇳🇵)</option>
-<option value="+31">+31 (Netherlands 🇳🇱)</option>
-<option value="+64">+64 (New Zealand 🇳🇿)</option>
-<option value="+505">+505 (Nicaragua 🇳🇮)</option>
-<option value="+227">+227 (Niger 🇳🇪)</option>
-<option value="+234">+234 (Nigeria 🇳🇬)</option>
-<option value="+850">+850 (North Korea 🇰🇵)</option>
-<option value="+47">+47 (Norway 🇳🇴)</option>
-<option value="+968">+968 (Oman 🇴🇲)</option>
-<option value="+92">+92 (Pakistan 🇵🇰)</option>
-<option value="+970">+970 (Palestine 🇵🇸)</option>
-<option value="+507">+507 (Panama 🇵🇦)</option>
-<option value="+675">+675 (Papua New Guinea 🇵🇬)</option>
-<option value="+595">+595 (Paraguay 🇵🇾)</option>
-<option value="+51">+51 (Peru 🇵🇪)</option>
-<option value="+63">+63 (Philippines 🇵🇭)</option>
-<option value="+48">+48 (Poland 🇵🇱)</option>
-<option value="+351">+351 (Portugal 🇵🇹)</option>
-<option value="+1787">+1787 (Puerto Rico 🇵🇷)</option>
-<option value="+974">+974 (Qatar 🇶🇦)</option>
-<option value="+40">+40 (Romania 🇷🇴)</option>
-<option value="+7">+7 (Russia 🇷🇺)</option>
-<option value="+250">+250 (Rwanda 🇷🇼)</option>
-<option value="+966">+966 (Saudi Arabia 🇸🇦)</option>
-<option value="+221">+221 (Senegal 🇸🇳)</option>
-<option value="+381">+381 (Serbia 🇷🇸)</option>
-<option value="+248">+248 (Seychelles 🇸🇨)</option>
-<option value="+232">+232 (Sierra Leone 🇸🇱)</option>
-<option value="+65">+65 (Singapore 🇸🇬)</option>
-<option value="+421">+421 (Slovakia 🇸🇰)</option>
-<option value="+386">+386 (Slovenia 🇸🇮)</option>
-<option value="+252">+252 (Somalia 🇸🇴)</option>
-<option value="+27">+27 (South Africa 🇿🇦)</option>
-<option value="+82">+82 (South Korea 🇰🇷)</option>
-<option value="+34">+34 (Spain 🇪🇸)</option>
-<option value="+94">+94 (Sri Lanka 🇱🇰)</option>
-<option value="+249">+249 (Sudan 🇸🇩)</option>
-<option value="+46">+46 (Sweden 🇸🇪)</option>
-<option value="+41">+41 (Switzerland 🇨🇭)</option>
-<option value="+963">+963 (Syria 🇸🇾)</option>
-<option value="+886">+886 (Taiwan 🇹🇼)</option>
-<option value="+992">+992 (Tajikistan 🇹🇯)</option>
-<option value="+255">+255 (Tanzania 🇹🇿)</option>
-<option value="+66">+66 (Thailand 🇹🇭)</option>
-<option value="+228">+228 (Togo 🇹🇬)</option>
-<option value="+216">+216 (Tunisia 🇹🇳)</option>
-<option value="+90">+90 (Turkey 🇹🇷)</option>
-<option value="+993">+993 (Turkmenistan 🇹🇲)</option>
-<option value="+256">+256 (Uganda 🇺🇬)</option>
-<option value="+380">+380 (Ukraine 🇺🇦)</option>
-<option value="+971">+971 (United Arab Emirates 🇦🇪)</option>
-<option value="+44">+44 (United Kingdom 🇬🇧)</option>
-<option value="+1">+1 (United States 🇺🇸)</option>
-<option value="+598">+598 (Uruguay 🇺🇾)</option>
-<option value="+998">+998 (Uzbekistan 🇺🇿)</option>
-<option value="+39">+39 (Vatican City 🇻🇦)</option>
-<option value="+58">+58 (Venezuela 🇻🇪)</option>
-<option value="+84">+84 (Vietnam 🇻🇳)</option>
-<option value="+967">+967 (Yemen 🇾🇪)</option>
-<option value="+260">+260 (Zambia 🇿🇲)</option>
-<option value="+263">+263 (Zimbabwe 🇿🇼)</option>
-                        </select>
+                        <option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
+                        <option value="+44">+44 (UK 🇬🇧)</option>
+                        <option value="+1">+1 (US 🇺🇸)</option>
+                    </select>
                 </div>
                 <div class="input-wrapper phone-number">
                     <i class="fas fa-phone-alt"></i>
@@ -774,193 +503,10 @@
             <div class="phone-group">
                 <div class="input-wrapper phone-code">
                     <select id="reg-country-code">
-                        <option value="+355">+355 (Albania 🇦🇱)</option>
-<option value="+213">+213 (Algeria 🇩🇿)</option>
-<option value="+1684">+1684 (American Samoa 🇦🇸)</option>
-<option value="+376">+376 (Andorra 🇦🇩)</option>
-<option value="+244">+244 (Angola 🇦🇴)</option>
-<option value="+1264">+1264 (Anguilla 🇦🇮)</option>
-<option value="+1268">+1268 (Antigua and Barbuda 🇦🇬)</option>
-<option value="+54">+54 (Argentina 🇦🇷)</option>
-<option value="+374">+374 (Armenia 🇦🇲)</option>
-<option value="+297">+297 (Aruba 🇦🇼)</option>
-<option value="+61">+61 (Australia 🇦🇺)</option>
-<option value="+43">+43 (Austria 🇦🇹)</option>
-<option value="+994">+994 (Azerbaijan 🇦🇿)</option>
-<option value="+1242">+1242 (Bahamas 🇧🇸)</option>
-<option value="+973">+973 (Bahrain 🇧🇭)</option>
-<option value="+880">+880 (Bangladesh 🇧🇩)</option>
-<option value="+1246">+1246 (Barbados 🇧🇧)</option>
-<option value="+375">+375 (Belarus 🇧🇾)</option>
-<option value="+32">+32 (Belgium 🇧🇪)</option>
-<option value="+501">+501 (Belize 🇧🇿)</option>
-<option value="+229">+229 (Benin 🇧🇯)</option>
-<option value="+1441">+1441 (Bermuda 🇧🇲)</option>
-<option value="+975">+975 (Bhutan 🇧🇹)</option>
-<option value="+591">+591 (Bolivia 🇧🇴)</option>
-<option value="+387">+387 (Bosnia and Herzegovina 🇧🇦)</option>
-<option value="+267">+267 (Botswana 🇧🇼)</option>
-<option value="+55">+55 (Brazil 🇧🇷)</option>
-<option value="+673">+673 (Brunei 🇧🇳)</option>
-<option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
-<option value="+226">+226 (Burkina Faso 🇧🇫)</option>
-<option value="+257">+257 (Burundi 🇧🇮)</option>
-<option value="+855">+855 (Cambodia 🇰🇭)</option>
-<option value="+237">+237 (Cameroon 🇨🇲)</option>
-<option value="+1">+1 (Canada 🇨🇦)</option>
-<option value="+238">+238 (Cape Verde 🇨🇻)</option>
-<option value="+1345">+1345 (Cayman Islands 🇰🇾)</option>
-<option value="+236">+236 (Central African Republic 🇨🇫)</option>
-<option value="+235">+235 (Chad 🇹🇩)</option>
-<option value="+56">+56 (Chile 🇨🇱)</option>
-<option value="+86">+86 (China 🇨🇳)</option>
-<option value="+57">+57 (Colombia 🇨🇴)</option>
-<option value="+269">+269 (Comoros 🇰🇲)</option>
-<option value="+242">+242 (Congo 🇨🇬)</option>
-<option value="+243">+243 (DR Congo 🇨🇩)</option>
-<option value="+506">+506 (Costa Rica 🇨🇷)</option>
-<option value="+385">+385 (Croatia 🇭🇷)</option>
-<option value="+53">+53 (Cuba 🇨🇺)</option>
-<option value="+357">+357 (Cyprus 🇨🇾)</option>
-<option value="+420">+420 (Czech Republic 🇨🇿)</option>
-<option value="+45">+45 (Denmark 🇩🇰)</option>
-<option value="+253">+253 (Djibouti 🇩🇯)</option>
-<option value="+1767">+1767 (Dominica 🇩🇲)</option>
-<option value="+1809">+1809 (Dominican Republic 🇩🇴)</option>
-<option value="+593">+593 (Ecuador 🇪🇨)</option>
-<option value="+20">+20 (Egypt 🇪🇬)</option>
-<option value="+503">+503 (El Salvador 🇸🇻)</option>
-<option value="+240">+240 (Equatorial Guinea 🇬🇶)</option>
-<option value="+291">+291 (Eritrea 🇪🇷)</option>
-<option value="+372">+372 (Estonia 🇪🇪)</option>
-<option value="+251">+251 (Ethiopia 🇪🇹)</option>
-<option value="+679">+679 (Fiji 🇫🇯)</option>
-<option value="+358">+358 (Finland 🇫🇮)</option>
-<option value="+33">+33 (France 🇫🇷)</option>
-<option value="+241">+241 (Gabon 🇬🇦)</option>
-<option value="+220">+220 (Gambia 🇬🇲)</option>
-<option value="+995">+995 (Georgia 🇬🇪)</option>
-<option value="+49">+49 (Germany 🇩🇪)</option>
-<option value="+233">+233 (Ghana 🇬🇭)</option>
-<option value="+350">+350 (Gibraltar 🇬🇮)</option>
-<option value="+30">+30 (Greece 🇬🇷)</option>
-<option value="+299">+299 (Greenland 🇬🇱)</option>
-<option value="+1473">+1473 (Grenada 🇬🇩)</option>
-<option value="+502">+502 (Guatemala 🇬🇹)</option>
-<option value="+224">+224 (Guinea 🇬🇳)</option>
-<option value="+245">+245 (Guinea-Bissau 🇬🇼)</option>
-<option value="+592">+592 (Guyana 🇬🇾)</option>
-<option value="+509">+509 (Haiti 🇭🇹)</option>
-<option value="+504">+504 (Honduras 🇭🇳)</option>
-<option value="+852">+852 (Hong Kong 🇭🇰)</option>
-<option value="+36">+36 (Hungary 🇭🇺)</option>
-<option value="+354">+354 (Iceland 🇮🇸)</option>
-<option value="+91">+91 (India 🇮🇳)</option>
-<option value="+62">+62 (Indonesia 🇮🇩)</option>
-<option value="+98">+98 (Iran 🇮🇷)</option>
-<option value="+964">+964 (Iraq 🇮🇶)</option>
-<option value="+353">+353 (Ireland 🇮🇪)</option>
-<option value="+972">+972 (Israel 🇮🇱)</option>
-<option value="+39">+39 (Italy 🇮🇹)</option>
-<option value="+225">+225 (Ivory Coast 🇨🇮)</option>
-<option value="+1876">+1876 (Jamaica 🇯🇲)</option>
-<option value="+81">+81 (Japan 🇯🇵)</option>
-<option value="+962">+962 (Jordan 🇯🇴)</option>
-<option value="+7">+7 (Kazakhstan 🇰🇿)</option>
-<option value="+254">+254 (Kenya 🇰🇪)</option>
-<option value="+686">+686 (Kiribati 🇰🇮)</option>
-<option value="+965">+965 (Kuwait 🇰🇼)</option>
-<option value="+996">+996 (Kyrgyzstan 🇰🇬)</option>
-<option value="+856">+856 (Laos 🇱🇦)</option>
-<option value="+371">+371 (Latvia 🇱🇻)</option>
-<option value="+961">+961 (Lebanon 🇱🇧)</option>
-<option value="+266">+266 (Lesotho 🇱🇸)</option>
-<option value="+231">+231 (Liberia 🇱🇷)</option>
-<option value="+218">+218 (Libya 🇱🇾)</option>
-<option value="+423">+423 (Liechtenstein 🇱🇮)</option>
-<option value="+370">+370 (Lithuania 🇱🇹)</option>
-<option value="+352">+352 (Luxembourg 🇱🇺)</option>
-<option value="+853">+853 (Macau 🇲🇴)</option>
-<option value="+389">+389 (North Macedonia 🇲🇰)</option>
-<option value="+261">+261 (Madagascar 🇲🇬)</option>
-<option value="+265">+265 (Malawi 🇲🇼)</option>
-<option value="+60">+60 (Malaysia 🇲🇾)</option>
-<option value="+960">+960 (Maldives 🇲🇻)</option>
-<option value="+223">+223 (Mali 🇲🇱)</option>
-<option value="+356">+356 (Malta 🇲🇹)</option>
-<option value="+222">+222 (Mauritania 🇲🇷)</option>
-<option value="+230">+230 (Mauritius 🇲🇺)</option>
-<option value="+52">+52 (Mexico 🇲🇽)</option>
-<option value="+373">+373 (Moldova 🇲🇩)</option>
-<option value="+377">+377 (Monaco 🇲🇨)</option>
-<option value="+976">+976 (Mongolia 🇲🇳)</option>
-<option value="+382">+382 (Montenegro 🇲🇪)</option>
-<option value="+212">+212 (Morocco 🇲🇦)</option>
-<option value="+258">+258 (Mozambique 🇲🇿)</option>
-<option value="+95">+95 (Myanmar 🇲🇲)</option>
-<option value="+264">+264 (Namibia 🇳🇦)</option>
-<option value="+977">+977 (Nepal 🇳🇵)</option>
-<option value="+31">+31 (Netherlands 🇳🇱)</option>
-<option value="+64">+64 (New Zealand 🇳🇿)</option>
-<option value="+505">+505 (Nicaragua 🇳🇮)</option>
-<option value="+227">+227 (Niger 🇳🇪)</option>
-<option value="+234">+234 (Nigeria 🇳🇬)</option>
-<option value="+850">+850 (North Korea 🇰🇵)</option>
-<option value="+47">+47 (Norway 🇳🇴)</option>
-<option value="+968">+968 (Oman 🇴🇲)</option>
-<option value="+92">+92 (Pakistan 🇵🇰)</option>
-<option value="+970">+970 (Palestine 🇵🇸)</option>
-<option value="+507">+507 (Panama 🇵🇦)</option>
-<option value="+675">+675 (Papua New Guinea 🇵🇬)</option>
-<option value="+595">+595 (Paraguay 🇵🇾)</option>
-<option value="+51">+51 (Peru 🇵🇪)</option>
-<option value="+63">+63 (Philippines 🇵🇭)</option>
-<option value="+48">+48 (Poland 🇵🇱)</option>
-<option value="+351">+351 (Portugal 🇵🇹)</option>
-<option value="+1787">+1787 (Puerto Rico 🇵🇷)</option>
-<option value="+974">+974 (Qatar 🇶🇦)</option>
-<option value="+40">+40 (Romania 🇷🇴)</option>
-<option value="+7">+7 (Russia 🇷🇺)</option>
-<option value="+250">+250 (Rwanda 🇷🇼)</option>
-<option value="+966">+966 (Saudi Arabia 🇸🇦)</option>
-<option value="+221">+221 (Senegal 🇸🇳)</option>
-<option value="+381">+381 (Serbia 🇷🇸)</option>
-<option value="+248">+248 (Seychelles 🇸🇨)</option>
-<option value="+232">+232 (Sierra Leone 🇸🇱)</option>
-<option value="+65">+65 (Singapore 🇸🇬)</option>
-<option value="+421">+421 (Slovakia 🇸🇰)</option>
-<option value="+386">+386 (Slovenia 🇸🇮)</option>
-<option value="+252">+252 (Somalia 🇸🇴)</option>
-<option value="+27">+27 (South Africa 🇿🇦)</option>
-<option value="+82">+82 (South Korea 🇰🇷)</option>
-<option value="+34">+34 (Spain 🇪🇸)</option>
-<option value="+94">+94 (Sri Lanka 🇱🇰)</option>
-<option value="+249">+249 (Sudan 🇸🇩)</option>
-<option value="+46">+46 (Sweden 🇸🇪)</option>
-<option value="+41">+41 (Switzerland 🇨🇭)</option>
-<option value="+963">+963 (Syria 🇸🇾)</option>
-<option value="+886">+886 (Taiwan 🇹🇼)</option>
-<option value="+992">+992 (Tajikistan 🇹🇯)</option>
-<option value="+255">+255 (Tanzania 🇹🇿)</option>
-<option value="+66">+66 (Thailand 🇹🇭)</option>
-<option value="+228">+228 (Togo 🇹🇬)</option>
-<option value="+216">+216 (Tunisia 🇹🇳)</option>
-<option value="+90">+90 (Turkey 🇹🇷)</option>
-<option value="+993">+993 (Turkmenistan 🇹🇲)</option>
-<option value="+256">+256 (Uganda 🇺🇬)</option>
-<option value="+380">+380 (Ukraine 🇺🇦)</option>
-<option value="+971">+971 (United Arab Emirates 🇦🇪)</option>
-<option value="+44">+44 (United Kingdom 🇬🇧)</option>
-<option value="+1">+1 (United States 🇺🇸)</option>
-<option value="+598">+598 (Uruguay 🇺🇾)</option>
-<option value="+998">+998 (Uzbekistan 🇺🇿)</option>
-<option value="+39">+39 (Vatican City 🇻🇦)</option>
-<option value="+58">+58 (Venezuela 🇻🇪)</option>
-<option value="+84">+84 (Vietnam 🇻🇳)</option>
-<option value="+967">+967 (Yemen 🇾🇪)</option>
-<option value="+260">+260 (Zambia 🇿🇲)</option>
-<option value="+263">+263 (Zimbabwe 🇿🇼)</option>
-                        </select>
+                        <option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
+                        <option value="+44">+44 (UK 🇬🇧)</option>
+                        <option value="+1">+1 (US 🇺🇸)</option>
+                    </select>
                 </div>
                 <div class="input-wrapper phone-number">
                     <input type="tel" id="reg-phone" placeholder="871234567">
@@ -990,7 +536,68 @@
         <p class="switch-link" onclick="appLogic.switchAuthView('login')">Already have an account? <span>Login here</span></p>
     </div>
 
+    <div id="dashboard-view" class="view">
+        <h2 class="text-center" style="margin-bottom: 20px;">Welcome Back!</h2>
+        
+        <div class="dashboard-header">
+            <div class="dashboard-stats">
+                <div class="dash-stat-box">
+                    <p>Investment</p>
+                    <h3><span id="dash-invest">0</span>€</h3>
+                </div>
+                <div class="dash-stat-box">
+                    <p>Total Profit</p>
+                    <h3><span id="dash-total">0</span>€</h3>
+                </div>
+                <div class="dash-stat-box">
+                    <p>Yesterday</p>
+                    <h3><span id="dash-yest">0</span>€</h3>
+                </div>
+                <div class="dash-stat-box">
+                    <p>Today</p>
+                    <h3><span id="dash-today">0</span>€</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="grid-item" onclick="appLogic.navTo('packages')">
+                <i class="fas fa-store"></i>
+                <span>Store</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.openCalendarModal()">
+                <i class="fas fa-calendar-check"></i>
+                <span>Daily Rewards</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.navTo('affiliate')">
+                <i class="fas fa-users"></i>
+                <span>Team</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.navTo('wallet')">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.navTo('profile')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.navTo('energy-plans')">
+                <i class="fas fa-bolt"></i>
+                <span>Energy Plans</span>
+            </div>
+            <div class="grid-item" onclick="window.open('https://t.me/greenenergyadmin', '_blank')">
+                <i class="fab fa-telegram-plane"></i>
+                <span>Support</span>
+            </div>
+            <div class="grid-item" onclick="appLogic.secureLogout()">
+                <i class="fas fa-sign-out-alt" style="color: var(--error-red);"></i>
+                <span style="color: var(--error-red);">Secure Logout</span>
+            </div>
+        </div>
+    </div>
+
     <div id="admin-view" class="view">
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Exit Admin</button>
         <div class="text-center" style="margin-bottom: 30px;">
             <i class="fas fa-user-shield" style="font-size: 50px; color: var(--admin-color); margin-bottom: 15px;"></i>
             <h2 style="color: var(--admin-color); margin-bottom: 5px;">System Console</h2>
@@ -1037,174 +644,34 @@
                 <i class="fas fa-sync-alt"></i> Update User Data
             </button>
         </div>
-       
-        <button class="btn btn-outline" style="border-color: var(--text-gray); color: var(--text-gray);" onclick="appLogic.logout()">
-            Exit Admin Panel
-        </button>
     </div>
 
     <div id="profile-view" class="view">
-        <h2 class="text-center" style="margin-bottom: 25px;">My Dashboard</h2>
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <h2 class="text-center" style="margin-bottom: 25px;">My Profile</h2>
         
         <div class="text-center" style="margin-bottom: 25px;">
             <div class="profile-avatar">
                 <i class="fas fa-user-astronaut"></i>
             </div>
             <h3 id="display-phone" style="letter-spacing: 1px; color: white; margin-bottom: 5px;"></h3>
-            <p style="color: var(--text-gray); font-size: 13px;">UID: <span id="display-uid" style="color: var(--bright-yellow); font-family: monospace;"></span></p>
             <div style="margin-top: 15px;">
                 <span id="display-package-badge" class="badge badge-inactive">No Active Package</span>
             </div>
         </div>
 
-        <div class="card">
-            <h4 style="font-size: 14px; margin-bottom: 10px; color: var(--text-gray);">Account Overview</h4>
-            <div class="stat-box">
-                <div class="stat-item">
-                    <div class="stat-label">My Invite Code</div>
-                    <div class="stat-value" id="display-my-code" style="font-size: 18px;">---</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Invited People</div>
-                    <div class="stat-value" id="display-team-size">0</div>
-                </div>
-            </div>
+        <div class="card" style="text-align: center;">
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Security Settings</h4>
+            <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 15px;">Set up a PIN code required for all withdrawals to keep your funds safe.</p>
+            <button class="btn btn-outline" onclick="appLogic.setupPin()">
+                <i class="fas fa-key"></i> Setup Withdrawal PIN
+            </button>
         </div>
-
-        <div class="card" style="padding: 15px 22px;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Recent Activity</h4>
-            <div id="activity-log">
-                <div class="history-item">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div class="history-icon"><i class="fas fa-check"></i></div>
-                        <div>
-                            <div style="font-size: 14px; font-weight: 600;">Account Created</div>
-                            <div style="font-size: 11px; color: var(--text-gray);">System</div>
-                        </div>
-                    </div>
-                    <div style="font-size: 13px; color: var(--text-gray);">Success</div>
-                </div>
-            </div>
-        </div>
-
-        <button class="btn" onclick="appLogic.openCalendarModal()" style="margin-top: 15px; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3); background-color: var(--success-green); color: white;">
-            <i class="fas fa-calendar-check"></i> Daily Check-in Rewards
-        </button>
-
-       <div class="energy-wrapper">
-    <style>
-        .energy-wrapper {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 20px auto;
-            text-align: center;
-        }
-        .modern-btn {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .modern-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
-        .table-container {
-            background: linear-gradient(to bottom, #dcedc8, #aed581);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            display: none;
-        }
-        .table-title {
-            font-size: 28px;
-            font-family: 'Times New Roman', Times, serif;
-            margin-bottom: 20px;
-            color: #000;
-        }
-        .table-responsive { overflow-x: auto; }
-        .energy-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 15px;
-        }
-        .energy-table th {
-            background-color: #388e3c;
-            color: white;
-            padding: 12px 5px;
-            border: 1px solid #c8e6c9;
-        }
-        .energy-table td {
-            padding: 10px 5px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .plan-name { text-align: left; font-weight: bold; padding-left: 10px !important; }
-        .row-dark { background-color: #607d8b; color: white; }
-        .row-light { background-color: #c8e6c9; color: #000; }
-        .row-ultimate { background-color: #1b5e20; color: white; font-weight: bold; }
-    </style>
-
-    <button id="energyPlanBtn" class="modern-btn">⚡ View Energy Plans</button>
-
-    <div id="energyTableContainer" class="table-container">
-        <h2 class="table-title">Income from Green Energy</h2>
-        <div class="table-responsive">
-            <table class="energy-table">
-                <thead>
-                    <tr>
-                        <th>Plan</th>
-                        <th>Price</th>
-                        <th>Daily Income</th>
-                        <th>Monthly Income</th>
-                        <th>Net Profit</th>
-                        <th>ROI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="row-dark"><td class="plan-name">⚡ BASIC - 1</td><td>80€</td><td>3€</td><td>90€</td><td>+10€</td><td>26 days</td></tr>
-                    <tr class="row-light"><td class="plan-name">⚡ BASIC - 2</td><td>200€</td><td>9€</td><td>270€</td><td>+70€</td><td>22 days</td></tr>
-                    <tr class="row-dark"><td class="plan-name">⚡ BASIC - 3</td><td>500€</td><td>23€</td><td>690€</td><td>+190€</td><td>21 days</td></tr>
-                    <tr class="row-light"><td class="plan-name">⚡ VIP - 1</td><td>1200€</td><td>59€</td><td>1770€</td><td>+570€</td><td>20 days</td></tr>
-                    <tr class="row-dark"><td class="plan-name">⚡ VIP - 2</td><td>3000€</td><td>165€</td><td>4950€</td><td>+1950€</td><td>18 days</td></tr>
-                    <tr class="row-light"><td class="plan-name">⚡ VIP - 3</td><td>6500€</td><td>430€</td><td>12900€</td><td>+6400€</td><td>15 days</td></tr>
-                    <tr class="row-ultimate"><td class="plan-name">⚡ ULTIMATE ENERGY</td><td>20000€</td><td>1500€</td><td>45000€</td><td>+25000€</td><td>13 days</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('energyPlanBtn').addEventListener('click', function() {
-            var container = document.getElementById('energyTableContainer');
-            if (container.style.display === 'none' || container.style.display === '') {
-                container.style.display = 'block';
-                this.innerText = 'Hide plans';
-            } else {
-                container.style.display = 'none';
-                this.innerText = '⚡ View Energy Plans';
-            }
-        });
-    </script>
-</div>
-
-        
-        <button class="btn btn-outline" onclick="appLogic.logout()" style="margin-top: 10px; border-color: var(--error-red); color: var(--error-red);">
-            <i class="fas fa-sign-out-alt"></i> Secure Logout
-        </button>
     </div>
 
     <div id="wallet-view" class="view">
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center">My Wallet</h2>
-        <p class="text-center text-gray" style="margin-bottom: 25px;">Manage your funds</p>
         
         <div class="card text-center" style="padding: 30px 20px;">
             <p class="stat-label">Total Available Balance</p>
@@ -1235,25 +702,28 @@
                 </div>
             </div>
 
-            <div style="display: flex; gap: 12px; margin-top: 25px;">
-                <button class="btn" onclick="appLogic.showToast('Please visit the Store to make a deposit and buy a package.', 'info')">
-                    <i class="fas fa-arrow-down"></i> Deposit
-                </button>
-                <button class="btn btn-outline" id="btn-withdraw" onclick="appLogic.withdraw()">
-                    <i class="fas fa-arrow-up"></i> Withdraw
-                </button>
-            </div>
+            <button class="btn btn-outline" id="btn-withdraw" style="margin-top: 15px;" onclick="appLogic.withdraw()">
+                <i class="fas fa-arrow-up"></i> Request Withdrawal
+            </button>
             <p style="font-size: 11px; color: var(--text-gray); margin-top: 15px;">* Minimum withdrawal amount is 100 USDT</p>
+        </div>
+
+        <div class="card" style="padding: 15px 22px;">
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Transaction History</h4>
+            <div id="history-list">
+                </div>
         </div>
     </div>
 
     <div id="packages-view" class="view">
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center">Energy Store</h2>
         <p class="text-center text-gray" style="margin-bottom: 25px;">Invest in charging stations and earn daily.</p>
         <div id="packages-container"></div>
     </div>
 
     <div id="affiliate-view" class="view">
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center">Partner Program</h2>
         <p class="text-center text-gray" style="margin-bottom: 20px;">Build your team</p>
         
@@ -1262,7 +732,7 @@
                 <i class="fas fa-network-wired" style="font-size: 28px; color: var(--bright-yellow);"></i>
             </div>
             <p style="font-size: 13px; margin-bottom: 15px; line-height: 1.5;">
-                You receive <strong style="color: var(--bright-yellow);">rewards</strong> based on the daily income of everyone who registers with your code.
+                Ще получавате по <strong style="color: var(--bright-yellow);">5% комисионна</strong> от ежедневния доход на всеки от екипа ви!
             </p>
             <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 15px;">
                 <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 5px; text-transform: uppercase;">Your Invitation Code</p>
@@ -1286,30 +756,48 @@
                 </div>
             </div>
             <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: var(--border-radius-sm); text-align: center;">
-                <p style="font-size: 12px; color: var(--text-gray);">Total earned from team</p>
+                <p style="font-size: 12px; color: var(--text-gray);">Total earned from team (5% Bonus)</p>
                 <h3 id="affiliate-earned" style="margin: 5px 0 0 0; color: var(--bright-yellow);">$ 0.00</h3>
+            </div>
+        </div>
+
+        <div class="card" style="padding: 15px 22px;">
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">My Team Members</h4>
+            <div id="team-list">
+                <p style="color:var(--text-gray); font-size:12px; text-align:center;">Loading team data...</p>
             </div>
         </div>
     </div>
 
-    <nav id="bottom-nav" style="display: none;">
-        <div class="nav-item active" onclick="appLogic.navTo('profile')">
-            <i class="fas fa-user-circle"></i>
-            Profile
+    <div id="energy-plans-view" class="view">
+        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <div class="table-container" style="display: block;">
+            <h2 class="table-title">Income from Green Energy</h2>
+            <div class="table-responsive">
+                <table class="energy-table">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Price</th>
+                            <th>Daily Income</th>
+                            <th>Monthly Income</th>
+                            <th>Net Profit</th>
+                            <th>ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row-dark"><td class="plan-name">⚡ BASIC - 1</td><td>80€</td><td>3€</td><td>90€</td><td>+10€</td><td>26 days</td></tr>
+                        <tr class="row-light"><td class="plan-name">⚡ BASIC - 2</td><td>200€</td><td>9€</td><td>270€</td><td>+70€</td><td>22 days</td></tr>
+                        <tr class="row-dark"><td class="plan-name">⚡ BASIC - 3</td><td>500€</td><td>23€</td><td>690€</td><td>+190€</td><td>21 days</td></tr>
+                        <tr class="row-light"><td class="plan-name">⚡ VIP - 1</td><td>1200€</td><td>59€</td><td>1770€</td><td>+570€</td><td>20 days</td></tr>
+                        <tr class="row-dark"><td class="plan-name">⚡ VIP - 2</td><td>3000€</td><td>165€</td><td>4950€</td><td>+1950€</td><td>18 days</td></tr>
+                        <tr class="row-light"><td class="plan-name">⚡ VIP - 3</td><td>6500€</td><td>430€</td><td>12900€</td><td>+6400€</td><td>15 days</td></tr>
+                        <tr class="row-ultimate"><td class="plan-name">⚡ ULTIMATE ENERGY</td><td>20000€</td><td>1500€</td><td>45000€</td><td>+25000€</td><td>13 days</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="nav-item" onclick="appLogic.navTo('wallet')">
-            <i class="fas fa-wallet"></i>
-            Wallet
-        </div>
-        <div class="nav-item" onclick="appLogic.navTo('packages')">
-            <i class="fas fa-bolt"></i>
-            Store
-        </div>
-        <div class="nav-item" onclick="appLogic.navTo('affiliate')">
-            <i class="fas fa-users"></i>
-            Team
-        </div>
-    </nav>
+    </div>
 
     <div id="payment-modal" class="modal-overlay">
         <div class="modal-content">
@@ -1324,11 +812,6 @@
                 <i class="fas fa-exclamation-triangle" style="color: #f39c12;"></i> Send strictly <strong>USDT (ERC20/TRC20)</strong> to this address. Other assets will be lost.
             </div>
 
-            <div style="display: inline-flex; align-items: center; background: rgba(0,0,0,0.3); padding: 8px 15px; border-radius: 50px; font-size: 13px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1);">
-                <i class="fas fa-coins" style="color: #26A17B; margin-right: 8px; font-size: 16px;"></i>
-                <strong>Tether USD</strong> <span style="color: var(--text-gray); margin-left: 5px;">(USDT)</span>
-            </div>
-
             <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 15px;">
                 <img class="qr-code" style="margin:0; width: 160px; height: 160px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173" alt="QR Code">
             </div>
@@ -1338,9 +821,8 @@
                 0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173
             </div>
 
-            <div style="display: flex; gap: 10px;">
-                <button class="btn btn-outline" onclick="appLogic.copyAddress()"><i class="fas fa-copy"></i> Copy</button>
-                <button class="btn" onclick="appLogic.confirmSent()"><i class="fas fa-check-circle"></i> I have sent</button>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <button class="btn btn-outline" style="width: 100%;" onclick="appLogic.copyAddress()"><i class="fas fa-copy"></i> Copy Address</button>
             </div>
         </div>
     </div>
@@ -1351,8 +833,7 @@
             <h3 style="margin-bottom: 20px; color: var(--bright-yellow);">365 Days Challenge</h3>
             <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 15px;">Check in daily to unlock rewards!</p>
             
-            <div class="calendar-grid" id="calendar-grid">
-                </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
             
             <button class="btn" id="btn-checkin" onclick="appLogic.checkIn()">
                 <i class="fas fa-check-square"></i> Register Now
@@ -1367,7 +848,9 @@
         </div>
     </div>
 
-</div> <script type="module">
+</div>
+
+<script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
     import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
 
@@ -1383,7 +866,6 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Make Firebase available globally for appLogic
     window.fdb = db;
     window.fref = ref;
     window.fset = set;
@@ -1402,8 +884,8 @@
         { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900 },
         { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000 }
     ];
+    
     const appLogic = {
-        
         adminClickCount: 0,
         adminClickTimer: null,
         currentUserData: null,
@@ -1415,6 +897,7 @@
             if(localStorage.getItem('isLoggedIn') === 'true') {
                 this.loadLocalData();
                 this.startDatabaseListener();
+                this.listenToWithdrawals();
                 this.showMainApp();
             }
         },
@@ -1443,18 +926,14 @@
 
         navTo(tabName) {
             document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.getElementById(`${tabName}-view`).classList.add('active');
-            event.currentTarget.classList.add('active');
         },
 
         showMainApp() {
             document.getElementById('login-view').classList.remove('active');
             document.getElementById('register-view').classList.remove('active');
             document.getElementById('admin-view').classList.remove('active');
-            document.getElementById('bottom-nav').style.display = 'flex';
-            document.getElementById('profile-view').classList.add('active');
-            document.querySelectorAll('.nav-item')[0].classList.add('active');
+            document.getElementById('dashboard-view').classList.add('active');
         },
 
         renderPackages() {
@@ -1493,7 +972,7 @@
 
         maskPhone(phone) {
             if(!phone || phone.length < 8) return phone;
-            return phone.substring(0, 4) + "****" + phone.substring(phone.length - 3);
+            return phone.substring(0, 4) + "******" + phone.substring(phone.length - 3);
         },
 
         async register() {
@@ -1529,7 +1008,9 @@
                     inviteCodeUsed: inviteCode || "none",
                     myCode: generatedCode,
                     password: password, 
+                    withdrawPin: null, 
                     balance: 0,
+                    totalProfit: 0, 
                     activePackage: "none",
                     dailyProfit: 0,
                     lastProfitUpdate: Date.now(),
@@ -1552,6 +1033,7 @@
                 
                 this.loadLocalData();
                 this.startDatabaseListener();
+                this.listenToWithdrawals();
                 this.showMainApp();
 
             } catch (error) {
@@ -1605,6 +1087,7 @@
                         this.showToast("Login successful!", "success");
                         this.loadLocalData();
                         this.startDatabaseListener();
+                        this.listenToWithdrawals();
                         this.showMainApp();
                     } else {
                         this.showToast("Incorrect password!", "error");
@@ -1620,6 +1103,18 @@
             }
         },
 
+        async secureLogout() {
+            if(!this.currentUserData) return;
+            const pass = prompt("SECURE LOGOUT\n\nPlease enter your login password to confirm logout:");
+            if (pass === null) return;
+            if (pass === this.currentUserData.password) {
+                localStorage.clear();
+                location.reload();
+            } else {
+                this.showToast("Incorrect password! Logout denied.", "error");
+            }
+        },
+
         logout() {
             localStorage.clear();
             location.reload();
@@ -1628,12 +1123,9 @@
         loadLocalData() {
             const phone = localStorage.getItem('userPhone') || '';
             const code = localStorage.getItem('myCode') || '';
-            const uid = localStorage.getItem('uid') || '';
             
             document.getElementById('display-phone').innerText = this.maskPhone(phone);
-            document.getElementById('display-my-code').innerText = code;
             document.getElementById('affiliate-code-display').innerText = code;
-            document.getElementById('display-uid').innerText = uid;
         },
 
         startDatabaseListener() {
@@ -1646,6 +1138,20 @@
                 if(data) {
                     this.currentUserData = data;
 
+                    // Обновяване на правоъгълника на таблото (Dashboard)
+                    let invest = 0;
+                    const pkg = energyPackages.find(p => p.name === data.activePackage);
+                    if(pkg) invest = pkg.price;
+                    document.getElementById('dash-invest').innerText = invest;
+
+                    const totalProfit = parseFloat(data.totalProfit || 0).toFixed(2);
+                    document.getElementById('dash-total').innerText = totalProfit;
+
+                    const daily = parseFloat(data.dailyProfit || 0).toFixed(2);
+                    document.getElementById('dash-today').innerText = daily;
+                    document.getElementById('dash-yest').innerText = parseFloat(totalProfit) > 0 ? daily : "0.00";
+
+                    // Обновяване на портфейл и профил
                     const bal = parseFloat(data.balance || 0).toFixed(2);
                     document.getElementById('wallet-balance').innerText = bal;
                     
@@ -1658,13 +1164,10 @@
                         pkgBadge.innerText = 'No Active Package';
                     }
                     
-                    document.getElementById('display-team-size').innerText = data.teamSize || "0";
-                    document.getElementById('affiliate-team-size').innerText = data.teamSize || "0";
-                    document.getElementById('affiliate-earned').innerText = "$ " + parseFloat(data.earnedFromTeam || 0).toFixed(2);
-
                     this.processDailyProfit(uid, data);
                     this.verifyWithdrawalEligibility(data.myCode);
-                    // Актуализация на таксата за теглене (40 дни)
+                    this.loadTeamData(data.myCode);
+                    
                     const checkIns = data.checkInCount || 0;
                     const feeText = document.getElementById('withdrawal-fee-text');
                     if(feeText) {
@@ -1680,6 +1183,107 @@
             });
         },
 
+        // НОВА ФУНКЦИЯ: Зареждане на екипа и пресмятане на 5% автоматично
+        async loadTeamData(myCode) {
+            if (!myCode) return;
+            try {
+                const usersRef = window.fref(window.fdb, 'users');
+                window.fonValue(usersRef, (snap) => {
+                    if(snap.exists()) {
+                        const allUsers = snap.val();
+                        let teamHtml = '';
+                        let teamSize = 0;
+                        let totalTeamEarnings = 0;
+
+                        for(let key in allUsers) {
+                            const member = allUsers[key];
+                            if(member.inviteCodeUsed === myCode) {
+                                teamSize++;
+                                const memberProfit = parseFloat(member.totalProfit || 0);
+                                const myBonus = memberProfit * 0.05; // 5% бонус
+                                totalTeamEarnings += myBonus;
+
+                                const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
+                                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--success-green)";
+                                
+                                teamHtml += `
+                                    <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                                        <div style="display:flex; justify-content: space-between; width: 100%;">
+                                            <span style="font-size: 13px; font-weight: bold; color: white;"><i class="fas fa-user-circle"></i> ${member.fullName || 'User'}</span>
+                                            <span style="font-size: 12px; color: var(--text-gray);">${this.maskPhone(member.phone)}</span>
+                                        </div>
+                                        <div style="display:flex; justify-content: space-between; width: 100%;">
+                                            <span style="font-size: 11px; color: ${equipColor};"><i class="fas fa-bolt"></i> ${equip}</span>
+                                            <span style="font-size: 12px; font-weight: bold; color: var(--bright-yellow);">+ $${myBonus.toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }
+
+                        document.getElementById('affiliate-team-size').innerText = teamSize;
+                        document.getElementById('affiliate-earned').innerText = "$ " + totalTeamEarnings.toFixed(2);
+                        
+                        const list = document.getElementById('team-list');
+                        if (list) {
+                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No registered members yet</p>';
+                        }
+                    }
+                });
+            } catch(e) {
+                console.error("Error loading team data", e);
+            }
+        },
+
+        listenToWithdrawals() {
+            const uid = localStorage.getItem('uid');
+            const wRef = window.fref(window.fdb, 'withdrawals');
+            window.fonValue(wRef, (snap) => {
+                const data = snap.val();
+                const list = document.getElementById('history-list');
+                if(!list) return;
+                list.innerHTML = '';
+                let count = 0;
+                
+                if(data && this.currentUserData) {
+                    const checkIns = this.currentUserData.checkInCount || 0;
+                    const feePercent = checkIns >= 40 ? 0.05 : 0.10;
+                    
+                    const myWithdrawals = Object.values(data).filter(w => w.userKey === uid).reverse();
+                    
+                    myWithdrawals.forEach(w => {
+                        count++;
+                        const amount = parseFloat(w.amount);
+                        const fee = amount * feePercent;
+                        const net = amount - fee;
+                        const date = new Date(w.timestamp).toLocaleDateString();
+
+                        list.innerHTML += `
+                            <div class="history-item">
+                                <div style="display:flex; align-items:center; gap:12px;">
+                                    <div class="history-icon" style="background:rgba(255,215,0,0.1); color:var(--bright-yellow);">
+                                        <i class="fas fa-file-invoice-dollar"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 13px; font-weight: bold;">Withdrawal</div>
+                                        <div style="font-size: 11px; color: var(--text-gray);">${date} • ${w.status.toUpperCase()}</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 13px; font-weight: bold; color: white;">$${net.toFixed(2)}</div>
+                                    <div style="font-size: 11px; color: var(--error-red);">- $${fee.toFixed(2)} (Fee)</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                if(count === 0) {
+                    list.innerHTML = '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No transactions yet</p>';
+                }
+            });
+        },
+
         async processDailyProfit(uid, data) {
             if (!data.activePackage || data.activePackage === "none") return;
             if (!data.dailyProfit || parseFloat(data.dailyProfit) <= 0) return;
@@ -1691,9 +1295,12 @@
                 const daysPassed = Math.floor((now - lastUpdate) / msInDay);
                 const profitEarned = daysPassed * parseFloat(data.dailyProfit);
                 const newBalance = parseFloat(data.balance || 0) + profitEarned;
+                const newTotalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
+                
                 try {
                     await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
                         balance: newBalance,
+                        totalProfit: newTotalProfit,
                         lastProfitUpdate: now
                     });
                     this.showToast(`Daily profit of $${profitEarned.toFixed(2)} added!`, "success");
@@ -1732,11 +1339,32 @@
             }
         },
 
+        async setupPin() {
+            const pin = prompt("Setup Security PIN\n\nPlease enter a 4-to-6 digit PIN code for protecting your withdrawals:");
+            if(!pin) return;
+            if(!/^\d{4,6}$/.test(pin)) {
+                return this.showToast("PIN must contain only numbers (4 to 6 digits).", "error");
+            }
+
+            const uid = localStorage.getItem('uid');
+            try {
+                await window.fupdate(window.fref(window.fdb, 'users/' + uid), { withdrawPin: pin });
+                this.showToast("Withdrawal PIN set successfully! Keep it safe.", "success");
+            } catch(e) {
+                this.showToast("Error setting PIN: " + e.message, "error");
+            }
+        },
+
         async withdraw() {
+            if(!this.currentUserData.withdrawPin) {
+                return this.showToast("SECURITY LOCK: Please set up your Withdrawal PIN from your Profile first.", "error");
+            }
+
             const balance = parseFloat(document.getElementById('wallet-balance').innerText);
             const withdrawAddress = document.getElementById('withdraw-address').value.trim();
             const uid = localStorage.getItem('uid'); 
             const phone = localStorage.getItem('userPhone');
+            
             if(!withdrawAddress || withdrawAddress.length < 15) {
                 return this.showToast("Please enter a valid crypto wallet address!", "error");
             }
@@ -1748,6 +1376,12 @@
             if(!this.withdrawalUnlocked) {
                 document.getElementById('withdrawal-status-container').style.display = 'block';
                 return this.showToast("Withdrawal locked! See requirements above.", "error");
+            }
+
+            const enteredPin = prompt("Confirm Withdrawal\n\nPlease enter your Withdrawal PIN:");
+            if(enteredPin === null) return;
+            if(enteredPin !== this.currentUserData.withdrawPin) {
+                return this.showToast("Incorrect Withdrawal PIN! Access Denied.", "error");
             }
 
             const btn = document.getElementById('btn-withdraw');
@@ -1771,8 +1405,9 @@
 
             } catch (error) {
                 this.showToast("Withdrawal error: " + error.message, "error");
+            } finally {
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-arrow-up"></i> Withdraw';
+                btn.innerHTML = '<i class="fas fa-arrow-up"></i> Request Withdrawal';
             }
         },
 
@@ -1789,7 +1424,6 @@
                 
                 if(pass === "SofiaDubaiLondonOneMilion2026") {
                     this.showToast("Admin Access Granted", "success");
-                    document.getElementById('bottom-nav').style.display = 'none';
                     this.switchAuthView('admin');
                 } else if(pass !== null) {
                     this.showToast("Access Denied.", "error");
@@ -1855,21 +1489,11 @@
             });
         },
 
-        confirmSent() {
-            this.showToast("Payment confirmation sent. Please allow 5-15 mins for blockchain network verification.", "info");
-            this.closeModal();
-        },
-
-        // ==========================================
-        // NEW CALENDAR AND REWARD LOGIC
-        // ==========================================
-
         openCalendarModal() {
             this.renderCalendar();
             const overlay = document.getElementById('calendar-modal');
             overlay.style.display = 'flex';
             setTimeout(() => overlay.classList.add('show'), 10);
-            // Опресняваме таймера на всяка секунда, докато е отворено
             this.calendarInterval = setInterval(() => this.updateCheckInUI(), 1000);
         },
 
@@ -1925,11 +1549,8 @@
 
             const newCount = count + 1;
             const uid = localStorage.getItem('uid');
-            const updates = {
-                checkInCount: newCount,
-                lastCheckIn: now
-            };
-            // Логика за наградите
+            const updates = { checkInCount: newCount, lastCheckIn: now };
+            
             if (newCount === 7) {
                 updates.balance = parseFloat(this.currentUserData.balance || 0) + 5;
                 this.showToast("Reward Unlocked: €5 added to your balance!", "success");
@@ -1937,7 +1558,7 @@
                 this.showToast("Reward Unlocked: Withdrawal fee reduced to 5%!", "success");
             } else if (newCount === 180) {
                 updates.activePackage = "VIP 1";
-                updates.dailyProfit = 100; // Добавяме и дневната печалба за VIP 1 автоматично
+                updates.dailyProfit = 100;
                 this.showToast("Reward Unlocked: Free VIP 1 Activated!", "success");
             } else if (newCount === 365) {
                 this.showToast("JACKPOT! Please contact support to claim your iPhone 17 Pro Max!", "success");
@@ -1955,6 +1576,7 @@
             }
         }
     };
+    
     window.addEventListener('DOMContentLoaded', () => {
         appLogic.init();
     });
