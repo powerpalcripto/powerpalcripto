@@ -1091,36 +1091,111 @@
             <i class="fas fa-calendar-check"></i> Daily Check-in Rewards
         </button>
 
-        <button class="btn" onclick="toggleIncomeModal(true)" style="background-color: var(--success-green); color: var(--dark-green); margin-top: 15px; margin-bottom: 20px; width: 100%; font-weight: bold; border: none; border-radius: 8px; padding: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
-            <i class="fas fa-table"></i> INVESTMENT PACKAGES
-        </button>
+       <div class="energy-wrapper">
+    <style>
+        .energy-wrapper {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .modern-btn {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+        .table-container {
+            background: linear-gradient(to bottom, #dcedc8, #aed581);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            display: none;
+        }
+        .table-title {
+            font-size: 28px;
+            font-family: 'Times New Roman', Times, serif;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        .table-responsive { overflow-x: auto; }
+        .energy-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 15px;
+        }
+        .energy-table th {
+            background-color: #388e3c;
+            color: white;
+            padding: 12px 5px;
+            border: 1px solid #c8e6c9;
+        }
+        .energy-table td {
+            padding: 10px 5px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .plan-name { text-align: left; font-weight: bold; padding-left: 10px !important; }
+        .row-dark { background-color: #607d8b; color: white; }
+        .row-light { background-color: #c8e6c9; color: #000; }
+        .row-ultimate { background-color: #1b5e20; color: white; font-weight: bold; }
+    </style>
 
-        <div id="incomeTableModal" style="display:none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(5px);">
-            <div style="background-color: var(--dark-green-light); padding: 20px; border-radius: 15px; max-width: 90%; position: relative; border: 1px solid var(--bright-yellow); box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);">
-                <span onclick="toggleIncomeModal(false)" style="position: absolute; top: 10px; right: 15px; color: white; font-size: 30px; cursor: pointer; line-height: 1;">&times;</span>
-                <h3 style="color: var(--bright-yellow); text-align: center; margin-bottom: 15px; font-family: 'Montserrat', sans-serif;">Investment Table</h3>
-                <img src="income_table.png" alt="Income Table" style="width: 100%; height: auto; border-radius: 10px; display: block;">
-            </div>
+    <button id="energyPlanBtn" class="modern-btn">⚡ View Energy Plans</button>
+
+    <div id="energyTableContainer" class="table-container">
+        <h2 class="table-title">Income from Green Energy</h2>
+        <div class="table-responsive">
+            <table class="energy-table">
+                <thead>
+                    <tr>
+                        <th>Plan</th>
+                        <th>Price</th>
+                        <th>Daily Income</th>
+                        <th>Monthly Income</th>
+                        <th>Net Profit</th>
+                        <th>ROI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-dark"><td class="plan-name">⚡ BASIC - 1</td><td>80€</td><td>3€</td><td>90€</td><td>+10€</td><td>26 days</td></tr>
+                    <tr class="row-light"><td class="plan-name">⚡ BASIC - 2</td><td>200€</td><td>9€</td><td>270€</td><td>+70€</td><td>22 days</td></tr>
+                    <tr class="row-dark"><td class="plan-name">⚡ BASIC - 3</td><td>500€</td><td>23€</td><td>690€</td><td>+190€</td><td>21 days</td></tr>
+                    <tr class="row-light"><td class="plan-name">⚡ VIP - 1</td><td>1200€</td><td>59€</td><td>1770€</td><td>+570€</td><td>20 days</td></tr>
+                    <tr class="row-dark"><td class="plan-name">⚡ VIP - 2</td><td>3000€</td><td>165€</td><td>4950€</td><td>+1950€</td><td>18 days</td></tr>
+                    <tr class="row-light"><td class="plan-name">⚡ VIP - 3</td><td>6500€</td><td>430€</td><td>12900€</td><td>+6400€</td><td>15 days</td></tr>
+                    <tr class="row-ultimate"><td class="plan-name">⚡ ULTIMATE ENERGY</td><td>20000€</td><td>1500€</td><td>45000€</td><td>+25000€</td><td>13 days</td></tr>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <script>
-            function toggleIncomeModal(show) {
-                const modal = document.getElementById('incomeTableModal');
-                if (show) {
-                    modal.style.display = 'flex';
-                } else {
-                    modal.style.display = 'none';
-                }
+    <script>
+        document.getElementById('energyPlanBtn').addEventListener('click', function() {
+            var container = document.getElementById('energyTableContainer');
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'block';
+                this.innerText = 'Hide plans';
+            } else {
+                container.style.display = 'none';
+                this.innerText = '⚡ View Energy Plans';
             }
-            
-            // Затваряне при клик извън снимката
-            window.onclick = function(event) {
-                const modal = document.getElementById('incomeTableModal');
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
+        });
+    </script>
+</div>
+
         
         <button class="btn btn-outline" onclick="appLogic.logout()" style="margin-top: 10px; border-color: var(--error-red); color: var(--error-red);">
             <i class="fas fa-sign-out-alt"></i> Secure Logout
