@@ -9,20 +9,18 @@
     
     <style>
         /* ==========================================================================
-           1. CSS VARIABLES & THEME SETTINGS (LUXURY FINANCE THEME)
+           1. CSS VARIABLES & THEME SETTINGS (BLACK & DARK GREEN)
            ========================================================================== */
         :root {
-            --bg-gradient: radial-gradient(circle at 50% 0%, #1c2541 0%, #0b132b 100%);
-            --primary-bg: #0b132b; /* Deep Navy Blue */
-            --glass-bg: rgba(28, 37, 65, 0.6); /* Glass base */
-            --glass-hover: rgba(212, 175, 55, 0.15);
-            --gold: #d4af37; /* Royal Gold */
-            --gold-hover: #b5952f;
-            --text-light: #ffffff;
-            --text-gray: #a0aab2;
+            --bg-gradient: #000000;
+            --primary-bg: #000000; /* Черен фон */
+            --glass-bg: rgba(20, 20, 20, 0.8); /* Тъмно сиво/черно за картите */
+            --glass-hover: rgba(27, 94, 32, 0.15);
+            --accent-green: #1b5e20; /* Тъмно зелено за детайли */
+            --accent-hover: #2e7d32; /* Малко по-светло зелено за хоувър ефект */
+            --text-light: #ffffff; /* Бели букви и числа */
+            --text-gray: #cccccc; /* Светло сиво за второстепенен текст */
             --error-red: #e63946;
-            --emerald: #10b981; /* Emerald Green */
-            --electric-cyan: #00e5ff;
             --admin-color: #9b59b6;
             --admin-dark: rgba(44, 26, 53, 0.8);
             
@@ -30,8 +28,8 @@
             --border-radius-sm: 12px;
             --border-radius-md: 16px;
             --border-radius-lg: 24px;
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.4), 0 0 20px rgba(212, 175, 55, 0.05);
-            --glass-border: 1px solid rgba(212, 175, 55, 0.15);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(27, 94, 32, 0.15);
+            --glass-border: 1px solid var(--accent-green);
         }
     
         /* ==========================================================================
@@ -47,7 +45,7 @@
 
         body {
             background-color: var(--primary-bg);
-            background-image: var(--bg-gradient);
+            background: var(--bg-gradient);
             color: var(--text-light);
             display: flex;
             justify-content: center;
@@ -57,7 +55,7 @@
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--primary-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--glass-bg); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--accent-green); border-radius: 10px; }
 
         /* ==========================================================================
            3. LAYOUT & CONTAINER
@@ -70,7 +68,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
             overflow-x: hidden;
         }
 
@@ -89,7 +87,7 @@
         /* ==========================================================================
            4. TYPOGRAPHY
            ========================================================================== */
-        h1, h2, h3, h4, h5 { color: var(--gold); margin-bottom: 15px; font-weight: 800; }
+        h1, h2, h3, h4, h5 { color: var(--text-light); margin-bottom: 15px; font-weight: 800; }
         .text-center { text-align: center; }
         .text-gray { color: var(--text-gray); }
         .text-white { color: var(--text-light); }
@@ -107,6 +105,7 @@
             letter-spacing: -1px;
             user-select: none;
             cursor: pointer;
+            color: var(--text-light);
         }
 
         /* ==========================================================================
@@ -117,7 +116,7 @@
             display: block;
             font-size: 12px;
             font-weight: 600;
-            color: var(--text-gray);
+            color: var(--text-light);
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -129,7 +128,7 @@
             background: var(--glass-bg);
             border-radius: var(--border-radius-sm);
             padding: 8px 15px;
-            border: 2px solid transparent;
+            border: 1px solid var(--accent-green);
             transition: var(--transition-speed);
         }
 
@@ -137,22 +136,22 @@
         .input-wrapper.admin-input:focus-within { border-color: var(--admin-color); }
         .input-wrapper.admin-input i { color: var(--admin-color); }
 
-        .input-wrapper:focus-within { border-color: var(--gold); background: rgba(11, 19, 43, 0.8); box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
-        .input-wrapper i { color: var(--gold); margin-right: 12px; font-size: 16px; width: 20px; text-align: center; }
+        .input-wrapper:focus-within { border-color: var(--accent-hover); background: rgba(20, 20, 20, 0.9); box-shadow: 0 0 10px rgba(27, 94, 32, 0.5); }
+        .input-wrapper i { color: var(--accent-green); margin-right: 12px; font-size: 16px; width: 20px; text-align: center; }
         
         input, select {
             width: 100%;
             background: transparent;
             border: none;
-            color: white;
+            color: var(--text-light);
             padding: 10px 0;
             outline: none;
             font-size: 15px;
             font-weight: 500;
         }
 
-        input::placeholder { color: rgba(160, 170, 178, 0.5); }
-        select option { background: var(--primary-bg); color: white; }
+        input::placeholder { color: rgba(204, 204, 204, 0.5); }
+        select option { background: var(--primary-bg); color: var(--text-light); }
 
         .phone-group { display: flex; gap: 12px; }
         .phone-code { width: 38%; }
@@ -163,8 +162,8 @@
            ========================================================================== */
         .btn {
             width: 100%;
-            background-color: var(--gold);
-            color: var(--primary-bg);
+            background-color: var(--accent-green);
+            color: var(--text-light);
             border: none;
             padding: 16px;
             font-size: 15px;
@@ -174,34 +173,34 @@
             transition: var(--transition-speed);
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 10px rgba(27, 94, 32, 0.4);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
         }
         
-        .btn:hover:not(:disabled) { background-color: var(--gold-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3); }
+        .btn:hover:not(:disabled) { background-color: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(27, 94, 32, 0.6); }
         .btn:active:not(:disabled) { transform: translateY(0); }
         
         .btn-outline {
             background: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
+            color: var(--text-light);
+            border: 2px solid var(--accent-green);
             box-shadow: none;
         }
-        .btn-outline:hover:not(:disabled) { background: rgba(212, 175, 55, 0.1); }
+        .btn-outline:hover:not(:disabled) { background: var(--accent-green); color: var(--text-light); }
 
-        .btn-admin { background-color: var(--admin-color); color: white; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); }
+        .btn-admin { background-color: var(--admin-color); color: white; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); border: none; }
         .btn-admin:hover:not(:disabled) { background-color: #8e44ad; }
 
         .btn:disabled {
-            background-color: #2a3441;
-            color: #7a8a92;
+            background-color: #1a1a1a;
+            color: #555555;
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
-            border-color: #2a3441;
+            border-color: #1a1a1a;
         }
 
         .switch-link {
@@ -212,11 +211,11 @@
             cursor: pointer;
             padding: 10px;
         }
-        .switch-link span { color: var(--gold); font-weight: 700; text-decoration: underline; }
+        .switch-link span { color: var(--accent-green); font-weight: 700; text-decoration: underline; }
 
         .back-btn {
             background: transparent;
-            color: var(--gold);
+            color: var(--text-light);
             border: none;
             font-size: 14px;
             font-weight: 600;
@@ -227,13 +226,13 @@
             margin-bottom: 20px;
             padding: 5px 0;
         }
-        .back-btn i { font-size: 16px; }
+        .back-btn i { font-size: 16px; color: var(--accent-green); }
 
         /* ==========================================================================
            7. DASHBOARD GRID & STATS
            ========================================================================== */
         .dashboard-header {
-            background: linear-gradient(135deg, rgba(28,37,65,0.8), rgba(11,19,43,0.9));
+            background: rgba(15, 15, 15, 0.9);
             border-radius: var(--border-radius-md);
             padding: 20px;
             margin-bottom: 25px;
@@ -249,15 +248,15 @@
 
         .dash-stat-box {
             width: calc(50% - 6px);
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
             padding: 15px 10px;
             border-radius: var(--border-radius-sm);
             text-align: center;
+            border: 1px solid rgba(27, 94, 32, 0.3);
         }
 
         .dash-stat-box p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
-        .dash-stat-box h3 { font-size: 20px; color: white; margin: 0; }
-        .dash-stat-box h3 span { color: var(--gold); }
+        .dash-stat-box h3 { font-size: 20px; color: var(--text-light); margin: 0; }
 
         .dashboard-grid {
             display: grid;
@@ -277,23 +276,23 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: var(--glass-border);
         }
 
         .grid-item i {
             font-size: 28px;
-            color: var(--gold);
+            color: var(--accent-green);
             margin-bottom: 12px;
             transition: transform 0.2s;
         }
 
-        .grid-item:hover { transform: translateY(-3px); background: rgba(28,37,65,0.9); border-color: rgba(212,175,55,0.2); }
+        .grid-item:hover { transform: translateY(-3px); background: #111; border-color: var(--accent-hover); }
         .grid-item:hover i { transform: scale(1.1); }
 
         .grid-item span {
             font-size: 11px;
             font-weight: 700;
-            color: white;
+            color: var(--text-light);
             text-transform: uppercase;
         }
 
@@ -305,26 +304,29 @@
             border-radius: var(--border-radius-md);
             padding: 22px;
             margin-bottom: 20px;
-            border-left: 4px solid var(--gold);
+            border-left: 4px solid var(--accent-green);
             box-shadow: var(--shadow-md);
             transition: var(--transition-speed);
+            border-top: 1px solid rgba(27, 94, 32, 0.2);
+            border-right: 1px solid rgba(27, 94, 32, 0.2);
+            border-bottom: 1px solid rgba(27, 94, 32, 0.2);
         }
 
-        .card-admin { background: var(--admin-dark); border-left: 4px solid var(--admin-color); }
+        .card-admin { background: var(--admin-dark); border-left: 4px solid var(--admin-color); border-top: none; border-right: none; border-bottom: none; }
         .stat-box { display: flex; justify-content: space-between; margin-top: 15px; }
-        .stat-item { text-align: center; width: 48%; background: rgba(0,0,0,0.3); padding: 15px 5px; border-radius: var(--border-radius-sm); }
-        .stat-value { font-size: 22px; color: var(--gold); font-weight: 800; margin-top: 8px; }
+        .stat-item { text-align: center; width: 48%; background: rgba(0,0,0,0.5); padding: 15px 5px; border-radius: var(--border-radius-sm); border: 1px solid rgba(27, 94, 32, 0.3); }
+        .stat-value { font-size: 22px; color: var(--text-light); font-weight: 800; margin-top: 8px; }
         .stat-label { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .badge { display: inline-block; padding: 5px 12px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-        .badge-active { background: rgba(16, 185, 129, 0.2); color: var(--emerald); border: 1px solid var(--emerald); }
+        .badge-active { background: rgba(27, 94, 32, 0.2); color: var(--text-light); border: 1px solid var(--accent-green); }
         .badge-inactive { background: rgba(160, 170, 178, 0.2); color: var(--text-gray); border: 1px solid var(--text-gray); }
 
         /* ==========================================================================
            9. STORE PACKAGES
            ========================================================================== */
         .package-card {
-            background: linear-gradient(145deg, var(--glass-bg), rgba(11,19,43,0.8));
+            background: var(--glass-bg);
             border-radius: var(--border-radius-md);
             padding: 25px;
             margin-bottom: 20px;
@@ -336,15 +338,15 @@
         
         .package-card::after {
             content: ''; position: absolute; top: -50px; right: -50px;
-            width: 100px; height: 100px; background: rgba(212, 175, 55, 0.1);
+            width: 100px; height: 100px; background: rgba(27, 94, 32, 0.2);
             border-radius: 50%; filter: blur(20px);
         }
 
-        .package-title { font-size: 24px; font-weight: 900; color: var(--gold); margin-bottom: 5px; }
-        .package-price { font-size: 32px; font-weight: 800; margin: 10px 0; color: white; }
+        .package-title { font-size: 24px; font-weight: 900; color: var(--text-light); margin-bottom: 5px; }
+        .package-price { font-size: 32px; font-weight: 800; margin: 10px 0; color: var(--text-light); }
         .package-price span { font-size: 16px; color: var(--text-gray); font-weight: 500; }
-        .package-details { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 13px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: var(--border-radius-sm); }
-        .package-details strong { color: var(--emerald); font-size: 16px; display: block; margin-top: 5px; }
+        .package-details { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 13px; background: rgba(0,0,0,0.5); padding: 15px; border-radius: var(--border-radius-sm); border: 1px solid rgba(27, 94, 32, 0.3); }
+        .package-details strong { color: var(--text-light); font-size: 16px; display: block; margin-top: 5px; }
         .buy-btn { width: 100%; border-radius: 50px; }
 
         /* ==========================================================================
@@ -352,74 +354,73 @@
            ========================================================================== */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center;
             backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s;
         }
         .modal-overlay.show { display: flex; opacity: 1; }
         .modal-content {
             background: var(--primary-bg); width: 90%; max-width: 400px;
             border-radius: var(--border-radius-lg); padding: 30px; text-align: center;
-            border: 1px solid var(--gold); position: relative;
+            border: 2px solid var(--accent-green); position: relative;
             transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 30px rgba(27, 94, 32, 0.4);
         }
         .modal-overlay.show .modal-content { transform: scale(1); }
         .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-gray); font-size: 28px; cursor: pointer; transition: color 0.2s; }
-        .close-modal:hover { color: white; }
+        .close-modal:hover { color: var(--text-light); }
 
-        .qr-code { width: 180px; height: 180px; margin: 20px auto; background: white; padding: 10px; border-radius: 10px; }
+        .qr-code { width: 180px; height: 180px; margin: 20px auto; background: white; padding: 10px; border-radius: 10px; border: 2px solid var(--accent-green); }
         .wallet-address {
-            background: var(--glass-bg); padding: 15px; border-radius: var(--border-radius-sm);
+            background: rgba(0,0,0,0.5); padding: 15px; border-radius: var(--border-radius-sm);
             font-family: monospace; font-size: 13px; word-break: break-all; margin-bottom: 20px;
-            color: var(--gold); border: 1px dashed rgba(212, 175, 55, 0.3);
+            color: var(--text-light); border: 1px dashed var(--accent-green);
         }
-        .warning-text { color: var(--gold); font-size: 12px; margin-bottom: 15px; background: rgba(212,175,55,0.1); padding: 12px; border-radius: var(--border-radius-sm); line-height: 1.5; }
+        .warning-text { color: var(--text-light); font-size: 12px; margin-bottom: 15px; background: rgba(27, 94, 32, 0.2); padding: 12px; border-radius: var(--border-radius-sm); border: 1px solid var(--accent-green); line-height: 1.5; }
 
         #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast {
-            background: var(--glass-bg); color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px;
-            border-left: 4px solid var(--gold); animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--glass-bg); color: var(--text-light); padding: 15px 20px; border-radius: var(--border-radius-sm);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.8); display: flex; align-items: center; gap: 15px;
+            border-left: 4px solid var(--accent-green); animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 14px; font-weight: 500; line-height: 1.4;
             backdrop-filter: blur(5px);
         }
         .toast.error { border-left-color: var(--error-red); }
         .toast.error i { color: var(--error-red); }
-        .toast.success { border-left-color: var(--emerald); }
-        .toast.success i { color: var(--emerald); }
+        .toast.success { border-left-color: var(--accent-green); }
+        .toast.success i { color: var(--accent-green); }
 
         /* ==========================================================================
            11. IMAGES & ANIMATIONS
            ========================================================================== */
-        .hero-image { width: 100%; max-width: 260px; margin: 10px auto 25px auto; display: block; border-radius: var(--border-radius-md); background: white; padding: 15px; box-shadow: var(--shadow-md); }
+        .hero-image { width: 100%; max-width: 260px; margin: 10px auto 25px auto; display: block; border-radius: var(--border-radius-md); background: rgba(27, 94, 32, 0.1); padding: 15px; box-shadow: var(--shadow-md); border: 1px solid var(--accent-green); }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastSlideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastFadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-        .profile-avatar { width: 80px; height: 80px; background: rgba(212, 175, 55, 0.1); border: 2px solid var(--gold); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; color: var(--gold); margin: 0 auto 15px auto; }
-        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .profile-avatar { width: 80px; height: 80px; background: rgba(27, 94, 32, 0.2); border: 2px solid var(--accent-green); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; color: var(--accent-green); margin: 0 auto 15px auto; }
+        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(27, 94, 32, 0.3); }
         .history-item:last-child { border-bottom: none; }
         .history-icon { width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
 
         /* ==========================================================================
            12. CALENDAR CHECK-IN & ENERGY TABLE
            ========================================================================== */
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); gap: 6px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: var(--border-radius-sm); }
-        .day-box { width: 28px; height: 28px; background: rgba(255,255,255,0.9); color: var(--primary-bg); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; border-radius: 4px; transition: all 0.3s; }
-        .day-box.checked { background: var(--gold); box-shadow: 0 0 8px rgba(212, 175, 55, 0.5); }
-        .rewards-text p { margin: 8px 0; font-size: 12px; text-align: left; line-height: 1.4; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); gap: 6px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; padding: 15px; background: rgba(0,0,0,0.5); border-radius: var(--border-radius-sm); border: 1px solid rgba(27, 94, 32, 0.3); }
+        .day-box { width: 28px; height: 28px; background: rgba(255,255,255,0.1); color: var(--text-light); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; border-radius: 4px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2); }
+        .day-box.checked { background: var(--accent-green); color: var(--text-light); box-shadow: 0 0 8px rgba(27, 94, 32, 0.8); border-color: var(--accent-green); }
+        .rewards-text p { margin: 8px 0; font-size: 12px; text-align: left; line-height: 1.4; color: var(--text-light); }
 
-        .table-container { background: linear-gradient(to bottom, #dcedc8, #aed581); padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); margin-top: 15px; }
-        .table-title { font-size: 22px; font-family: 'Times New Roman', Times, serif; margin-bottom: 20px; color: #000; text-align: center;}
+        .table-container { background: var(--glass-bg); padding: 20px; border-radius: 12px; box-shadow: var(--shadow-md); border: var(--glass-border); margin-top: 15px; }
+        .table-title { font-size: 22px; margin-bottom: 20px; color: var(--text-light); text-align: center;}
         .table-responsive { overflow-x: auto; }
         .energy-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 13px; }
-        .energy-table th { background-color: #388e3c; color: white; padding: 10px 5px; border: 1px solid #c8e6c9; }
-        .energy-table td { padding: 10px 5px; border: 1px solid rgba(255,255,255,0.2); color: black; }
+        .energy-table th { background-color: var(--accent-green); color: var(--text-light); padding: 10px 5px; border: 1px solid #000; }
+        .energy-table td { padding: 10px 5px; border: 1px solid rgba(27, 94, 32, 0.3); color: var(--text-light); }
         .plan-name { text-align: left; font-weight: bold; }
-        .row-dark { background-color: #607d8b; color: white; }
-        .row-dark td { color: white; }
-        .row-light { background-color: #c8e6c9; color: #000; }
-        .row-ultimate { background-color: #1b5e20; color: white; font-weight: bold; }
-        .row-ultimate td { color: white; }
+        .row-dark { background-color: rgba(27, 94, 32, 0.1); }
+        .row-light { background-color: rgba(0, 0, 0, 0.5); }
+        .row-ultimate { background-color: rgba(27, 94, 32, 0.3); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -432,22 +433,22 @@
         <div class="text-center">
             <h1 class="logo-title" onclick="appLogic.adminTriggerClick()">Invest In Energy</h1>
             <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" class="hero-image">
-                <rect width="240" height="120" rx="10" fill="#ffffff"/>
-                <rect x="180" y="25" width="35" height="75" rx="5" fill="#10b981"/>
-                <rect x="185" y="35" width="25" height="20" fill="#0b132b"/>
+                <rect width="240" height="120" rx="10" fill="#000000"/>
+                <rect x="180" y="25" width="35" height="75" rx="5" fill="#1b5e20"/>
+                <rect x="185" y="35" width="25" height="20" fill="#000000"/>
                 <circle cx="197.5" cy="75" r="10" fill="#ffffff"/>
-                <path d="M195.5 70 l-3 6 h4 l-2 6 l6 -7 h-4 z" fill="#10b981"/>
-                <path d="M180 65 L160 65 L160 85 L145 85" fill="none" stroke="#00b862" stroke-width="4"/>
-                <path d="M20 85 L20 60 C20 45, 45 40, 60 40 L95 25 C120 20, 140 30, 150 50 L165 60 L165 85 Z" fill="#00b862"/>
-                <path d="M60 42 L95 28 C110 25, 125 32, 135 48 L145 60 L60 60 Z" fill="#ecf0f1"/>
-                <circle cx="55" cy="85" r="16" fill="#2c3e50"/>
-                <circle cx="55" cy="85" r="6" fill="#bdc3c7"/>
-                <circle cx="130" cy="85" r="16" fill="#2c3e50"/>
-                <circle cx="130" cy="85" r="6" fill="#bdc3c7"/>
-                <circle cx="120" cy="25" r="14" fill="none" stroke="#10b981" stroke-width="2"/>
-                <path d="M122 15 l-6 10 h5 l-3 10 l9 -12 h-5 z" fill="#10b981"/>
+                <path d="M195.5 70 l-3 6 h4 l-2 6 l6 -7 h-4 z" fill="#1b5e20"/>
+                <path d="M180 65 L160 65 L160 85 L145 85" fill="none" stroke="#2e7d32" stroke-width="4"/>
+                <path d="M20 85 L20 60 C20 45, 45 40, 60 40 L95 25 C120 20, 140 30, 150 50 L165 60 L165 85 Z" fill="#1b5e20"/>
+                <path d="M60 42 L95 28 C110 25, 125 32, 135 48 L145 60 L60 60 Z" fill="#2e7d32"/>
+                <circle cx="55" cy="85" r="16" fill="#111111"/>
+                <circle cx="55" cy="85" r="6" fill="#cccccc"/>
+                <circle cx="130" cy="85" r="16" fill="#111111"/>
+                <circle cx="130" cy="85" r="6" fill="#cccccc"/>
+                <circle cx="120" cy="25" r="14" fill="none" stroke="#1b5e20" stroke-width="2"/>
+                <path d="M122 15 l-6 10 h5 l-3 10 l9 -12 h-5 z" fill="#1b5e20"/>
             </svg>
-            <p style="color: var(--text-gray); margin-bottom: 35px; font-weight: 500;">Login to your green portfolio</p>
+            <p style="color: var(--text-light); margin-bottom: 35px; font-weight: 500;">Login to your green portfolio</p>
         </div>
 
         <div class="form-group">
@@ -509,14 +510,14 @@
         <div class="text-center">
             <h1 class="logo-title">Invest In Energy</h1>
             <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" class="hero-image">
-                <rect width="240" height="120" rx="10" fill="#ffffff"/>
-                <path d="M120 20 L220 100 L20 100 Z" fill="#10b981" opacity="0.2"/>
-                <rect x="100" y="40" width="40" height="60" fill="#0b132b"/>
-                <path d="M120 10 L150 40 L90 40 Z" fill="#00b862"/>
-                <circle cx="120" cy="65" r="12" fill="#d4af37"/>
-                <path d="M120 58 L117 65 L123 65 L120 72" stroke="#0b132b" stroke-width="2" fill="none"/>
+                <rect width="240" height="120" rx="10" fill="#000000"/>
+                <path d="M120 20 L220 100 L20 100 Z" fill="#1b5e20" opacity="0.4"/>
+                <rect x="100" y="40" width="40" height="60" fill="#111111"/>
+                <path d="M120 10 L150 40 L90 40 Z" fill="#2e7d32"/>
+                <circle cx="120" cy="65" r="12" fill="#ffffff"/>
+                <path d="M120 58 L117 65 L123 65 L120 72" stroke="#000000" stroke-width="2" fill="none"/>
             </svg>
-            <p style="color: var(--text-gray); margin-bottom: 25px; font-weight: 500;">Create new account</p>
+            <p style="color: var(--text-light); margin-bottom: 25px; font-weight: 500;">Create new account</p>
         </div>
 
         <div class="form-group">
@@ -596,19 +597,19 @@
             <div class="dashboard-stats">
                 <div class="dash-stat-box">
                     <p>Investment</p>
-                    <h3><span id="dash-invest">0</span>€</h3>
+                    <h3><span id="dash-invest" style="color: var(--text-light);">0</span>€</h3>
                 </div>
                 <div class="dash-stat-box">
                     <p>Total Profit</p>
-                    <h3><span id="dash-total">0</span>€</h3>
+                    <h3><span id="dash-total" style="color: var(--text-light);">0</span>€</h3>
                 </div>
                 <div class="dash-stat-box">
                     <p>Yesterday</p>
-                    <h3><span id="dash-yest">0</span>€</h3>
+                    <h3><span id="dash-yest" style="color: var(--text-light);">0</span>€</h3>
                 </div>
                 <div class="dash-stat-box">
                     <p>Today</p>
-                    <h3><span id="dash-today">0</span>€</h3>
+                    <h3><span id="dash-today" style="color: var(--text-light);">0</span>€</h3>
                 </div>
             </div>
         </div>
@@ -654,14 +655,14 @@
         <div class="text-center" style="margin-bottom: 30px;">
             <i class="fas fa-user-shield" style="font-size: 50px; color: var(--admin-color); margin-bottom: 15px;"></i>
             <h2 style="color: var(--admin-color); margin-bottom: 5px;">System Console</h2>
-            <p style="color: var(--text-gray); font-size: 12px;">Administrator Access Only</p>
+            <p style="color: var(--text-light); font-size: 12px;">Administrator Access Only</p>
         </div>
 
         <div class="card card-admin">
             <h3 style="font-size: 16px; margin-bottom: 20px; color: white;">Manage User Account</h3>
             
             <div class="form-group">
-                <label style="color: var(--text-gray);">Target Phone Number (incl. code)</label>
+                <label style="color: var(--text-light);">Target Phone Number (incl. code)</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-search"></i>
                     <input type="tel" id="admin-target-phone" placeholder="+359871234567">
@@ -669,7 +670,7 @@
             </div>
 
             <div class="form-group">
-                <label style="color: var(--text-gray);">Assign Package</label>
+                <label style="color: var(--text-light);">Assign Package</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-box"></i>
                     <select id="admin-package-select">
@@ -686,7 +687,7 @@
             </div>
 
             <div class="form-group">
-                <label style="color: var(--text-gray);">Daily Profit Amount (€)</label>
+                <label style="color: var(--text-light);">Daily Profit Amount (€)</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-hand-holding-usd"></i>
                     <input type="number" id="admin-daily-profit" placeholder="e.g. 7.00" step="0.01">
@@ -707,15 +708,15 @@
             <div class="profile-avatar">
                 <i class="fas fa-user-astronaut"></i>
             </div>
-            <h3 id="display-phone" style="letter-spacing: 1px; color: white; margin-bottom: 5px;"></h3>
+            <h3 id="display-phone" style="letter-spacing: 1px; color: var(--text-light); margin-bottom: 5px;"></h3>
             <div style="margin-top: 15px;">
                 <span id="display-package-badge" class="badge badge-inactive">No Active Package</span>
             </div>
         </div>
 
         <div class="card" style="text-align: center;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Security Settings</h4>
-            <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 15px;">Set up a PIN code required for all withdrawals to keep your funds safe.</p>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-light);">Security Settings</h4>
+            <p style="font-size: 12px; color: var(--text-light); margin-bottom: 15px;">Set up a PIN code required for all withdrawals to keep your funds safe.</p>
             <button class="btn btn-outline" onclick="appLogic.setupPin()">
                 <i class="fas fa-key"></i> Setup Withdrawal PIN
             </button>
@@ -728,12 +729,12 @@
         
         <div class="card text-center" style="padding: 30px 20px;">
             <p class="stat-label">Total Available Balance</p>
-            <h1 style="font-size: 46px; margin: 15px 0; letter-spacing: -1px;">
-                <span style="color: var(--text-gray); font-size: 30px;">€</span> <span id="wallet-balance">0.00</span>
+            <h1 style="font-size: 46px; margin: 15px 0; letter-spacing: -1px; color: var(--text-light);">
+                <span style="color: var(--text-light); font-size: 30px;">€</span> <span id="wallet-balance">0.00</span>
             </h1>
-            <p style="font-size: 12px; color: var(--text-gray);">USDT / EUR Equivalent</p>
+            <p style="font-size: 12px; color: var(--text-light);">USDT / EUR Equivalent</p>
             
-            <p id="withdrawal-fee-text" style="font-size: 13px; color: var(--gold); margin-top: 15px; text-align: center; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">
+            <p id="withdrawal-fee-text" style="font-size: 13px; color: var(--text-light); margin-top: 15px; text-align: center; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; border: 1px solid var(--accent-green);">
                 <i class="fas fa-info-circle"></i> Standard Withdrawal Fee: <b>10%</b>
             </p>
 
@@ -747,10 +748,9 @@
                 </div>
             </div>
 
-            <!-- НОВО: Поле за сума за теглене -->
             <div class="form-group" style="text-align: left; margin-top: 25px;">
                 <label>Amount to Withdraw (€)</label>
-                <div class="input-wrapper" style="background: rgba(0,0,0,0.3);">
+                <div class="input-wrapper" style="background: rgba(0,0,0,0.5);">
                     <i class="fas fa-coins"></i>
                     <input type="number" id="withdraw-amount" placeholder="Enter amount (min 50 €)" min="50">
                 </div>
@@ -758,7 +758,7 @@
 
             <div class="form-group" style="text-align: left; margin-top: 15px;">
                 <label>Withdrawal Address (USDT TRC20/ERC20)</label>
-                <div class="input-wrapper" style="background: rgba(0,0,0,0.3);">
+                <div class="input-wrapper" style="background: rgba(0,0,0,0.5);">
                     <i class="fas fa-wallet"></i>
                     <input type="text" id="withdraw-address" placeholder="Paste your wallet address here...">
                 </div>
@@ -767,11 +767,11 @@
             <button class="btn btn-outline" id="btn-withdraw" style="margin-top: 15px;" onclick="appLogic.withdraw()">
                 <i class="fas fa-arrow-up"></i> Request Withdrawal
             </button>
-            <p style="font-size: 11px; color: var(--text-gray); margin-top: 15px;">* Minimum withdrawal amount is 50 €</p>
+            <p style="font-size: 11px; color: var(--text-light); margin-top: 15px;">* Minimum withdrawal amount is 50 €</p>
         </div>
 
         <div class="card" style="padding: 15px 22px;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Transaction History</h4>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-light);">Transaction History</h4>
             <div id="history-list">
                 </div>
         </div>
@@ -780,26 +780,25 @@
     <div id="packages-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center">Energy Store</h2>
-        <p class="text-center text-gray" style="margin-bottom: 25px;">Invest in charging stations and earn daily.</p>
+        <p class="text-center" style="margin-bottom: 25px; color: var(--text-light);">Invest in charging stations and earn daily.</p>
         <div id="packages-container"></div>
     </div>
 
     <div id="affiliate-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center">Partner Program</h2>
-        <p class="text-center text-gray" style="margin-bottom: 20px;">Build your team</p>
+        <p class="text-center text-light" style="margin-bottom: 20px;">Build your team</p>
         
-        <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--glass-bg), rgba(11,19,43,0.9));">
-            <div style="width: 60px; height: 60px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto;">
-                <i class="fas fa-network-wired" style="font-size: 28px; color: var(--gold);"></i>
+        <div class="card" style="text-align: center; background: rgba(15, 15, 15, 0.9);">
+            <div style="width: 60px; height: 60px; background: rgba(27, 94, 32, 0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; border: 1px solid var(--accent-green);">
+                <i class="fas fa-network-wired" style="font-size: 28px; color: var(--accent-green);"></i>
             </div>
-            <!-- ПРЕВЕДЕН ТЕКСТ НА АНГЛИЙСКИ -->
-            <p style="font-size: 13px; margin-bottom: 15px; line-height: 1.5;">
-                You will receive a <strong style="color: var(--gold);">5% commission</strong> from the daily income of every team member!
+            <p style="font-size: 13px; margin-bottom: 15px; line-height: 1.5; color: var(--text-light);">
+                You will receive a <strong style="color: var(--text-light);">5% commission</strong> from the daily income of every team member!
             </p>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 15px;">
-                <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 5px; text-transform: uppercase;">Your Invitation Code</p>
-                <h2 id="affiliate-code-display" style="letter-spacing: 3px; margin: 0;">LOADING...</h2>
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 15px; border: 1px solid rgba(27, 94, 32, 0.3);">
+                <p style="font-size: 11px; color: var(--text-light); margin-bottom: 5px; text-transform: uppercase;">Your Invitation Code</p>
+                <h2 id="affiliate-code-display" style="letter-spacing: 3px; margin: 0; color: var(--text-light);">LOADING...</h2>
             </div>
             <button class="btn btn-outline" style="padding: 12px; font-size: 13px;" onclick="appLogic.copyCode()">
                 <i class="fas fa-copy"></i> Copy Code
@@ -807,7 +806,7 @@
         </div>
 
         <div class="card">
-            <h3 style="font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px;">Team Statistics</h3>
+            <h3 style="font-size: 15px; border-bottom: 1px solid rgba(27, 94, 32, 0.3); padding-bottom: 10px; margin-bottom: 15px;">Team Statistics</h3>
             <div class="stat-box">
                 <div class="stat-item">
                     <div class="stat-label">Total Direct Users</div>
@@ -815,19 +814,19 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Network Status</div>
-                    <div class="stat-value" style="font-size: 14px; color: var(--emerald); margin-top: 15px;">Active</div>
+                    <div class="stat-value" style="font-size: 14px; color: var(--text-light); margin-top: 15px;">Active</div>
                 </div>
             </div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: var(--border-radius-sm); text-align: center;">
-                <p style="font-size: 12px; color: var(--text-gray);">Total earned from team (5% Bonus)</p>
-                <h3 id="affiliate-earned" style="margin: 5px 0 0 0; color: var(--gold);">€ 0.00</h3>
+            <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.5); border-radius: var(--border-radius-sm); text-align: center; border: 1px solid rgba(27, 94, 32, 0.3);">
+                <p style="font-size: 12px; color: var(--text-light);">Total earned from team (5% Bonus)</p>
+                <h3 id="affiliate-earned" style="margin: 5px 0 0 0; color: var(--text-light);">€ 0.00</h3>
             </div>
         </div>
 
         <div class="card" style="padding: 15px 22px;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">My Team Members</h4>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-light);">My Team Members</h4>
             <div id="team-list">
-                <p style="color:var(--text-gray); font-size:12px; text-align:center;">Loading team data...</p>
+                <p style="color:var(--text-light); font-size:12px; text-align:center;">Loading team data...</p>
             </div>
         </div>
     </div>
@@ -866,20 +865,20 @@
         <div class="modal-content">
             <span class="close-modal" onclick="appLogic.closeModal()">&times;</span>
             <div style="margin-bottom: 20px;">
-                <i class="fas fa-qrcode" style="font-size: 40px; color: var(--gold); margin-bottom: 10px;"></i>
+                <i class="fas fa-qrcode" style="font-size: 40px; color: var(--accent-green); margin-bottom: 10px;"></i>
                 <h3 style="margin-bottom: 5px;">Deposit to Invest</h3>
-                <p id="modal-pkg-name" style="color: var(--text-gray); font-size: 14px; font-weight: 600;">Package</p>
+                <p id="modal-pkg-name" style="color: var(--text-light); font-size: 14px; font-weight: 600;">Package</p>
             </div>
             
             <div class="warning-text">
                 <i class="fas fa-exclamation-triangle" style="color: #f39c12;"></i> Send strictly <strong>USDT (ERC20/TRC20)</strong> to this address. Other assets will be lost.
             </div>
 
-            <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 15px;">
-                <img class="qr-code" style="margin:0; width: 160px; height: 160px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173" alt="QR Code">
+            <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 15px; border: 2px solid var(--accent-green);">
+                <img class="qr-code" style="margin:0; width: 160px; height: 160px; border: none;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173" alt="QR Code">
             </div>
             
-            <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase;">Official Deposit Address:</p>
+            <p style="font-size: 11px; color: var(--text-light); margin-bottom: 8px; text-transform: uppercase;">Official Deposit Address:</p>
             <div class="wallet-address" id="wallet-address-text">
                 0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173
             </div>
@@ -893,8 +892,8 @@
     <div id="calendar-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 900px; padding: 15px 30px;">
             <span class="close-modal" onclick="appLogic.closeCalendarModal()">&times;</span>
-            <h3 style="margin-bottom: 20px; color: var(--gold);">365 Days Challenge</h3>
-            <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 15px;">Check in daily to unlock rewards!</p>
+            <h3 style="margin-bottom: 20px; color: var(--text-light);">365 Days Challenge</h3>
+            <p style="color: var(--text-light); font-size: 12px; margin-bottom: 15px;">Check in daily to unlock rewards!</p>
             
             <div class="calendar-grid" id="calendar-grid"></div>
             
@@ -902,7 +901,7 @@
                 <i class="fas fa-check-square"></i> Register Now
             </button>
             
-            <div class="rewards-text" style="margin-top: 20px; color: var(--text-light); background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px;">
+            <div class="rewards-text" style="margin-top: 20px; color: var(--text-light); background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; border: 1px solid var(--accent-green);">
                 <p>🎁 Log in for a total of 7 days to get €5</p>
                 <p>🎁 Log in for 40 days to get -5% withdrawal fee</p>
                 <p>🎁 Log in for 180 days to get free VIP 1</p>
@@ -938,14 +937,15 @@
 </script>
 
 <script>
+    // ДОБАВЕНИ СА БРОЙКИТЕ "units" ЗА ВСЕКИ ПАКЕТ
     const energyPackages = [
-        { id: 'basic1', name: 'Basic 1', price: 80, daily: 3, monthly: 90 },
-        { id: 'basic2', name: 'Basic 2', price: 200, daily: 9, monthly: 270 },
-        { id: 'basic3', name: 'Basic 3', price: 500, daily: 23, monthly: 690 },
-        { id: 'vip1', name: 'VIP 1', price: 1200, daily: 59, monthly: 1770 },
-        { id: 'vip2', name: 'VIP 2', price: 3000, daily: 165, monthly: 4950 },
-        { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900 },
-        { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000 }
+        { id: 'basic1', name: 'Basic 1', price: 80, daily: 3, monthly: 90, units: 9238 },
+        { id: 'basic2', name: 'Basic 2', price: 200, daily: 9, monthly: 270, units: 6491 },
+        { id: 'basic3', name: 'Basic 3', price: 500, daily: 23, monthly: 690, units: 5492 },
+        { id: 'vip1', name: 'VIP 1', price: 1200, daily: 59, monthly: 1770, units: 3539 },
+        { id: 'vip2', name: 'VIP 2', price: 3000, daily: 165, monthly: 4950, units: 2103 },
+        { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900, units: 1503 },
+        { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000, units: 103 }
     ];
     
     const appLogic = {
@@ -999,7 +999,7 @@
             document.getElementById('dashboard-view').classList.add('active');
         },
 
-        // ДОБАВЕНИ СА ОСТАВАЩИТЕ БРОЙКИ И АНГЛИЙСКИЯ ЕЗИК
+        // ТУК Е ИНТЕГРИРАНА ДИНАМИЧНАТА БРОЙКА ${pkg.units}
         renderPackages() {
             const container = document.getElementById('packages-container');
             container.innerHTML = '';
@@ -1009,17 +1009,17 @@
                         <div class="package-title">${pkg.name}</div>
                         <div class="package-price">€${pkg.price}</div>
                         
-                        <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 15px;">
-                            Remaining units: <strong style="color: var(--emerald); font-size: 14px;">ТУК СЛОЖИ БРОЙКАТА</strong>
+                        <div style="font-size: 12px; color: var(--text-light); margin-bottom: 15px;">
+                            Remaining units: <strong style="color: var(--text-light); font-size: 14px;">${pkg.units}</strong>
                         </div>
 
                         <div class="package-details">
                             <div style="text-align: left;">
-                                <span style="color: var(--text-gray);">Daily Return:</span>
+                                <span style="color: var(--text-light);">Daily Return:</span>
                                 <strong>€${pkg.daily}</strong>
                             </div>
-                            <div style="text-align: right; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                                <span style="color: var(--text-gray);">Monthly Yield:</span>
+                            <div style="text-align: right; border-left: 1px solid rgba(27, 94, 32, 0.3); padding-left: 15px;">
+                                <span style="color: var(--text-light);">Monthly Yield:</span>
                                 <strong>€${pkg.monthly}</strong>
                             </div>
                         </div>
@@ -1240,10 +1240,10 @@
                     if(feeText) {
                         if(checkIns >= 40) {
                             feeText.innerHTML = '<i class="fas fa-percent"></i> Withdrawal Fee: <b>5%</b> (Discount Unlocked!)';
-                            feeText.style.color = 'var(--emerald)';
+                            feeText.style.color = 'var(--text-light)';
                         } else {
                             feeText.innerHTML = '<i class="fas fa-info-circle"></i> Standard Withdrawal Fee: <b>10%</b>';
-                            feeText.style.color = 'var(--gold)';
+                            feeText.style.color = 'var(--text-light)';
                         }
                     }
                 }
@@ -1270,17 +1270,17 @@
                                 totalTeamEarnings += myBonus;
 
                                 const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
-                                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--emerald)";
+                                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--text-light)";
                                 
                                 teamHtml += `
                                     <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
                                         <div style="display:flex; justify-content: space-between; width: 100%;">
                                             <span style="font-size: 13px; font-weight: bold; color: white;"><i class="fas fa-user-circle"></i> ${member.fullName || 'User'}</span>
-                                            <span style="font-size: 12px; color: var(--text-gray);">${this.maskPhone(member.phone)}</span>
+                                            <span style="font-size: 12px; color: var(--text-light);">${this.maskPhone(member.phone)}</span>
                                         </div>
                                         <div style="display:flex; justify-content: space-between; width: 100%;">
                                             <span style="font-size: 11px; color: ${equipColor};"><i class="fas fa-bolt"></i> ${equip}</span>
-                                            <span style="font-size: 12px; font-weight: bold; color: var(--gold);">+ €${myBonus.toFixed(2)}</span>
+                                            <span style="font-size: 12px; font-weight: bold; color: var(--text-light);">+ €${myBonus.toFixed(2)}</span>
                                         </div>
                                     </div>
                                 `;
@@ -1292,7 +1292,7 @@
                         
                         const list = document.getElementById('team-list');
                         if (list) {
-                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No registered members yet</p>';
+                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:var(--text-light); font-size:12px; text-align:center;">No registered members yet</p>';
                         }
                     }
                 });
@@ -1327,16 +1327,16 @@
                         list.innerHTML += `
                             <div class="history-item">
                                 <div style="display:flex; align-items:center; gap:12px;">
-                                    <div class="history-icon" style="background:rgba(212,175,55,0.1); color:var(--gold);">
+                                    <div class="history-icon" style="background:rgba(27, 94, 32, 0.2); color:var(--accent-green);">
                                         <i class="fas fa-file-invoice-dollar"></i>
                                     </div>
                                     <div>
-                                        <div style="font-size: 13px; font-weight: bold;">Withdrawal</div>
-                                        <div style="font-size: 11px; color: var(--text-gray);">${date} • ${w.status.toUpperCase()}</div>
+                                        <div style="font-size: 13px; font-weight: bold; color: var(--text-light);">Withdrawal</div>
+                                        <div style="font-size: 11px; color: var(--text-light);">${date} • ${w.status.toUpperCase()}</div>
                                     </div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div style="font-size: 13px; font-weight: bold; color: white;">€${net.toFixed(2)}</div>
+                                    <div style="font-size: 13px; font-weight: bold; color: var(--text-light);">€${net.toFixed(2)}</div>
                                     <div style="font-size: 11px; color: var(--error-red);">- €${fee.toFixed(2)} (Fee)</div>
                                 </div>
                             </div>
@@ -1345,7 +1345,7 @@
                 }
                 
                 if(count === 0) {
-                    list.innerHTML = '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No transactions yet</p>';
+                    list.innerHTML = '<p style="color:var(--text-light); font-size:12px; text-align:center;">No transactions yet</p>';
                 }
             });
         },
@@ -1421,7 +1421,6 @@
             }
         },
 
-        // ПРОМЕНЕНА ЛОГИКА ЗА ТЕГЛЕНЕ (Минимум 50€ и по избор)
         async withdraw() {
             if(!this.currentUserData.withdrawPin) {
                 return this.showToast("SECURITY LOCK: Please set up your Withdrawal PIN from your Profile first.", "error");
@@ -1465,13 +1464,12 @@
                 await window.fset(window.fref(window.fdb, 'withdrawals/' + requestId), {
                     userPhone: phone,
                     userKey: uid,
-                    amount: withdrawAmount, // Записваме само заявената сума
+                    amount: withdrawAmount,
                     cryptoAddress: withdrawAddress,
                     status: "pending",
                     timestamp: new Date().toISOString()
                 });
                 
-                // Вадим само изтеглената сума от общия баланс
                 await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
                     balance: balance - withdrawAmount
                 });
