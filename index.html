@@ -9,29 +9,26 @@
     
     <style>
         /* ==========================================================================
-           1. CSS VARIABLES & PREMIUM THEME SETTINGS (Cyber Emerald & Gold)
+           1. CSS VARIABLES & THEME SETTINGS
            ========================================================================== */
         :root {
-            --bg-gradient: radial-gradient(circle at 50% 0%, #0d1a14 0%, #050a07 100%);
-            --dark-green: #050a07; /* Obsidian Dark */
-            --dark-green-light: rgba(13, 27, 20, 0.6); /* Glass base */
-            --dark-green-hover: rgba(0, 255, 163, 0.15);
-            --bright-yellow: #ffb703; /* Royal VIP Gold */
-            --yellow-hover: #ffc933;
+            --dark-green: #082b1c;
+            --dark-green-light: #12452f;
+            --dark-green-hover: #185c3f;
+            --bright-yellow: #FFD700;
+            --yellow-hover: #e6c200;
             --text-light: #ffffff;
-            --text-gray: #ffffff; /* Turned to white per request */
-            --error-red: #e63946;
-            --success-green: #00ffa3; /* Neon Emerald */
-            --electric-cyan: #00e5ff;
+            --text-gray: #a0aab2;
+            --error-red: #ff4d4d;
+            --success-green: #2ecc71;
             --admin-color: #9b59b6;
-            --admin-dark: rgba(44, 26, 53, 0.8);
-            
+            --admin-dark: #2c1a35;
             --transition-speed: 0.3s;
-            --border-radius-sm: 12px;
-            --border-radius-md: 16px;
-            --border-radius-lg: 24px;
-            --shadow-md: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(0, 255, 163, 0.05);
-            --glass-border: 1px solid rgba(0, 255, 163, 0.15);
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 20px;
+            --shadow-md: 0 4px 15px rgba(0,0,0,0.3);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         /* ==========================================================================
@@ -46,18 +43,17 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            color: #ffffff;
+            background-color: var(--dark-green);
+            color: var(--text-light);
             display: flex;
             justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
-            margin: 0;
         }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--dark-green); }
-        ::-webkit-scrollbar-thumb { background: var(--success-green); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--dark-green-light); border-radius: 10px; }
 
         /* ==========================================================================
            3. LAYOUT & CONTAINER
@@ -65,11 +61,12 @@
         #app-container {
             width: 100%;
             max-width: 480px;
-            background: transparent;
+            background-color: var(--dark-green);
             position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
             overflow-x: hidden;
         }
 
@@ -78,7 +75,7 @@
             flex: 1;
             padding: 25px 20px;
             padding-bottom: 40px;
-            animation: slideUpFade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .view.active {
@@ -86,22 +83,19 @@
         }
 
         /* ==========================================================================
-           4. TYPOGRAPHY (Forced to White Color)
+           4. TYPOGRAPHY
            ========================================================================== */
-        h1, h2, h3, h4, h5 { 
-            color: #ffffff !important;
-            background: none !important;
-            -webkit-background-clip: initial !important;
-            -webkit-text-fill-color: #ffffff !important;
-            margin-bottom: 15px; 
-            font-weight: 800; 
-        }
+        h1, h2, h3, h4, h5 { color: var(--bright-yellow); margin-bottom: 15px; font-weight: 800; }
         .text-center { text-align: center; }
-        .text-gray { color: #ffffff !important; }
-        .text-white { color: #ffffff !important; }
+        .text-gray { color: var(--text-gray); }
+        .text-white { color: var(--text-light); }
+        .text-sm { font-size: 12px; }
+        .text-md { font-size: 14px; }
+        .text-lg { font-size: 18px; }
+        .text-xl { font-size: 24px; }
 
         .logo-title {
-            font-size: 34px;
+            font-size: 32px;
             font-weight: 900;
             margin-top: 40px;
             margin-bottom: 10px;
@@ -109,11 +103,6 @@
             letter-spacing: -1px;
             user-select: none;
             cursor: pointer;
-            color: #ffffff !important;
-            background: none !important;
-            -webkit-background-clip: initial !important;
-            -webkit-text-fill-color: #ffffff !important;
-            filter: drop-shadow(0 0 10px rgba(0, 255, 163, 0.2));
         }
 
         /* ==========================================================================
@@ -124,32 +113,28 @@
             display: block;
             font-size: 12px;
             font-weight: 600;
-            color: #ffffff;
+            color: var(--text-gray);
             margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         
         .input-wrapper {
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.4);
+            background: var(--dark-green-light);
             border-radius: var(--border-radius-sm);
-            padding: 10px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border: 2px solid transparent;
             transition: var(--transition-speed);
         }
 
         .input-wrapper.admin-input { background: var(--admin-dark); border-color: rgba(155, 89, 182, 0.3); }
-        .input-wrapper.admin-input:focus-within { border-color: var(--admin-color); box-shadow: 0 0 15px rgba(155, 89, 182, 0.2); }
+        .input-wrapper.admin-input:focus-within { border-color: var(--admin-color); }
         .input-wrapper.admin-input i { color: var(--admin-color); }
 
-        .input-wrapper:focus-within { 
-            border-color: var(--success-green); 
-            background: rgba(0, 255, 163, 0.03); 
-            box-shadow: 0 0 15px rgba(0, 255, 163, 0.1); 
-        }
-        .input-wrapper i { color: var(--success-green); margin-right: 12px; font-size: 16px; width: 20px; text-align: center; }
+        .input-wrapper:focus-within { border-color: var(--bright-yellow); background: var(--dark-green); box-shadow: 0 0 10px rgba(255, 215, 0, 0.1); }
+        .input-wrapper i { color: var(--bright-yellow); margin-right: 12px; font-size: 16px; width: 20px; text-align: center; }
         
         input, select {
             width: 100%;
@@ -162,71 +147,72 @@
             font-weight: 500;
         }
 
-        input::placeholder { color: rgba(255, 255, 255, 0.5); }
-        select option { background: #0a140f; color: white; }
+        input::placeholder { color: rgba(160, 170, 178, 0.5); }
+        select option { background: var(--dark-green-light); color: white; }
 
         .phone-group { display: flex; gap: 12px; }
-        .phone-code { width: 40%; }
-        .phone-number { width: 60%; }
+        .phone-code { width: 38%; }
+        .phone-number { width: 62%; }
 
         /* ==========================================================================
            6. BUTTONS & NAVIGATION
            ========================================================================== */
         .btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--bright-yellow), var(--yellow-hover));
-            color: #050a07;
+            background-color: var(--bright-yellow);
+            color: var(--dark-green);
             border: none;
             padding: 16px;
             font-size: 15px;
-            font-weight: 800;
+            font-weight: 700;
             border-radius: var(--border-radius-sm);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-speed);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.3);
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
         }
         
-        .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255, 183, 3, 0.5); }
+        .btn:hover:not(:disabled) { background-color: var(--yellow-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3); }
         .btn:active:not(:disabled) { transform: translateY(0); }
         
         .btn-outline {
             background: transparent;
-            color: #ffffff;
-            border: 2px solid var(--success-green);
-            box-shadow: 0 0 10px rgba(0, 255, 163, 0.1);
+            color: var(--bright-yellow);
+            border: 2px solid var(--bright-yellow);
+            box-shadow: none;
         }
-        .btn-outline:hover:not(:disabled) { background: rgba(0, 255, 163, 0.1); box-shadow: 0 0 20px rgba(0, 255, 163, 0.2); color: #fff;}
+        .btn-outline:hover:not(:disabled) { background: rgba(255, 215, 0, 0.1); }
 
-        .btn-admin { background-color: var(--admin-color); background-image: none; color: white; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); }
+        .btn-admin { background-color: var(--admin-color); color: white; box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3); }
         .btn-admin:hover:not(:disabled) { background-color: #8e44ad; }
 
         .btn:disabled {
-            background: rgba(255,255,255,0.05);
-            color: #555;
+            background-color: #3a4a42;
+            color: #7a8a82;
             cursor: not-allowed;
             box-shadow: none;
-            border: 1px solid rgba(255,255,255,0.1);
+            transform: none;
+            border-color: #3a4a42;
         }
 
         .switch-link {
             text-align: center;
             margin-top: 25px;
             font-size: 14px;
-            color: #ffffff;
+            color: var(--text-gray);
             cursor: pointer;
             padding: 10px;
         }
-        .switch-link span { color: #ffffff; font-weight: 700; text-decoration: underline; }
+        .switch-link span { color: var(--bright-yellow); font-weight: 700; text-decoration: underline; }
 
         .back-btn {
             background: transparent;
-            color: #ffffff;
+            color: var(--bright-yellow);
             border: none;
             font-size: 14px;
             font-weight: 600;
@@ -236,23 +222,19 @@
             gap: 8px;
             margin-bottom: 20px;
             padding: 5px 0;
-            transition: color 0.3s;
         }
-        .back-btn:hover { color: var(--success-green); }
         .back-btn i { font-size: 16px; }
 
         /* ==========================================================================
-           7. DASHBOARD GRID & STATS (Glassmorphism)
+           7. DASHBOARD GRID & STATS
            ========================================================================== */
         .dashboard-header {
-            background: var(--dark-green-light);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: linear-gradient(135deg, var(--dark-green-light), #1a5c40);
             border-radius: var(--border-radius-md);
             padding: 20px;
             margin-bottom: 25px;
             box-shadow: var(--shadow-md);
-            border: var(--glass-border);
+            border: 1px solid rgba(255,215,0,0.1);
         }
 
         .dashboard-stats {
@@ -263,16 +245,15 @@
 
         .dash-stat-box {
             width: calc(50% - 6px);
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.25);
             padding: 15px 10px;
             border-radius: var(--border-radius-sm);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.02);
         }
 
-        .dash-stat-box p { font-size: 11px; color: #ffffff; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; letter-spacing: 0.5px;}
-        .dash-stat-box h3 { font-size: 20px; color: white !important; margin: 0; background: none !important; -webkit-text-fill-color: white !important; }
-        .dash-stat-box h3 span { color: white !important; text-shadow: none !important; }
+        .dash-stat-box p { font-size: 11px; color: var(--text-gray); text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+        .dash-stat-box h3 { font-size: 20px; color: white; margin: 0; }
+        .dash-stat-box h3 span { color: var(--bright-yellow); }
 
         .dashboard-grid {
             display: grid;
@@ -282,7 +263,6 @@
 
         .grid-item {
             background: var(--dark-green-light);
-            backdrop-filter: blur(10px);
             border-radius: var(--border-radius-md);
             padding: 20px 5px;
             text-align: center;
@@ -293,31 +273,24 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: var(--glass-border);
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .grid-item i {
             font-size: 28px;
             color: var(--bright-yellow);
             margin-bottom: 12px;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 0 5px rgba(255, 183, 3, 0.4));
+            transition: transform 0.2s;
         }
 
-        .grid-item:hover { 
-            transform: translateY(-5px); 
-            background: rgba(0, 255, 163, 0.05); 
-            border-color: var(--success-green);
-            box-shadow: 0 10px 25px rgba(0, 255, 163, 0.1);
-        }
-        .grid-item:hover i { transform: scale(1.15); color: var(--success-green); filter: drop-shadow(0 0 8px rgba(0, 255, 163, 0.5)); }
+        .grid-item:hover { transform: translateY(-3px); background: #1a5c40; border-color: rgba(255,215,0,0.2); }
+        .grid-item:hover i { transform: scale(1.1); }
 
         .grid-item span {
             font-size: 11px;
             font-weight: 700;
             color: white;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         /* ==========================================================================
@@ -325,59 +298,50 @@
            ========================================================================== */
         .card {
             background: var(--dark-green-light);
-            backdrop-filter: blur(15px);
             border-radius: var(--border-radius-md);
             padding: 22px;
             margin-bottom: 20px;
-            border: var(--glass-border);
-            border-left: 4px solid var(--success-green);
+            border-left: 4px solid var(--bright-yellow);
             box-shadow: var(--shadow-md);
+            transition: var(--transition-speed);
         }
 
-        .card-admin { background: var(--admin-dark); border-left: 4px solid var(--admin-color); border-color: rgba(155, 89, 182, 0.3); }
+        .card-admin { background: var(--admin-dark); border-left: 4px solid var(--admin-color); }
         .stat-box { display: flex; justify-content: space-between; margin-top: 15px; }
-        .stat-item { text-align: center; width: 48%; background: rgba(0,0,0,0.3); padding: 15px 5px; border-radius: var(--border-radius-sm); border: 1px solid rgba(255,255,255,0.02);}
-        .stat-value { font-size: 22px; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important; font-weight: 800; margin-top: 8px; }
-        .stat-label { font-size: 11px; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-item { text-align: center; width: 48%; background: rgba(0,0,0,0.2); padding: 15px 5px; border-radius: var(--border-radius-sm); }
+        .stat-value { font-size: 22px; color: var(--bright-yellow); font-weight: 800; margin-top: 8px; }
+        .stat-label { font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .badge { display: inline-block; padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .badge-active { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.3); }
-        .badge-inactive { background: rgba(255, 255, 255, 0.05); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .badge-active { background: rgba(46, 204, 113, 0.2); color: var(--success-green); border: 1px solid var(--success-green); }
+        .badge-inactive { background: rgba(160, 170, 178, 0.2); color: var(--text-gray); border: 1px solid var(--text-gray); }
 
         /* ==========================================================================
            9. STORE PACKAGES
            ========================================================================== */
         .package-card {
-            background: var(--dark-green-light);
-            backdrop-filter: blur(15px);
+            background: linear-gradient(145deg, var(--dark-green-light), #1a5c40);
             border-radius: var(--border-radius-md);
             padding: 25px;
             margin-bottom: 20px;
             position: relative;
             overflow: hidden;
-            border: var(--glass-border);
+            border: 1px solid rgba(255, 215, 0, 0.1);
             box-shadow: var(--shadow-md);
-            transition: transform 0.3s ease, border-color 0.3s;
         }
         
-        .package-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--bright-yellow);
-        }
-
         .package-card::after {
             content: ''; position: absolute; top: -50px; right: -50px;
-            width: 120px; height: 120px; background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%; filter: blur(30px);
+            width: 100px; height: 100px; background: rgba(255, 215, 0, 0.1);
+            border-radius: 50%; filter: blur(20px);
         }
 
-        .package-title { font-size: 24px; font-weight: 900; color: #ffffff !important; margin-bottom: 5px; background: none !important; -webkit-text-fill-color: #ffffff !important; }
-        .package-price { font-size: 34px; font-weight: 800; margin: 15px 0; color: white; text-shadow: 0 0 15px rgba(255,255,255,0.2); }
-        .package-price span { font-size: 16px; color: #ffffff; font-weight: 500; }
-        .package-details { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: var(--border-radius-sm); border: 1px solid rgba(255,255,255,0.02);}
-        .package-details strong { color: #ffffff; font-size: 18px; display: block; margin-top: 5px; }
-        .buy-btn { width: 100%; border-radius: 50px; background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); color: #ffffff; border: 1px solid #ffffff; box-shadow: none; }
-        .buy-btn:hover { background: #ffffff; color: #000; box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+        .package-title { font-size: 24px; font-weight: 900; color: var(--bright-yellow); margin-bottom: 5px; }
+        .package-price { font-size: 32px; font-weight: 800; margin: 15px 0; color: white; }
+        .package-price span { font-size: 16px; color: var(--text-gray); font-weight: 500; }
+        .package-details { display: flex; justify-content: space-between; margin-bottom: 20px; font-size: 13px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: var(--border-radius-sm); }
+        .package-details strong { color: var(--success-green); font-size: 16px; display: block; margin-top: 5px; }
+        .buy-btn { width: 100%; border-radius: 50px; }
 
         /* ==========================================================================
            10. MODALS & TOAST NOTIFICATIONS
@@ -385,35 +349,32 @@
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center;
-            backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s;
+            backdrop-filter: blur(4px); opacity: 0; transition: opacity 0.3s;
         }
         .modal-overlay.show { display: flex; opacity: 1; }
         .modal-content {
-            background: rgba(13, 27, 20, 0.9); width: 90%; max-width: 400px;
+            background: var(--dark-green); width: 90%; max-width: 400px;
             border-radius: var(--border-radius-lg); padding: 30px; text-align: center;
-            border: 1px solid var(--success-green); position: relative;
-            box-shadow: 0 0 40px rgba(0, 255, 163, 0.15);
+            border: 1px solid var(--bright-yellow); position: relative;
             transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .modal-overlay.show .modal-content { transform: scale(1); }
-        .close-modal { position: absolute; top: 15px; right: 20px; color: #ffffff; font-size: 28px; cursor: pointer; transition: color 0.2s; }
-        .close-modal:hover { color: var(--error-red); }
+        .close-modal { position: absolute; top: 15px; right: 20px; color: var(--text-gray); font-size: 28px; cursor: pointer; transition: color 0.2s; }
+        .close-modal:hover { color: white; }
 
-        .qr-code { width: 180px; height: 180px; margin: 20px auto; background: white; padding: 10px; border-radius: 12px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+        .qr-code { width: 180px; height: 180px; margin: 20px auto; background: white; padding: 10px; border-radius: 10px; }
         .wallet-address {
-            background: rgba(0,0,0,0.4); padding: 15px; border-radius: var(--border-radius-sm);
+            background: var(--dark-green-light); padding: 15px; border-radius: var(--border-radius-sm);
             font-family: monospace; font-size: 13px; word-break: break-all; margin-bottom: 20px;
-            color: #ffffff; border: 1px dashed rgba(255, 255, 255, 0.3);
+            color: var(--bright-yellow); border: 1px dashed rgba(255, 215, 0, 0.3);
         }
-        .warning-text { color: #ffffff; font-size: 12px; margin-bottom: 15px; background: rgba(255, 183, 3, 0.1); padding: 12px; border-radius: var(--border-radius-sm); line-height: 1.5; border: 1px solid rgba(255, 183, 3, 0.2); }
+        .warning-text { color: var(--bright-yellow); font-size: 12px; margin-bottom: 15px; background: rgba(255,215,0,0.1); padding: 12px; border-radius: var(--border-radius-sm); line-height: 1.5; }
 
         #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast {
-            background: rgba(13, 27, 20, 0.95); color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); display: flex; align-items: center; gap: 15px;
-            border: 1px solid rgba(255,255,255,0.1); border-left: 4px solid var(--electric-cyan);
-            backdrop-filter: blur(10px);
-            animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--dark-green-light); color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 15px;
+            border-left: 4px solid var(--bright-yellow); animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 14px; font-weight: 500; line-height: 1.4;
         }
         .toast.error { border-left-color: var(--error-red); }
@@ -424,48 +385,36 @@
         /* ==========================================================================
            11. IMAGES & ANIMATIONS
            ========================================================================== */
-        .hero-image { width: 100%; max-width: 260px; margin: 10px auto 25px auto; display: block; border-radius: var(--border-radius-md); background: rgba(13, 27, 20, 0.4); padding: 15px; border: var(--glass-border); box-shadow: var(--shadow-md); backdrop-filter: blur(10px); }
+        .hero-image { width: 100%; max-width: 260px; margin: 10px auto 25px auto; display: block; border-radius: var(--border-radius-md); background: white; padding: 15px; box-shadow: var(--shadow-md); }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastSlideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastFadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-        .profile-avatar { width: 90px; height: 90px; background: rgba(255, 255, 255, 0.05); border: 2px solid #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 40px; color: #ffffff; margin: 0 auto 15px auto; }
-        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .profile-avatar { width: 80px; height: 80px; background: rgba(255, 215, 0, 0.1); border: 2px solid var(--bright-yellow); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 36px; color: var(--bright-yellow); margin: 0 auto 15px auto; }
+        .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .history-item:last-child { border-bottom: none; }
-        .history-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px;}
+        .history-icon { width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
 
         /* ==========================================================================
-           12. CALENDAR CHECK-IN & PREMIUM ENERGY TABLE
+           12. CALENDAR CHECK-IN & ENERGY TABLE
            ========================================================================== */
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(32px, 1fr)); gap: 8px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: var(--border-radius-sm); border: 1px solid rgba(255,255,255,0.05); }
-        .day-box { width: 32px; height: 32px; background: rgba(255,255,255,0.05); color: #ffffff; display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; border-radius: 6px; transition: all 0.3s; border: 1px solid transparent; }
-        .day-box.checked { background: rgba(255, 255, 255, 0.1); color: #ffffff; border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
-        .rewards-text p { margin: 10px 0; font-size: 13px; text-align: left; line-height: 1.5; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(28px, 1fr)); gap: 6px; max-height: 250px; overflow-y: auto; margin-bottom: 20px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: var(--border-radius-sm); }
+        .day-box { width: 28px; height: 28px; background: white; color: var(--dark-green); display: flex; justify-content: center; align-items: center; font-size: 11px; font-weight: 800; border-radius: 4px; transition: all 0.3s; }
+        .day-box.checked { background: var(--bright-yellow); box-shadow: 0 0 8px rgba(255, 215, 0, 0.5); }
+        .rewards-text p { margin: 8px 0; font-size: 12px; text-align: left; line-height: 1.4; }
 
-        /* Premium Table Design Overrides */
-        .table-container { background: var(--dark-green-light); padding: 25px 20px; border-radius: var(--border-radius-md); box-shadow: var(--shadow-md); margin-top: 15px; border: var(--glass-border); backdrop-filter: blur(15px); }
-        .table-title { font-size: 22px; font-family: 'Montserrat', sans-serif; margin-bottom: 20px; text-align: center; font-weight: 800; color: var(--text-light); }
+        .table-container { background: linear-gradient(to bottom, #dcedc8, #aed581); padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); margin-top: 15px; }
+        .table-title { font-size: 22px; font-family: 'Times New Roman', Times, serif; margin-bottom: 20px; color: #000; text-align: center;}
         .table-responsive { overflow-x: auto; }
-        .energy-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; text-align: center; font-size: 13px; }
-        .energy-table th { background: transparent; color: #ffffff; padding: 10px 5px; border: none; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
-        
-        .energy-table td { padding: 15px 10px; border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); color: white; background: rgba(255,255,255,0.01); transition: all 0.3s ease;}
-        .energy-table td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; text-align: left; }
-        .energy-table td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
-        
-        .energy-table tr:hover td { background: rgba(255, 255, 255, 0.03); transform: scale(1.01); }
-        
-        .plan-name { font-weight: bold; color: #ffffff !important; display: flex; align-items: center; gap: 8px;}
-        .row-dark td { background: rgba(0, 0, 0, 0.2); }
-        .row-light td { background: rgba(255, 255, 255, 0.02); }
-        .row-ultimate td { 
-            background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.08) 100%); 
-            border-top: 1px solid rgba(255, 255, 255, 0.3); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
-            color: white; font-weight: bold; 
-        }
-        .row-ultimate td:first-child { border-left: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff !important; text-shadow: none !important; }
-        .row-ultimate td:last-child { border-right: 1px solid rgba(255, 255, 255, 0.3); }
+        .energy-table { width: 100%; border-collapse: collapse; text-align: center; font-size: 13px; }
+        .energy-table th { background-color: #388e3c; color: white; padding: 10px 5px; border: 1px solid #c8e6c9; }
+        .energy-table td { padding: 10px 5px; border: 1px solid rgba(255,255,255,0.2); color: black; }
+        .plan-name { text-align: left; font-weight: bold; }
+        .row-dark { background-color: #607d8b; color: white; }
+        .row-dark td { color: white; }
+        .row-light { background-color: #c8e6c9; color: #000; }
+        .row-ultimate { background-color: #1b5e20; color: white; font-weight: bold; }
+        .row-ultimate td { color: white; }
     </style>
 </head>
 <body>
@@ -478,22 +427,22 @@
         <div class="text-center">
             <h1 class="logo-title" onclick="appLogic.adminTriggerClick()">Invest In Energy</h1>
             <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" class="hero-image">
-                <rect width="240" height="120" rx="10" fill="#0d1a14"/>
-                <rect x="180" y="25" width="35" height="75" rx="5" fill="#00ffa3"/>
-                <rect x="185" y="35" width="25" height="20" fill="#050a07"/>
+                <rect width="240" height="120" rx="10" fill="#ffffff"/>
+                <rect x="180" y="25" width="35" height="75" rx="5" fill="#2ecc71"/>
+                <rect x="185" y="35" width="25" height="20" fill="#082b1c"/>
                 <circle cx="197.5" cy="75" r="10" fill="#ffffff"/>
-                <path d="M195.5 70 l-3 6 h4 l-2 6 l6 -7 h-4 z" fill="#00ffa3"/>
-                <path d="M180 65 L160 65 L160 85 L145 85" fill="none" stroke="#00ffa3" stroke-width="4"/>
-                <path d="M20 85 L20 60 C20 45, 45 40, 60 40 L95 25 C120 20, 140 30, 150 50 L165 60 L165 85 Z" fill="#00e5ff" opacity="0.8"/>
-                <path d="M60 42 L95 28 C110 25, 125 32, 135 48 L145 60 L60 60 Z" fill="#ffffff" opacity="0.1"/>
-                <circle cx="55" cy="85" r="16" fill="#11221b"/>
-                <circle cx="55" cy="85" r="6" fill="#00ffa3"/>
-                <circle cx="130" cy="85" r="16" fill="#11221b"/>
-                <circle cx="130" cy="85" r="6" fill="#00ffa3"/>
-                <circle cx="120" cy="25" r="14" fill="none" stroke="#00ffa3" stroke-width="2"/>
-                <path d="M122 15 l-6 10 h5 l-3 10 l9 -12 h-5 z" fill="#00ffa3"/>
+                <path d="M195.5 70 l-3 6 h4 l-2 6 l6 -7 h-4 z" fill="#2ecc71"/>
+                <path d="M180 65 L160 65 L160 85 L145 85" fill="none" stroke="#27ae60" stroke-width="4"/>
+                <path d="M20 85 L20 60 C20 45, 45 40, 60 40 L95 25 C120 20, 140 30, 150 50 L165 60 L165 85 Z" fill="#27ae60"/>
+                <path d="M60 42 L95 28 C110 25, 125 32, 135 48 L145 60 L60 60 Z" fill="#ecf0f1"/>
+                <circle cx="55" cy="85" r="16" fill="#2c3e50"/>
+                <circle cx="55" cy="85" r="6" fill="#bdc3c7"/>
+                <circle cx="130" cy="85" r="16" fill="#2c3e50"/>
+                <circle cx="130" cy="85" r="6" fill="#bdc3c7"/>
+                <circle cx="120" cy="25" r="14" fill="none" stroke="#2ecc71" stroke-width="2"/>
+                <path d="M122 15 l-6 10 h5 l-3 10 l9 -12 h-5 z" fill="#2ecc71"/>
             </svg>
-            <p style="color: #ffffff; margin-bottom: 35px; font-weight: 500;">Login to your green portfolio</p>
+            <p style="color: var(--text-gray); margin-bottom: 35px; font-weight: 500;">Login to your green portfolio</p>
         </div>
 
         <div class="form-group">
@@ -502,32 +451,8 @@
                 <div class="input-wrapper phone-code">
                     <select id="login-country-code">
                         <option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
-                        <option value="+43">+43 (Austria 🇦🇹)</option>
-                        <option value="+32">+32 (Belgium 🇧🇪)</option>
-                        <option value="+385">+385 (Croatia 🇭🇷)</option>
-                        <option value="+357">+357 (Cyprus 🇨🇾)</option>
-                        <option value="+420">+420 (Czechia 🇨🇿)</option>
-                        <option value="+45">+45 (Denmark 🇩🇰)</option>
-                        <option value="+372">+372 (Estonia 🇪🇪)</option>
-                        <option value="+358">+358 (Finland 🇫🇮)</option>
-                        <option value="+33">+33 (France 🇫🇷)</option>
-                        <option value="+49">+49 (Germany 🇩🇪)</option>
-                        <option value="+30">+30 (Greece 🇬🇷)</option>
-                        <option value="+36">+36 (Hungary 🇭🇺)</option>
-                        <option value="+353">+353 (Ireland 🇮🇪)</option>
-                        <option value="+39">+39 (Italy 🇮🇹)</option>
-                        <option value="+371">+371 (Latvia 🇱🇻)</option>
-                        <option value="+370">+370 (Lithuania 🇱🇹)</option>
-                        <option value="+352">+352 (Luxembourg 🇱🇺)</option>
-                        <option value="+356">+356 (Malta 🇲🇹)</option>
-                        <option value="+31">+31 (Netherlands 🇳🇱)</option>
-                        <option value="+48">+48 (Poland 🇵🇱)</option>
-                        <option value="+351">+351 (Portugal 🇵🇹)</option>
-                        <option value="+40">+40 (Romania 🇷🇴)</option>
-                        <option value="+421">+421 (Slovakia 🇸🇰)</option>
-                        <option value="+386">+386 (Slovenia 🇸🇮)</option>
-                        <option value="+34">+34 (Spain 🇪🇸)</option>
-                        <option value="+46">+46 (Sweden 🇸🇪)</option>
+                        <option value="+44">+44 (UK 🇬🇧)</option>
+                        <option value="+1">+1 (US 🇺🇸)</option>
                     </select>
                 </div>
                 <div class="input-wrapper phone-number">
@@ -555,14 +480,14 @@
         <div class="text-center">
             <h1 class="logo-title">Invest In Energy</h1>
             <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" class="hero-image">
-                <rect width="240" height="120" rx="10" fill="#0d1a14"/>
-                <path d="M120 20 L220 100 L20 100 Z" fill="#00ffa3" opacity="0.1"/>
-                <rect x="100" y="40" width="40" height="60" fill="#050a07"/>
-                <path d="M120 10 L150 40 L90 40 Z" fill="#00ffa3"/>
-                <circle cx="120" cy="65" r="12" fill="#ffb703"/>
-                <path d="M120 58 L117 65 L123 65 L120 72" stroke="#050a07" stroke-width="2" fill="none"/>
+                <rect width="240" height="120" rx="10" fill="#ffffff"/>
+                <path d="M120 20 L220 100 L20 100 Z" fill="#2ecc71" opacity="0.2"/>
+                <rect x="100" y="40" width="40" height="60" fill="#082b1c"/>
+                <path d="M120 10 L150 40 L90 40 Z" fill="#27ae60"/>
+                <circle cx="120" cy="65" r="12" fill="#FFD700"/>
+                <path d="M120 58 L117 65 L123 65 L120 72" stroke="#082b1c" stroke-width="2" fill="none"/>
             </svg>
-            <p style="color: #ffffff; margin-bottom: 25px; font-weight: 500;">Create new account</p>
+            <p style="color: var(--text-gray); margin-bottom: 25px; font-weight: 500;">Create new account</p>
         </div>
 
         <div class="form-group">
@@ -579,32 +504,8 @@
                 <div class="input-wrapper phone-code">
                     <select id="reg-country-code">
                         <option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
-                        <option value="+43">+43 (Austria 🇦🇹)</option>
-                        <option value="+32">+32 (Belgium 🇧🇪)</option>
-                        <option value="+385">+385 (Croatia 🇭🇷)</option>
-                        <option value="+357">+357 (Cyprus 🇨🇾)</option>
-                        <option value="+420">+420 (Czechia 🇨🇿)</option>
-                        <option value="+45">+45 (Denmark 🇩🇰)</option>
-                        <option value="+372">+372 (Estonia 🇪🇪)</option>
-                        <option value="+358">+358 (Finland 🇫🇮)</option>
-                        <option value="+33">+33 (France 🇫🇷)</option>
-                        <option value="+49">+49 (Germany 🇩🇪)</option>
-                        <option value="+30">+30 (Greece 🇬🇷)</option>
-                        <option value="+36">+36 (Hungary 🇭🇺)</option>
-                        <option value="+353">+353 (Ireland 🇮🇪)</option>
-                        <option value="+39">+39 (Italy 🇮🇹)</option>
-                        <option value="+371">+371 (Latvia 🇱🇻)</option>
-                        <option value="+370">+370 (Lithuania 🇱🇹)</option>
-                        <option value="+352">+352 (Luxembourg 🇱🇺)</option>
-                        <option value="+356">+356 (Malta 🇲🇹)</option>
-                        <option value="+31">+31 (Netherlands 🇳🇱)</option>
-                        <option value="+48">+48 (Poland 🇵🇱)</option>
-                        <option value="+351">+351 (Portugal 🇵🇹)</option>
-                        <option value="+40">+40 (Romania 🇷🇴)</option>
-                        <option value="+421">+421 (Slovakia 🇸🇰)</option>
-                        <option value="+386">+386 (Slovenia 🇸🇮)</option>
-                        <option value="+34">+34 (Spain 🇪🇸)</option>
-                        <option value="+46">+46 (Sweden 🇸🇪)</option>
+                        <option value="+44">+44 (UK 🇬🇧)</option>
+                        <option value="+1">+1 (US 🇺🇸)</option>
                     </select>
                 </div>
                 <div class="input-wrapper phone-number">
@@ -689,7 +590,7 @@
                 <span>Support</span>
             </div>
             <div class="grid-item" onclick="appLogic.secureLogout()">
-                <i class="fas fa-sign-out-alt" style="color: var(--error-red); filter: none;"></i>
+                <i class="fas fa-sign-out-alt" style="color: var(--error-red);"></i>
                 <span style="color: var(--error-red);">Secure Logout</span>
             </div>
         </div>
@@ -699,15 +600,15 @@
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Exit Admin</button>
         <div class="text-center" style="margin-bottom: 30px;">
             <i class="fas fa-user-shield" style="font-size: 50px; color: var(--admin-color); margin-bottom: 15px;"></i>
-            <h2 style="color: white !important; margin-bottom: 5px; background: none; -webkit-text-fill-color: white !important;">System Console</h2>
-            <p style="color: #ffffff; font-size: 12px;">Administrator Access Only</p>
+            <h2 style="color: var(--admin-color); margin-bottom: 5px;">System Console</h2>
+            <p style="color: var(--text-gray); font-size: 12px;">Administrator Access Only</p>
         </div>
 
         <div class="card card-admin">
-            <h3 style="font-size: 16px; margin-bottom: 20px; color: white; background: none; -webkit-text-fill-color: white;">Manage User Account</h3>
+            <h3 style="font-size: 16px; margin-bottom: 20px; color: white;">Manage User Account</h3>
             
             <div class="form-group">
-                <label style="color: #ffffff;">Target Phone Number (incl. code)</label>
+                <label style="color: var(--text-gray);">Target Phone Number (incl. code)</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-search"></i>
                     <input type="tel" id="admin-target-phone" placeholder="+359871234567">
@@ -715,7 +616,7 @@
             </div>
 
             <div class="form-group">
-                <label style="color: #ffffff;">Assign Package</label>
+                <label style="color: var(--text-gray);">Assign Package</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-box"></i>
                     <select id="admin-package-select">
@@ -732,7 +633,7 @@
             </div>
 
             <div class="form-group">
-                <label style="color: #ffffff;">Daily Profit Amount (USDT)</label>
+                <label style="color: var(--text-gray);">Daily Profit Amount (USDT)</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-hand-holding-usd"></i>
                     <input type="number" id="admin-daily-profit" placeholder="e.g. 7.00" step="0.01">
@@ -753,15 +654,15 @@
             <div class="profile-avatar">
                 <i class="fas fa-user-astronaut"></i>
             </div>
-            <h3 id="display-phone" style="letter-spacing: 2px; color: white; margin-bottom: 5px; background: none; -webkit-text-fill-color: white;"></h3>
+            <h3 id="display-phone" style="letter-spacing: 1px; color: white; margin-bottom: 5px;"></h3>
             <div style="margin-top: 15px;">
                 <span id="display-package-badge" class="badge badge-inactive">No Active Package</span>
             </div>
         </div>
 
         <div class="card" style="text-align: center;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-light); background: none; -webkit-text-fill-color: white;">Security Settings</h4>
-            <p style="font-size: 12px; color: #ffffff; margin-bottom: 15px;">Set up a PIN code required for all withdrawals to keep your funds safe.</p>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Security Settings</h4>
+            <p style="font-size: 12px; color: var(--text-gray); margin-bottom: 15px;">Set up a PIN code required for all withdrawals to keep your funds safe.</p>
             <button class="btn btn-outline" onclick="appLogic.setupPin()">
                 <i class="fas fa-key"></i> Setup Withdrawal PIN
             </button>
@@ -775,18 +676,18 @@
         <div class="card text-center" style="padding: 30px 20px;">
             <p class="stat-label">Total Available Balance</p>
             <h1 style="font-size: 46px; margin: 15px 0; letter-spacing: -1px;">
-                <span style="color: white; font-size: 30px; text-shadow: none;">$</span> <span id="wallet-balance" style="color: white; -webkit-text-fill-color: white;">0.00</span>
+                <span style="color: var(--text-gray); font-size: 30px;">$</span> <span id="wallet-balance">0.00</span>
             </h1>
-            <p style="font-size: 12px; color: #ffffff;">USDT (Tether USD)</p>
+            <p style="font-size: 12px; color: var(--text-gray);">USDT (Tether USD)</p>
             
-            <p id="withdrawal-fee-text" style="font-size: 13px; color: white; margin-top: 15px; text-align: center; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+            <p id="withdrawal-fee-text" style="font-size: 13px; color: var(--bright-yellow); margin-top: 15px; text-align: center; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px;">
                 <i class="fas fa-info-circle"></i> Standard Withdrawal Fee: <b>10%</b>
             </p>
 
-            <div id="withdrawal-status-container" style="display: none; margin-top: 25px; padding: 15px; border-radius: var(--border-radius-sm); background: rgba(230, 57, 70, 0.1); border: 1px solid rgba(230, 57, 70, 0.3);">
+            <div id="withdrawal-status-container" style="display: none; margin-top: 25px; padding: 12px; border-radius: var(--border-radius-sm); background: rgba(255, 77, 77, 0.2); border: 1px solid rgba(255, 77, 77, 0.3);">
                 <div style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px;">
                     <i id="lock-icon" class="fas fa-lock" style="color: var(--error-red);"></i>
-                    <span id="lock-text" style="color: #ffffff; text-align: left;">
+                    <span id="lock-text" style="color: var(--error-red); text-align: left;">
                         <strong>Withdrawal Locked!</strong><br>
                         You need at least 1 invited person with an active package to unlock withdrawals.
                     </span>
@@ -795,7 +696,7 @@
 
             <div class="form-group" style="text-align: left; margin-top: 25px;">
                 <label>Withdrawal Address (USDT TRC20/ERC20)</label>
-                <div class="input-wrapper">
+                <div class="input-wrapper" style="background: rgba(0,0,0,0.3);">
                     <i class="fas fa-wallet"></i>
                     <input type="text" id="withdraw-address" placeholder="Paste your wallet address here...">
                 </div>
@@ -804,12 +705,13 @@
             <button class="btn btn-outline" id="btn-withdraw" style="margin-top: 15px;" onclick="appLogic.withdraw()">
                 <i class="fas fa-arrow-up"></i> Request Withdrawal
             </button>
-            <p style="font-size: 11px; color: #ffffff; margin-top: 15px;">* Minimum withdrawal amount is 100 USDT</p>
+            <p style="font-size: 11px; color: var(--text-gray); margin-top: 15px;">* Minimum withdrawal amount is 100 USDT</p>
         </div>
 
         <div class="card" style="padding: 15px 22px;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-light); background: none; -webkit-text-fill-color: white;">Transaction History</h4>
-            <div id="history-list"></div>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">Transaction History</h4>
+            <div id="history-list">
+                </div>
         </div>
     </div>
 
@@ -825,16 +727,16 @@
         <h2 class="text-center">Partner Program</h2>
         <p class="text-center text-gray" style="margin-bottom: 20px;">Build your team</p>
         
-        <div class="card" style="text-align: center; background: rgba(255, 255, 255, 0.03); border-color: #ffffff;">
-            <div style="width: 70px; height: 70px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);">
-                <i class="fas fa-network-wired" style="font-size: 30px; color: #ffffff;"></i>
+        <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--dark-green-light), #185c3f);">
+            <div style="width: 60px; height: 60px; background: rgba(255,215,0,0.1); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto;">
+                <i class="fas fa-network-wired" style="font-size: 28px; color: var(--bright-yellow);"></i>
             </div>
-            <p style="font-size: 13px; margin-bottom: 15px; line-height: 1.6; color: white;">
-                You will receive a <strong style="color: #ffffff;">5% commission</strong> from the daily income of everyone on your team!
+            <p style="font-size: 13px; margin-bottom: 15px; line-height: 1.5;">
+                Ще получавате по <strong style="color: var(--bright-yellow);">5% комисионна</strong> от ежедневния доход на всеки от екипа ви!
             </p>
-            <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 15px; border: 1px dashed rgba(255,255,255,0.1);">
-                <p style="font-size: 11px; color: #ffffff; margin-bottom: 5px; text-transform: uppercase;">Your Invitation Code</p>
-                <h2 id="affiliate-code-display" style="letter-spacing: 4px; margin: 0; background: none; -webkit-text-fill-color: white;">LOADING...</h2>
+            <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 15px;">
+                <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 5px; text-transform: uppercase;">Your Invitation Code</p>
+                <h2 id="affiliate-code-display" style="letter-spacing: 3px; margin: 0;">LOADING...</h2>
             </div>
             <button class="btn btn-outline" style="padding: 12px; font-size: 13px;" onclick="appLogic.copyCode()">
                 <i class="fas fa-copy"></i> Copy Code
@@ -842,7 +744,7 @@
         </div>
 
         <div class="card">
-            <h3 style="font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; margin-bottom: 15px; background: none; -webkit-text-fill-color: white;">Team Statistics</h3>
+            <h3 style="font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 15px;">Team Statistics</h3>
             <div class="stat-box">
                 <div class="stat-item">
                     <div class="stat-label">Total Direct Users</div>
@@ -850,19 +752,19 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-label">Network Status</div>
-                    <div class="stat-value" style="font-size: 14px; color: #ffffff; margin-top: 15px; text-shadow: none;">Active</div>
+                    <div class="stat-value" style="font-size: 14px; color: var(--success-green); margin-top: 15px;">Active</div>
                 </div>
             </div>
-            <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: var(--border-radius-sm); text-align: center; border: 1px solid rgba(255,255,255,0.02);">
-                <p style="font-size: 12px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">Total earned from team</p>
-                <h3 id="affiliate-earned" style="margin: 8px 0 0 0; color: white; background: none; -webkit-text-fill-color: white; font-size: 28px;">$ 0.00</h3>
+            <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: var(--border-radius-sm); text-align: center;">
+                <p style="font-size: 12px; color: var(--text-gray);">Total earned from team (5% Bonus)</p>
+                <h3 id="affiliate-earned" style="margin: 5px 0 0 0; color: var(--bright-yellow);">$ 0.00</h3>
             </div>
         </div>
 
         <div class="card" style="padding: 15px 22px;">
-            <h4 style="font-size: 14px; margin-bottom: 15px; color: white; background: none; -webkit-text-fill-color: white;">My Team Members</h4>
+            <h4 style="font-size: 14px; margin-bottom: 15px; color: var(--text-gray);">My Team Members</h4>
             <div id="team-list">
-                <p style="color: white; font-size:12px; text-align:center;">Loading team data...</p>
+                <p style="color:var(--text-gray); font-size:12px; text-align:center;">Loading team data...</p>
             </div>
         </div>
     </div>
@@ -870,7 +772,7 @@
     <div id="energy-plans-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <div class="table-container" style="display: block;">
-            <h2 class="table-title">Partnership Income</h2>
+            <h2 class="table-title">Income from Green Energy</h2>
             <div class="table-responsive">
                 <table class="energy-table">
                     <thead>
@@ -887,10 +789,10 @@
                         <tr class="row-dark"><td class="plan-name">⚡ BASIC - 1</td><td>80€</td><td>3€</td><td>90€</td><td>+10€</td><td>26 days</td></tr>
                         <tr class="row-light"><td class="plan-name">⚡ BASIC - 2</td><td>200€</td><td>9€</td><td>270€</td><td>+70€</td><td>22 days</td></tr>
                         <tr class="row-dark"><td class="plan-name">⚡ BASIC - 3</td><td>500€</td><td>23€</td><td>690€</td><td>+190€</td><td>21 days</td></tr>
-                        <tr class="row-light"><td class="plan-name"><i class="fas fa-crown" style="color: white"></i> VIP - 1</td><td>1200€</td><td>59€</td><td>1770€</td><td>+570€</td><td>20 days</td></tr>
-                        <tr class="row-dark"><td class="plan-name"><i class="fas fa-crown" style="color: white"></i> VIP - 2</td><td>3000€</td><td>165€</td><td>4950€</td><td>+1950€</td><td>18 days</td></tr>
-                        <tr class="row-light"><td class="plan-name"><i class="fas fa-crown" style="color: white"></i> VIP - 3</td><td>6500€</td><td>430€</td><td>12900€</td><td>+6400€</td><td>15 days</td></tr>
-                        <tr class="row-ultimate"><td class="plan-name">🚀 ULTIMATE</td><td>20000€</td><td>1500€</td><td>45000€</td><td>+25000€</td><td>13 days</td></tr>
+                        <tr class="row-light"><td class="plan-name">⚡ VIP - 1</td><td>1200€</td><td>59€</td><td>1770€</td><td>+570€</td><td>20 days</td></tr>
+                        <tr class="row-dark"><td class="plan-name">⚡ VIP - 2</td><td>3000€</td><td>165€</td><td>4950€</td><td>+1950€</td><td>18 days</td></tr>
+                        <tr class="row-light"><td class="plan-name">⚡ VIP - 3</td><td>6500€</td><td>430€</td><td>12900€</td><td>+6400€</td><td>15 days</td></tr>
+                        <tr class="row-ultimate"><td class="plan-name">⚡ ULTIMATE ENERGY</td><td>20000€</td><td>1500€</td><td>45000€</td><td>+25000€</td><td>13 days</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -901,20 +803,20 @@
         <div class="modal-content">
             <span class="close-modal" onclick="appLogic.closeModal()">&times;</span>
             <div style="margin-bottom: 20px;">
-                <i class="fas fa-qrcode" style="font-size: 40px; color: white; margin-bottom: 10px;"></i>
-                <h3 style="margin-bottom: 5px; background: none; -webkit-text-fill-color: white;">Deposit to Invest</h3>
-                <p id="modal-pkg-name" style="color: white; font-size: 14px; font-weight: 600;">Package</p>
+                <i class="fas fa-qrcode" style="font-size: 40px; color: var(--bright-yellow); margin-bottom: 10px;"></i>
+                <h3 style="margin-bottom: 5px;">Deposit to Invest</h3>
+                <p id="modal-pkg-name" style="color: var(--text-gray); font-size: 14px; font-weight: 600;">Package</p>
             </div>
             
             <div class="warning-text">
-                <i class="fas fa-exclamation-triangle" style="color: white;"></i> Send strictly <strong>USDT (ERC20/TRC20)</strong> to this address. Other assets will be lost.
+                <i class="fas fa-exclamation-triangle" style="color: #f39c12;"></i> Send strictly <strong>USDT (ERC20/TRC20)</strong> to this address. Other assets will be lost.
             </div>
 
-            <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 15px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
-                <img class="qr-code" style="margin:0; width: 160px; height: 160px; box-shadow: none;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173" alt="QR Code">
+            <div style="background: white; padding: 10px; border-radius: 12px; display: inline-block; margin-bottom: 15px;">
+                <img class="qr-code" style="margin:0; width: 160px; height: 160px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173" alt="QR Code">
             </div>
             
-            <p style="font-size: 11px; color: #ffffff; margin-bottom: 8px; text-transform: uppercase;">Official Deposit Address:</p>
+            <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase;">Official Deposit Address:</p>
             <div class="wallet-address" id="wallet-address-text">
                 0x0f66Ac0f0D07Af0b444FF687Fb888eD8868d9173
             </div>
@@ -928,8 +830,8 @@
     <div id="calendar-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 900px; padding: 15px 30px;">
             <span class="close-modal" onclick="appLogic.closeCalendarModal()">&times;</span>
-            <h3 style="margin-bottom: 20px; color: white; background: none; -webkit-text-fill-color: white;">365 Days Challenge</h3>
-            <p style="color: #ffffff; font-size: 12px; margin-bottom: 15px;">Check in daily to unlock rewards!</p>
+            <h3 style="margin-bottom: 20px; color: var(--bright-yellow);">365 Days Challenge</h3>
+            <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 15px;">Check in daily to unlock rewards!</p>
             
             <div class="calendar-grid" id="calendar-grid"></div>
             
@@ -937,11 +839,11 @@
                 <i class="fas fa-check-square"></i> Register Now
             </button>
             
-            <div class="rewards-text" style="margin-top: 20px; color: var(--text-light); background: rgba(0,0,0,0.4); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
-                <p>🎁 Log in for a total of 7 days to get <strong>€5</strong></p>
-                <p>🎁 Log in for 40 days to get <strong>-5% withdrawal fee</strong></p>
-                <p>🎁 Log in for 180 days to get free <strong>VIP 1</strong></p>
-                <p>📱 Log in for 365 days to get a new <strong>iPhone 17 Pro Max</strong></p>
+            <div class="rewards-text" style="margin-top: 20px; color: var(--text-light); background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px;">
+                <p>🎁 Log in for a total of 7 days to get €5</p>
+                <p>🎁 Log in for 40 days to get -5% withdrawal fee</p>
+                <p>🎁 Log in for 180 days to get free VIP 1</p>
+                <p>📱 Log in for 365 days to get a new iPhone 17 Pro Max</p>
             </div>
         </div>
     </div>
@@ -973,15 +875,14 @@
 </script>
 
 <script>
-    // Added stock data parameters to individual structures dynamically
     const energyPackages = [
-        { id: 'basic1', name: 'Basic 1', price: 80, daily: 3, monthly: 90, stock: 14 },
-        { id: 'basic2', name: 'Basic 2', price: 200, daily: 9, monthly: 270, stock: 9 },
-        { id: 'basic3', name: 'Basic 3', price: 500, daily: 23, monthly: 690, stock: 18 },
-        { id: 'vip1', name: 'VIP 1', price: 1200, daily: 59, monthly: 1770, stock: 5 },
-        { id: 'vip2', name: 'VIP 2', price: 3000, daily: 165, monthly: 4950, stock: 3 },
-        { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900, stock: 2 },
-        { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000, stock: 1 }
+        { id: 'basic1', name: 'Basic 1', price: 80, daily: 3, monthly: 90 },
+        { id: 'basic2', name: 'Basic 2', price: 200, daily: 9, monthly: 270 },
+        { id: 'basic3', name: 'Basic 3', price: 500, daily: 23, monthly: 690 },
+        { id: 'vip1', name: 'VIP 1', price: 1200, daily: 59, monthly: 1770 },
+        { id: 'vip2', name: 'VIP 2', price: 3000, daily: 165, monthly: 4950 },
+        { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900 },
+        { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000 }
     ];
     
     const appLogic = {
@@ -1043,18 +944,13 @@
                     <div class="package-card">
                         <div class="package-title">${pkg.name}</div>
                         <div class="package-price">$${pkg.price} <span>USDT</span></div>
-                        
-                        <div style="font-size: 13px; color: #ffffff; font-weight: 600; margin-bottom: 12px; text-align: left;">
-                            <i class="fas fa-boxes"></i> Remaining Stock: <strong>${pkg.stock} units left</strong>
-                        </div>
-
                         <div class="package-details">
                             <div style="text-align: left;">
-                                <span style="color: #ffffff;">Daily Return:</span>
+                                <span style="color: var(--text-gray);">Daily Return:</span>
                                 <strong>$${pkg.daily}</strong>
                             </div>
                             <div style="text-align: right; border-left: 1px solid rgba(255,255,255,0.1); padding-left: 15px;">
-                                <span style="color: #ffffff;">Monthly Yield:</span>
+                                <span style="color: var(--text-gray);">Monthly Yield:</span>
                                 <strong>$${pkg.monthly}</strong>
                             </div>
                         </div>
@@ -1242,6 +1138,7 @@
                 if(data) {
                     this.currentUserData = data;
 
+                    // Обновяване на правоъгълника на таблото (Dashboard)
                     let invest = 0;
                     const pkg = energyPackages.find(p => p.name === data.activePackage);
                     if(pkg) invest = pkg.price;
@@ -1254,6 +1151,7 @@
                     document.getElementById('dash-today').innerText = daily;
                     document.getElementById('dash-yest').innerText = parseFloat(totalProfit) > 0 ? daily : "0.00";
 
+                    // Обновяване на портфейл и профил
                     const bal = parseFloat(data.balance || 0).toFixed(2);
                     document.getElementById('wallet-balance').innerText = bal;
                     
@@ -1275,14 +1173,17 @@
                     if(feeText) {
                         if(checkIns >= 40) {
                             feeText.innerHTML = '<i class="fas fa-percent"></i> Withdrawal Fee: <b>5%</b> (Discount Unlocked!)';
+                            feeText.style.color = 'var(--success-green)';
                         } else {
                             feeText.innerHTML = '<i class="fas fa-info-circle"></i> Standard Withdrawal Fee: <b>10%</b>';
+                            feeText.style.color = 'var(--bright-yellow)';
                         }
                     }
                 }
             });
         },
 
+        // НОВА ФУНКЦИЯ: Зареждане на екипа и пресмятане на 5% автоматично
         async loadTeamData(myCode) {
             if (!myCode) return;
             try {
@@ -1299,20 +1200,21 @@
                             if(member.inviteCodeUsed === myCode) {
                                 teamSize++;
                                 const memberProfit = parseFloat(member.totalProfit || 0);
-                                const myBonus = memberProfit * 0.05; 
+                                const myBonus = memberProfit * 0.05; // 5% бонус
                                 totalTeamEarnings += myBonus;
 
                                 const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
+                                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--success-green)";
                                 
                                 teamHtml += `
                                     <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
                                         <div style="display:flex; justify-content: space-between; width: 100%;">
                                             <span style="font-size: 13px; font-weight: bold; color: white;"><i class="fas fa-user-circle"></i> ${member.fullName || 'User'}</span>
-                                            <span style="font-size: 12px; color: white;">${this.maskPhone(member.phone)}</span>
+                                            <span style="font-size: 12px; color: var(--text-gray);">${this.maskPhone(member.phone)}</span>
                                         </div>
                                         <div style="display:flex; justify-content: space-between; width: 100%;">
-                                            <span style="font-size: 11px; color: white;"><i class="fas fa-bolt"></i> ${equip}</span>
-                                            <span style="font-size: 12px; font-weight: bold; color: white;">+ $${myBonus.toFixed(2)}</span>
+                                            <span style="font-size: 11px; color: ${equipColor};"><i class="fas fa-bolt"></i> ${equip}</span>
+                                            <span style="font-size: 12px; font-weight: bold; color: var(--bright-yellow);">+ $${myBonus.toFixed(2)}</span>
                                         </div>
                                     </div>
                                 `;
@@ -1324,7 +1226,7 @@
                         
                         const list = document.getElementById('team-list');
                         if (list) {
-                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:white; font-size:12px; text-align:center;">No registered members yet</p>';
+                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No registered members yet</p>';
                         }
                     }
                 });
@@ -1359,17 +1261,17 @@
                         list.innerHTML += `
                             <div class="history-item">
                                 <div style="display:flex; align-items:center; gap:12px;">
-                                    <div class="history-icon" style="background:rgba(255,255,255,0.1); color:white;">
+                                    <div class="history-icon" style="background:rgba(255,215,0,0.1); color:var(--bright-yellow);">
                                         <i class="fas fa-file-invoice-dollar"></i>
                                     </div>
                                     <div>
-                                        <div style="font-size: 13px; font-weight: bold; color: white;">Withdrawal</div>
-                                        <div style="font-size: 11px; color: white;">${date} • ${w.status.toUpperCase()}</div>
+                                        <div style="font-size: 13px; font-weight: bold;">Withdrawal</div>
+                                        <div style="font-size: 11px; color: var(--text-gray);">${date} • ${w.status.toUpperCase()}</div>
                                     </div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div style="font-size: 13px; font-weight: bold; color: white;">$${net.toFixed(2)}</div>
-                                    <div style="font-size: 11px; color: white;">- $${fee.toFixed(2)} (Fee)</div>
+                                    <div style="font-size: 11px; color: var(--error-red);">- $${fee.toFixed(2)} (Fee)</div>
                                 </div>
                             </div>
                         `;
@@ -1377,7 +1279,7 @@
                 }
                 
                 if(count === 0) {
-                    list.innerHTML = '<p style="color:white; font-size:12px; text-align:center;">No transactions yet</p>';
+                    list.innerHTML = '<p style="color:var(--text-gray); font-size:12px; text-align:center;">No transactions yet</p>';
                 }
             });
         },
