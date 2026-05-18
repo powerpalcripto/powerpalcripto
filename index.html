@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Invest In Energy ⚡️</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* ==========================================================================
            1. CSS VARIABLES & THEME SETTINGS (3D Matrix / Neon Energy)
            ========================================================================== */
         :root {
-            --dark-bg: #030a05; /* Deepest black/green */
-            --dark-green: #06140a; /* Main app background */
-            --dark-green-light: #102918; /* Surface/Card colors */
-            --dark-green-hover: #183d24; /* Hover states */
-            --main-green: #00FF88; /* Bright Neon Green */
+            --dark-bg: #030a05; 
+            --dark-green: #06140a; 
+            --dark-green-light: #102918; 
+            --dark-green-hover: #183d24; 
+            --main-green: #00FF88; 
             --main-green-hover: #00e67a;
             --main-green-glow: rgba(0, 255, 136, 0.4);
             --text-light: #FFFFFF;
-            --text-gray: #a8c2b3; /* Slightly greenish gray for harmony */
+            --text-gray: #a8c2b3; 
             --error-red: #FF3366;
             --success-green: #00FF88;
             --admin-color: #b000ff;
@@ -159,7 +159,7 @@
             box-shadow: 0 0 15px var(--main-green-glow), inset 0 2px 5px rgba(0,0,0,0.8); 
         }
         
-        .input-wrapper i.fa-lock, .input-wrapper i.fa-shield-alt, .input-wrapper i.fa-phone-alt, .input-wrapper i.fa-user, .input-wrapper i.fa-ticket-alt, .input-wrapper i.fa-euro-sign, .input-wrapper i.fa-wallet, .input-wrapper i.fa-search, .input-wrapper i.fa-box, .input-wrapper i.fa-hand-holding-usd { 
+        .input-wrapper i.fa-lock, .input-wrapper i.fa-shield-alt, .input-wrapper i.fa-phone-alt, .input-wrapper i.fa-user, .input-wrapper i.fa-ticket-alt, .input-wrapper i.fa-euro-sign, .input-wrapper i.fa-wallet { 
             color: var(--main-green); 
             margin-right: 12px; 
             font-size: 16px; 
@@ -510,7 +510,6 @@
 
 <div id="app-container">
 
-    <!-- LOGIN VIEW -->
     <div id="login-view" class="view active">
         <div class="text-center">
             <h1 class="logo-title" onclick="appLogic.adminTriggerClick()">Invest In Energy</h1>
@@ -596,7 +595,6 @@
         <p class="switch-link" onclick="appLogic.switchAuthView('register')">Don't have an account? <span>Register here</span></p>
     </div>
 
-    <!-- REGISTER VIEW -->
     <div id="register-view" class="view">
         <div class="text-center">
             <h1 class="logo-title">Invest In Energy</h1>
@@ -682,7 +680,6 @@
         <p class="switch-link" onclick="appLogic.switchAuthView('login')">Already have an account? <span>Login here</span></p>
     </div>
 
-    <!-- DASHBOARD VIEW -->
     <div id="dashboard-view" class="view">
         <h2 class="text-center" style="margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Welcome Back!</h2>
         
@@ -694,15 +691,15 @@
                 </div>
                 <div class="dash-stat-box">
                     <p>Total Profit</p>
-                    <h3><span id="dash-total">0.00</span>€</h3>
+                    <h3><span id="dash-total">0</span>€</h3>
                 </div>
                 <div class="dash-stat-box">
                     <p>Yesterday</p>
-                    <h3><span id="dash-yest">0.00</span>€</h3>
+                    <h3><span id="dash-yest">0</span>€</h3>
                 </div>
                 <div class="dash-stat-box">
                     <p>Today</p>
-                    <h3><span id="dash-today">0.00</span>€</h3>
+                    <h3><span id="dash-today">0</span>€</h3>
                 </div>
             </div>
         </div>
@@ -739,7 +736,6 @@
         </div>
     </div>
 
-    <!-- ADMIN CONSOLE -->
     <div id="admin-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Exit Admin</button>
         <div class="text-center" style="margin-bottom: 30px;">
@@ -763,7 +759,7 @@
                 <label style="color: var(--text-gray);">Assign Package</label>
                 <div class="input-wrapper admin-input">
                     <i class="fas fa-box"></i>
-                    <select id="admin-package-select" onchange="appLogic.adminAutoFillProfit(this.value)">
+                    <select id="admin-package-select">
                         <option value="none">No Package (Reset)</option>
                         <option value="Basic 1">Basic 1</option>
                         <option value="Basic 2">Basic 2</option>
@@ -776,21 +772,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label style="color: var(--text-gray);">Daily Profit Amount (€)</label>
-                <div class="input-wrapper admin-input">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    <input type="number" id="admin-daily-profit" placeholder="e.g. 3.00" step="0.01">
-                </div>
-            </div>
-
             <button class="btn btn-admin" onclick="appLogic.adminUpdateUser()">
-                <i class="fas fa-sync-alt"></i> Update User Data
+                <i class="fas fa-sync-alt"></i> Update User Package
             </button>
         </div>
     </div>
 
-    <!-- PROFILE VIEW -->
     <div id="profile-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center" style="margin-bottom: 25px; text-transform: uppercase;">My Profile</h2>
@@ -831,7 +818,6 @@
         </div>
     </div>
 
-    <!-- WALLET VIEW -->
     <div id="wallet-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center" style="text-transform: uppercase;">My Wallet</h2>
@@ -839,12 +825,20 @@
         <div class="card text-center" style="padding: 30px 20px;">
             <p class="stat-label">Total Available Balance</p>
             <h1 style="font-size: 50px; margin: 15px 0; letter-spacing: -2px; font-weight: 900; text-shadow: 0 4px 10px rgba(0,0,0,0.8);">
-                 <span id="wallet-balance">0.00</span><span style="color: var(--main-green); font-size: 30px; margin-left: 5px;">€</span>
+                <span style="color: var(--text-gray); font-size: 30px;">€</span> <span id="wallet-balance">0.00</span>
             </h1>
-            <p style="font-size: 12px; color: var(--text-gray); font-weight: 700; letter-spacing: 1px;">USDT TRC20 Equivalent (€)</p>
+            <p style="font-size: 12px; color: var(--text-gray); font-weight: 700; letter-spacing: 1px;">USDT (Tether USD) / €</p>
             
             <p id="withdrawal-fee-text" style="font-size: 13px; color: var(--error-red); margin-top: 20px; text-align: center; background: #040d06; padding: 12px; border-radius: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.8); border: 1px solid rgba(255,51,102,0.2);">
                 <i class="fas fa-info-circle"></i> Standard Withdrawal Fee: <b>10%</b>
+            </p>
+            
+            <p style="font-size: 13px; color: var(--main-green); margin-top: 10px; text-align: center; background: #040d06; padding: 12px; border-radius: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);">
+                <i class="fas fa-clock"></i> Withdrawals are allowed from <b>08:00</b> to <b>20:00</b> hours.
+            </p>
+
+            <p style="font-size: 13px; color: var(--text-gray); margin-top: 10px; text-align: center;">
+                <i class="fas fa-info-circle"></i> After a successful request, the funds will be transferred to your account within <b>2 hours</b>.
             </p>
 
             <div id="withdrawal-status-container" style="display: none; margin-top: 25px; padding: 15px; border-radius: var(--border-radius-sm); background: linear-gradient(145deg, #2b0b14, #1a050c); border: 1px solid rgba(255, 51, 102, 0.4); box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);">
@@ -869,7 +863,7 @@
                 <label>Withdrawal Address (USDT TRC20/ERC20)</label>
                 <div class="input-wrapper" style="background: #040d06;">
                     <i class="fas fa-wallet"></i>
-                    <input type="text" id="withdraw-address" placeholder="Paste TRC20 wallet address...">
+                    <input type="text" id="withdraw-address" placeholder="Paste wallet address...">
                 </div>
             </div>
 
@@ -885,7 +879,6 @@
         </div>
     </div>
 
-    <!-- PACKAGES VIEW -->
     <div id="packages-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center" style="text-transform: uppercase;">Energy Store</h2>
@@ -893,7 +886,6 @@
         <div id="packages-container"></div>
     </div>
 
-    <!-- PARTNER PROGRAM (AFFILIATE) -->
     <div id="affiliate-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <h2 class="text-center" style="text-transform: uppercase;">Partner Program</h2>
@@ -904,7 +896,7 @@
                 <i class="fas fa-network-wired" style="font-size: 32px; color: var(--main-green);"></i>
             </div>
             <p style="font-size: 14px; margin-bottom: 20px; line-height: 1.6; font-weight: 600;">
-                You will earn a <strong style="color: var(--main-green); font-size: 16px; text-shadow: 0 0 5px rgba(0,255,136,0.3);">5% commission</strong> from the daily income of every team member!
+                You will earn a <strong style="color: var(--main-green); font-size: 16px; text-shadow: 0 0 5px rgba(0,255,136,0.3);">5% commission</strong> automatically from the daily income of every team member!
             </p>
             <div style="background: #040d06; padding: 15px; border-radius: var(--border-radius-sm); margin-bottom: 20px; box-shadow: inset 0 4px 8px rgba(0,0,0,0.8); border: 1px solid rgba(0,255,136,0.1);">
                 <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase; font-weight: bold;">Your Invitation Code</p>
@@ -929,7 +921,7 @@
             </div>
             <div style="margin-top: 15px; padding: 18px; background: #040d06; border-radius: var(--border-radius-sm); text-align: center; box-shadow: inset 0 3px 6px rgba(0,0,0,0.8); border: 1px solid rgba(0,255,136,0.05);">
                 <p style="font-size: 12px; color: var(--text-gray); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Total earned from team (5% Bonus)</p>
-                <h3 id="affiliate-earned" style="margin: 8px 0 0 0; color: var(--main-green); font-size: 28px;">0.00 €</h3>
+                <h3 id="affiliate-earned" style="margin: 8px 0 0 0; color: var(--main-green); font-size: 28px;">€ 0.00</h3>
             </div>
         </div>
 
@@ -941,7 +933,6 @@
         </div>
     </div>
 
-    <!-- ENERGY PLANS VIEW -->
     <div id="energy-plans-view" class="view">
         <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
         <div class="table-container" style="display: block;">
@@ -972,7 +963,6 @@
         </div>
     </div>
 
-    <!-- DEPOSIT MODAL -->
     <div id="payment-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-modal" onclick="appLogic.closeModal()">&times;</span>
@@ -983,7 +973,7 @@
             </div>
             
             <div class="warning-text">
-                <i class="fas fa-exclamation-triangle" style="color: #030a05;"></i> Send strictly <strong>USDT TRC20</strong> to this address. Other networks or assets will result in permanent loss.
+                <i class="fas fa-exclamation-triangle" style="color: #030a05;"></i> Send strictly <strong>USDT (ERC20/TRC20)</strong> to this address. Other assets will be lost.
             </div>
 
             <div style="background: white; padding: 12px; border-radius: 14px; display: inline-block; margin-bottom: 20px; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.6);">
@@ -1001,7 +991,6 @@
         </div>
     </div>
 
-    <!-- CALENDAR MODAL -->
     <div id="calendar-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 900px; padding: 20px 30px;">
             <span class="close-modal" onclick="appLogic.closeCalendarModal()">&times;</span>
@@ -1025,7 +1014,6 @@
 
 </div>
 
-<!-- FIREBASE SDK SYSTEM CONFIGURATION -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
     import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
@@ -1050,7 +1038,6 @@
     window.fupdate = update;
 </script>
 
-<!-- SYSTEM LOGIC ENGINE -->
 <script>
     const energyPackages = [
         { id: 'basic1', name: 'Basic 1', price: 80, daily: 3, monthly: 90, remaining: 9238 },
@@ -1081,7 +1068,6 @@
 
         showToast(message, type = 'info') {
             const container = document.getElementById('toast-container');
-            if(!container) return;
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             
@@ -1129,7 +1115,6 @@
 
         renderPackages() {
             const container = document.getElementById('packages-container');
-            if(!container) return;
             container.innerHTML = '';
             energyPackages.forEach(pkg => {
                 container.innerHTML += `
@@ -1138,15 +1123,15 @@
                         <div style="font-size: 13px; color: var(--text-gray); margin-bottom: 5px; font-weight: 700;">
                             <i class="fas fa-boxes" style="color: var(--main-green);"></i> Remaining: <strong style="color: white;">${pkg.remaining}</strong> pcs.
                         </div>
-                        <div class="package-price">${pkg.price} <span>€</span></div>
+                        <div class="package-price">€${pkg.price}</div>
                         <div class="package-details">
                             <div style="text-align: left;">
                                 <span style="color: var(--text-gray); text-transform: uppercase; font-size: 11px; font-weight: bold;">Daily Return:</span>
-                                <strong>${pkg.daily} €</strong>
+                                <strong>€${pkg.daily}</strong>
                             </div>
                             <div style="text-align: right; border-left: 1px solid rgba(0,255,136,0.1); padding-left: 15px;">
                                 <span style="color: var(--text-gray); text-transform: uppercase; font-size: 11px; font-weight: bold;">Monthly Yield:</span>
-                                <strong>${pkg.monthly} €</strong>
+                                <strong>€${pkg.monthly}</strong>
                             </div>
                         </div>
                         <button class="btn buy-btn" onclick="appLogic.openPaymentModal('${pkg.name}', ${pkg.price})">
@@ -1330,17 +1315,19 @@
                 if(data) {
                     this.currentUserData = data;
 
-                    let invest = 0;
-                    const pkg = energyPackages.find(p => p.name === data.activePackage);
-                    if(pkg) invest = pkg.price;
+                    // Dynamics based on energyPackages (automatically calculates based on activated package)
+                    const pkgInfo = energyPackages.find(p => p.name === data.activePackage);
+                    let invest = pkgInfo ? pkgInfo.price : 0;
+                    let dailyRate = pkgInfo ? pkgInfo.daily : 0;
+                    
                     document.getElementById('dash-invest').innerText = invest;
-
-                    const totalProfit = parseFloat(data.totalProfit || 0).toFixed(2);
-                    document.getElementById('dash-total').innerText = totalProfit;
-
-                    const daily = parseFloat(data.dailyProfit || 0).toFixed(2);
-                    document.getElementById('dash-today').innerText = daily;
-                    document.getElementById('dash-yest').innerText = parseFloat(totalProfit) > 0 ? daily : "0.00";
+                    const totalProfit = parseFloat(data.totalProfit || 0);
+                    document.getElementById('dash-total').innerText = totalProfit.toFixed(2);
+                    
+                    // "Today" is based directly on the package rate
+                    document.getElementById('dash-today').innerText = dailyRate.toFixed(2);
+                    // "Yesterday" is valid if they have earned at least the daily rate in total profit
+                    document.getElementById('dash-yest').innerText = (totalProfit >= dailyRate && dailyRate > 0) ? dailyRate.toFixed(2) : "0.00";
 
                     const bal = parseFloat(data.balance || 0).toFixed(2);
                     document.getElementById('wallet-balance').innerText = bal;
@@ -1354,7 +1341,7 @@
                         pkgBadge.innerText = 'No Active Package';
                     }
                     
-                    this.processDailyProfit(uid, data);
+                    this.processDailyProfit(uid, data, dailyRate);
                     this.verifyWithdrawalEligibility(data.myCode);
                     this.loadTeamData(data.myCode);
                     
@@ -1404,7 +1391,7 @@
                                         </div>
                                         <div style="display:flex; justify-content: space-between; width: 100%;">
                                             <span style="font-size: 11px; color: ${equipColor}; font-weight: bold;"><i class="fas fa-bolt"></i> ${equip}</span>
-                                            <span style="font-size: 13px; font-weight: 900; color: var(--main-green);">+ ${myBonus.toFixed(2)} €</span>
+                                            <span style="font-size: 13px; font-weight: 900; color: var(--main-green);">+ €${myBonus.toFixed(2)}</span>
                                         </div>
                                     </div>
                                 `;
@@ -1412,7 +1399,7 @@
                         }
 
                         document.getElementById('affiliate-team-size').innerText = teamSize;
-                        document.getElementById('affiliate-earned').innerText = totalTeamEarnings.toFixed(2) + " €";
+                        document.getElementById('affiliate-earned').innerText = "€ " + totalTeamEarnings.toFixed(2);
                         
                         const list = document.getElementById('team-list');
                         if (list) {
@@ -1460,8 +1447,8 @@
                                     </div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div style="font-size: 15px; font-weight: 900; color: white;">${net.toFixed(2)} €</div>
-                                    <div style="font-size: 11px; color: var(--error-red); font-weight: bold;">- ${fee.toFixed(2)} € (Fee)</div>
+                                    <div style="font-size: 15px; font-weight: 900; color: white;">€${net.toFixed(2)}</div>
+                                    <div style="font-size: 11px; color: var(--error-red); font-weight: bold;">- €${fee.toFixed(2)} (Fee)</div>
                                 </div>
                             </div>
                         `;
@@ -1474,28 +1461,61 @@
             });
         },
 
-        async processDailyProfit(uid, data) {
+        async processDailyProfit(uid, data, actualDailyRate) {
             if (!data.activePackage || data.activePackage === "none") return;
-            if (!data.dailyProfit || parseFloat(data.dailyProfit) <= 0) return;
+            if (actualDailyRate <= 0) return;
 
             const lastUpdate = data.lastProfitUpdate || Date.now();
             const now = Date.now();
             const msInDay = 24 * 60 * 60 * 1000;
+            
             if (now - lastUpdate >= msInDay) {
                 const daysPassed = Math.floor((now - lastUpdate) / msInDay);
-                const profitEarned = daysPassed * parseFloat(data.dailyProfit);
-                const newBalance = parseFloat(data.balance || 0) + profitEarned;
-                const newTotalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
+                const profitEarned = daysPassed * actualDailyRate;
                 
-                try {
-                    await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
-                        balance: newBalance,
-                        totalProfit: newTotalProfit,
-                        lastProfitUpdate: now
-                    });
-                    this.showToast(`Daily profit of ${profitEarned.toFixed(2)} € added!`, "success");
-                } catch(e) {
-                    console.error("Failed to update profit:", e);
+                if(profitEarned > 0) {
+                    const newBalance = parseFloat(data.balance || 0) + profitEarned;
+                    const newTotalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
+                    
+                    try {
+                        // 1. Update Current User Profit
+                        await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
+                            balance: newBalance,
+                            totalProfit: newTotalProfit,
+                            dailyProfit: actualDailyRate,
+                            lastProfitUpdate: lastUpdate + (daysPassed * msInDay) // Avoid time drift
+                        });
+                        this.showToast(`Daily profit of €${profitEarned.toFixed(2)} added!`, "success");
+
+                        // 2. Automatically Add 5% to the Sponsor (Team Commission)
+                        if (data.inviteCodeUsed && data.inviteCodeUsed !== "none") {
+                            const sponsorCode = data.inviteCodeUsed;
+                            const usersSnap = await window.fget(window.fref(window.fdb, 'users'));
+                            
+                            if (usersSnap.exists()) {
+                                const allUsers = usersSnap.val();
+                                for (let key in allUsers) {
+                                    if (allUsers[key].myCode === sponsorCode) {
+                                        const sponsor = allUsers[key];
+                                        const sponsorBonus = profitEarned * 0.05;
+                                        
+                                        const sNewBalance = parseFloat(sponsor.balance || 0) + sponsorBonus;
+                                        const sNewEarned = parseFloat(sponsor.earnedFromTeam || 0) + sponsorBonus;
+                                        
+                                        // Update Sponsor Balance directly in DB
+                                        await window.fupdate(window.fref(window.fdb, 'users/' + key), {
+                                            balance: sNewBalance,
+                                            earnedFromTeam: sNewEarned
+                                        });
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                    } catch(e) {
+                        console.error("Failed to update profit:", e);
+                    }
                 }
             }
         },
@@ -1566,6 +1586,12 @@
         },
 
         async withdraw() {
+            // Withdrawal time check
+            const currentHour = new Date().getHours();
+            if (currentHour < 8 || currentHour >= 20) {
+                return this.showToast("Withdrawals are only allowed from 08:00 AM to 20:00 PM!", "error");
+            }
+
             if(!this.currentUserData.withdrawPin) {
                 return this.showToast("SECURITY LOCK: Please set up your Withdrawal PIN from your Profile first.", "error");
             }
@@ -1649,24 +1675,13 @@
             }
         },
 
-        adminAutoFillProfit(pkgName) {
-            const matched = energyPackages.find(p => p.name.toLowerCase() === pkgName.toLowerCase());
-            const profitInput = document.getElementById('admin-daily-profit');
-            if(matched && profitInput) {
-                profitInput.value = matched.daily;
-            } else if(profitInput) {
-                profitInput.value = '0';
-            }
-        },
-
         async adminUpdateUser() {
             const phoneRaw = document.getElementById('admin-target-phone').value;
             const pkg = document.getElementById('admin-package-select').value;
-            const profitStr = document.getElementById('admin-daily-profit').value;
             
             if(!phoneRaw) return this.showToast("Enter a target phone number.", "error");
             const dbKey = phoneRaw.replace(/\s+/g, '').replace('+', '');
-            const profit = parseFloat(profitStr) || 0;
+            
             try {
                 const userRef = window.fref(window.fdb, 'users/' + dbKey);
                 const snap = await window.fget(userRef);
@@ -1677,30 +1692,26 @@
 
                 await window.fupdate(userRef, {
                     activePackage: pkg,
-                    dailyProfit: profit,
                     lastProfitUpdate: Date.now() 
                 });
-                this.showToast(`User updated successfully! Package: ${pkg}, Daily: ${profit} €`, "success");
+                this.showToast(`User updated successfully! Package: ${pkg}`, "success");
                 
                 document.getElementById('admin-target-phone').value = '';
                 document.getElementById('admin-package-select').value = 'none';
-                document.getElementById('admin-daily-profit').value = '';
             } catch(e) {
                 this.showToast("Admin update error: " + e.message, "error");
             }
         },
 
         openPaymentModal(pkgName, price) {
-            document.getElementById('modal-pkg-name').innerText = `${pkgName} - ${price} €`;
+            document.getElementById('modal-pkg-name').innerText = `${pkgName} - ${price} USDT`;
             const overlay = document.getElementById('payment-modal');
-            if(!overlay) return;
             overlay.style.display = 'flex';
             setTimeout(() => overlay.classList.add('show'), 10);
         },
 
         closeModal() {
             const overlay = document.getElementById('payment-modal');
-            if(!overlay) return;
             overlay.classList.remove('show');
             setTimeout(() => overlay.style.display = 'none', 300);
         },
@@ -1722,7 +1733,6 @@
         openCalendarModal() {
             this.renderCalendar();
             const overlay = document.getElementById('calendar-modal');
-            if(!overlay) return;
             overlay.style.display = 'flex';
             setTimeout(() => overlay.classList.add('show'), 10);
             this.calendarInterval = setInterval(() => this.updateCheckInUI(), 1000);
@@ -1731,14 +1741,12 @@
         closeCalendarModal() {
             clearInterval(this.calendarInterval);
             const overlay = document.getElementById('calendar-modal');
-            if(!overlay) return;
             overlay.classList.remove('show');
             setTimeout(() => overlay.style.display = 'none', 300);
         },
 
         renderCalendar() {
             const grid = document.getElementById('calendar-grid');
-            if(!grid) return;
             grid.innerHTML = '';
             const count = this.currentUserData?.checkInCount || 0;
             
@@ -1753,7 +1761,7 @@
 
         updateCheckInUI() {
             const btn = document.getElementById('btn-checkin');
-            if(!btn || !this.currentUserData) return;
+            if(!this.currentUserData) return;
             const lastCheckIn = this.currentUserData.lastCheckIn || 0;
             const now = Date.now();
             const msInDay = 24 * 60 * 60 * 1000;
@@ -1791,7 +1799,7 @@
                 this.showToast("Reward Unlocked: Withdrawal fee reduced to 5%!", "success");
             } else if (newCount === 180) {
                 updates.activePackage = "VIP 1";
-                updates.dailyProfit = 59;
+                updates.dailyProfit = 59; // Corrected VIP 1 daily value
                 this.showToast("Reward Unlocked: Free VIP 1 Activated!", "success");
             } else if (newCount === 365) {
                 this.showToast("JACKPOT! Please contact support to claim your iPhone 17 Pro Max!", "success");
