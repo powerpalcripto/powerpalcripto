@@ -540,7 +540,7 @@
                         <option value="+359" selected>+359 (Bulgaria 🇧🇬)</option>
                         <option value="+43">+43 (Austria 🇦🇹)</option>
                         <option value="+32">+32 (Belgium 🇧🇪)</option>
-                        <option value="+385">+385 (Croatia 🇭🇷)</option>
+                        <option value="+385">+385 (Croatia 🇭РУ)</option>
                         <option value="+357">+357 (Cyprus 🇨🇾)</option>
                         <option value="+420">+420 (Czechia 🇨🇿)</option>
                         <option value="+45">+45 (Denmark 🇩🇰)</option>
@@ -729,7 +729,7 @@
                 <i class="fas fa-bolt"></i>
                 <span>Energy Plans</span>
             </div>
-            <div class="grid-item" onclick="appLogic.secureLogout()">
+            <div class="grid-item" onclick="appLogic.secureLogout().catch(console.error)">
                 <i class="fas fa-sign-out-alt" style="color: var(--error-red); filter: drop-shadow(0 0 5px rgba(255,51,102,0.4));"></i>
                 <span style="color: var(--error-red);">Secure Logout</span>
             </div>
@@ -768,7 +768,16 @@
                         <option value="VIP 2">VIP 2</option>
                         <option value="VIP 3">VIP 3</option>
                         <option value="Ultimate Energy">Ultimate Energy</option>
+                        <option value="Custom Plan">Custom Plan</option>
                     </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: var(--text-gray);">Daily Profit Amount (€)</label>
+                <div class="input-wrapper admin-input">
+                    <i class="fas fa-euro-sign"></i>
+                    <input type="number" id="admin-custom-daily" placeholder="e.g. 59 (Overrides defaults)">
                 </div>
             </div>
 
@@ -1315,18 +1324,15 @@
                 if(data) {
                     this.currentUserData = data;
 
-                    // Dynamics based on energyPackages (automatically calculates based on activated package)
                     const pkgInfo = energyPackages.find(p => p.name === data.activePackage);
                     let invest = pkgInfo ? pkgInfo.price : 0;
-                    let dailyRate = pkgInfo ? pkgInfo.daily : 0;
+                    let dailyRate = parseFloat(data.dailyProfit || (pkgInfo ? pkgInfo.daily : 0));
                     
                     document.getElementById('dash-invest').innerText = invest;
                     const totalProfit = parseFloat(data.totalProfit || 0);
                     document.getElementById('dash-total').innerText = totalProfit.toFixed(2);
                     
-                    // "Today" is based directly on the package rate
                     document.getElementById('dash-today').innerText = dailyRate.toFixed(2);
-                    // "Yesterday" is valid if they have earned at least the daily rate in total profit
                     document.getElementById('dash-yest').innerText = (totalProfit >= dailyRate && dailyRate > 0) ? dailyRate.toFixed(2) : "0.00";
 
                     const bal = parseFloat(data.balance || 0).toFixed(2);
@@ -1341,7 +1347,7 @@
                         pkgBadge.innerText = 'No Active Package';
                     }
                     
-                    this.processDailyProfit(uid, data, dailyRate);
+                    this.processDailyProfit(uid, data);
                     this.verifyWithdrawalEligibility(data.myCode);
                     this.loadTeamData(data.myCode);
                     
@@ -1376,8 +1382,7 @@
                             const member = allUsers[key];
                             if(member.inviteCodeUsed === myCode) {
                                 teamSize++;
-                                const memberProfit = parseFloat(member.totalProfit || 0);
-                                const myBonus = memberProfit * 0.05; 
+                                const myBonus = parseFloat(member.earnedFromTeamBonusAmount || 0); 
                                 totalTeamEarnings += myBonus;
 
                                 const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
@@ -1461,61 +1466,94 @@
             });
         },
 
-        async processDailyProfit(uid, data, actualDailyRate) {
-            if (!data.activePackage || data.activePackage === "none") return;
-            if (actualDailyRate <= 0) return;
-
-            const lastUpdate = data.lastProfitUpdate || Date.now();
+        async processDailyProfit(uid, data) {
             const now = Date.now();
             const msInDay = 24 * 60 * 60 * 1000;
-            
-            if (now - lastUpdate >= msInDay) {
-                const daysPassed = Math.floor((now - lastUpdate) / msInDay);
-                const profitEarned = daysPassed * actualDailyRate;
-                
-                if(profitEarned > 0) {
-                    const newBalance = parseFloat(data.balance || 0) + profitEarned;
-                    const newTotalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
-                    
-                    try {
-                        // 1. Update Current User Profit
-                        await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
-                            balance: newBalance,
-                            totalProfit: newTotalProfit,
-                            dailyProfit: actualDailyRate,
-                            lastProfitUpdate: lastUpdate + (daysPassed * msInDay) // Avoid time drift
-                        });
-                        this.showToast(`Daily profit of €${profitEarned.toFixed(2)} added!`, "success");
+            let globalUpdates = {};
+            let needsUpdate = false;
 
-                        // 2. Automatically Add 5% to the Sponsor (Team Commission)
-                        if (data.inviteCodeUsed && data.inviteCodeUsed !== "none") {
-                            const sponsorCode = data.inviteCodeUsed;
-                            const usersSnap = await window.fget(window.fref(window.fdb, 'users'));
-                            
-                            if (usersSnap.exists()) {
-                                const allUsers = usersSnap.val();
-                                for (let key in allUsers) {
-                                    if (allUsers[key].myCode === sponsorCode) {
-                                        const sponsor = allUsers[key];
-                                        const sponsorBonus = profitEarned * 0.05;
+            // 1. Core Automated Matrix System for User's Own Active Equipment
+            if (data.activePackage && data.activePackage !== "none") {
+                const dailyRate = parseFloat(data.dailyProfit || 0);
+                if (dailyRate > 0) {
+                    const lastProfitUpdate = data.lastProfitUpdate || now;
+                    const daysPassed = Math.floor((now - lastProfitUpdate) / msInDay);
+                    
+                    if (daysPassed > 0) {
+                        const profitEarned = daysPassed * dailyRate;
+                        data.balance = parseFloat(data.balance || 0) + profitEarned;
+                        data.totalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
+                        data.lastProfitUpdate = lastProfitUpdate + (daysPassed * msInDay);
+                        
+                        globalUpdates[`users/${uid}/balance`] = data.balance;
+                        globalUpdates[`users/${uid}/totalProfit`] = data.totalProfit;
+                        globalUpdates[`users/${uid}/lastProfitUpdate`] = data.lastProfitUpdate;
+                        needsUpdate = true;
+                        
+                        this.showToast(`Daily profit of €${profitEarned.toFixed(2)} added!`, "success");
+                    }
+                }
+            }
+
+            // 2. Automated Non-Deductible Affiliate Profit Accelerator (5% Team Multiplier)
+            try {
+                const usersSnap = await window.fget(window.fref(window.fdb, 'users'));
+                if (usersSnap.exists()) {
+                    const allUsers = usersSnap.val();
+                    let sponsorAddedBalance = 0;
+                    let sponsorAddedTeam = 0;
+
+                    for (let key in allUsers) {
+                        if (key !== uid && allUsers[key].inviteCodeUsed === data.myCode) {
+                            const member = allUsers[key];
+                            if (member.activePackage && member.activePackage !== "none") {
+                                const mDailyRate = parseFloat(member.dailyProfit || 0);
+                                if (mDailyRate > 0) {
+                                    const mLastUpdate = member.lastProfitUpdate || now;
+                                    const mDaysPassed = Math.floor((now - mLastUpdate) / msInDay);
+                                    
+                                    if (mDaysPassed > 0) {
+                                        const mProfitEarned = mDaysPassed * mDailyRate;
+                                        const mNewBalance = parseFloat(member.balance || 0) + mProfitEarned;
+                                        const mNewTotal = parseFloat(member.totalProfit || 0) + mProfitEarned;
+                                        const mNewLastUpdate = mLastUpdate + (mDaysPassed * msInDay);
                                         
-                                        const sNewBalance = parseFloat(sponsor.balance || 0) + sponsorBonus;
-                                        const sNewEarned = parseFloat(sponsor.earnedFromTeam || 0) + sponsorBonus;
+                                        globalUpdates[`users/${key}/balance`] = mNewBalance;
+                                        globalUpdates[`users/${key}/totalProfit`] = mNewTotal;
+                                        globalUpdates[`users/${key}/lastProfitUpdate`] = mNewLastUpdate;
                                         
-                                        // Update Sponsor Balance directly in DB
-                                        await window.fupdate(window.fref(window.fdb, 'users/' + key), {
-                                            balance: sNewBalance,
-                                            earnedFromTeam: sNewEarned
-                                        });
-                                        break;
+                                        const commissionBonus = mProfitEarned * 0.05;
+                                        const currentMemberBonus = parseFloat(member.earnedFromTeamBonusAmount || 0) + commissionBonus;
+                                        globalUpdates[`users/${key}/earnedFromTeamBonusAmount`] = currentMemberBonus;
+                                        
+                                        sponsorAddedBalance += commissionBonus;
+                                        sponsorAddedTeam += commissionBonus;
+                                        needsUpdate = true;
                                     }
                                 }
                             }
                         }
-
-                    } catch(e) {
-                        console.error("Failed to update profit:", e);
                     }
+
+                    if (sponsorAddedBalance > 0) {
+                        data.balance = parseFloat(data.balance || 0) + sponsorAddedBalance;
+                        data.earnedFromTeam = parseFloat(data.earnedFromTeam || 0) + sponsorAddedTeam;
+                        
+                        globalUpdates[`users/${uid}/balance`] = data.balance;
+                        globalUpdates[`users/${uid}/earnedFromTeam`] = data.earnedFromTeam;
+                        
+                        this.showToast(`Team commission bonus of €${sponsorAddedBalance.toFixed(2)} received!`, "success");
+                    }
+                }
+            } catch (err) {
+                console.error("Affiliate cycle update sequence execution error:", err);
+            }
+
+            if (needsUpdate) {
+                try {
+                    await window.fupdate(window.fref(window.fdb), globalUpdates);
+                } catch (e) {
+                    console.error("Global updates deployment sequence error:", e);
                 }
             }
         },
@@ -1586,7 +1624,6 @@
         },
 
         async withdraw() {
-            // Withdrawal time check
             const currentHour = new Date().getHours();
             if (currentHour < 8 || currentHour >= 20) {
                 return this.showToast("Withdrawals are only allowed from 08:00 AM to 20:00 PM!", "error");
@@ -1678,9 +1715,18 @@
         async adminUpdateUser() {
             const phoneRaw = document.getElementById('admin-target-phone').value;
             const pkg = document.getElementById('admin-package-select').value;
+            const customDailyInput = parseFloat(document.getElementById('admin-custom-daily').value);
             
             if(!phoneRaw) return this.showToast("Enter a target phone number.", "error");
             const dbKey = phoneRaw.replace(/\s+/g, '').replace('+', '');
+            
+            let finalDailyProfit = 0;
+            if (!isNaN(customDailyInput) && customDailyInput >= 0) {
+                finalDailyProfit = customDailyInput;
+            } else {
+                const pkgInfo = energyPackages.find(p => p.name === pkg);
+                if (pkgInfo) finalDailyProfit = pkgInfo.daily;
+            }
             
             try {
                 const userRef = window.fref(window.fdb, 'users/' + dbKey);
@@ -1692,12 +1738,14 @@
 
                 await window.fupdate(userRef, {
                     activePackage: pkg,
+                    dailyProfit: finalDailyProfit,
                     lastProfitUpdate: Date.now() 
                 });
-                this.showToast(`User updated successfully! Package: ${pkg}`, "success");
+                this.showToast(`User updated successfully! Package: ${pkg}, Daily Yield: €${finalDailyProfit}`, "success");
                 
                 document.getElementById('admin-target-phone').value = '';
                 document.getElementById('admin-package-select').value = 'none';
+                document.getElementById('admin-custom-daily').value = '';
             } catch(e) {
                 this.showToast("Admin update error: " + e.message, "error");
             }
@@ -1794,12 +1842,13 @@
             
             if (newCount === 7) {
                 updates.balance = parseFloat(this.currentUserData.balance || 0) + 5;
+                updates.totalProfit = parseFloat(this.currentUserData.totalProfit || 0) + 5;
                 this.showToast("Reward Unlocked: €5 added to your balance!", "success");
             } else if (newCount === 40) {
                 this.showToast("Reward Unlocked: Withdrawal fee reduced to 5%!", "success");
             } else if (newCount === 180) {
                 updates.activePackage = "VIP 1";
-                updates.dailyProfit = 59; // Corrected VIP 1 daily value
+                updates.dailyProfit = 59; 
                 this.showToast("Reward Unlocked: Free VIP 1 Activated!", "success");
             } else if (newCount === 365) {
                 this.showToast("JACKPOT! Please contact support to claim your iPhone 17 Pro Max!", "success");
@@ -1811,6 +1860,10 @@
                 await window.fupdate(window.fref(window.fdb, 'users/' + uid), updates);
                 this.currentUserData.checkInCount = newCount;
                 this.currentUserData.lastCheckIn = now;
+                if (updates.balance !== undefined) this.currentUserData.balance = updates.balance;
+                if (updates.totalProfit !== undefined) this.currentUserData.totalProfit = updates.totalProfit;
+                if (updates.activePackage !== undefined) this.currentUserData.activePackage = updates.activePackage;
+                if (updates.dailyProfit !== undefined) this.currentUserData.dailyProfit = updates.dailyProfit;
                 this.renderCalendar();
             } catch (error) {
                 this.showToast("Failed to check in: " + error.message, "error");
