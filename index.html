@@ -94,7 +94,7 @@
            4. TYPOGRAPHY
            ========================================================================== */
         h1, h2, h3, h4, h5 { 
-            color: var(--main-green); 
+            color: var(--main-green);
             margin-bottom: 15px; 
             font-weight: 900; 
             text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
@@ -154,13 +154,13 @@
         .input-wrapper.admin-input i { color: var(--admin-color); }
 
         .input-wrapper:focus-within { 
-            border-color: var(--main-green); 
+            border-color: var(--main-green);
             background: #040d06; 
-            box-shadow: 0 0 15px var(--main-green-glow), inset 0 2px 5px rgba(0,0,0,0.8); 
+            box-shadow: 0 0 15px var(--main-green-glow), inset 0 2px 5px rgba(0,0,0,0.8);
         }
         
         .input-wrapper i.fa-lock, .input-wrapper i.fa-shield-alt, .input-wrapper i.fa-phone-alt, .input-wrapper i.fa-user, .input-wrapper i.fa-ticket-alt, .input-wrapper i.fa-euro-sign, .input-wrapper i.fa-wallet { 
-            color: var(--main-green); 
+            color: var(--main-green);
             margin-right: 12px; 
             font-size: 16px; 
             width: 20px; 
@@ -216,10 +216,10 @@
         .btn:hover:not(:disabled) { 
             background: linear-gradient(145deg, #00ff99, var(--main-green));
             transform: translateY(-2px); 
-            box-shadow: 0 8px 0 #00884a, 0 15px 30px rgba(0, 255, 136, 0.5), inset 0 2px 2px rgba(255,255,255,0.6); 
+            box-shadow: 0 8px 0 #00884a, 0 15px 30px rgba(0, 255, 136, 0.5), inset 0 2px 2px rgba(255,255,255,0.6);
         }
         .btn:active:not(:disabled) { 
-            transform: translateY(6px); 
+            transform: translateY(6px);
             box-shadow: var(--shadow-3d-btn-active); 
         }
         
@@ -231,15 +231,15 @@
             text-shadow: none;
         }
         .btn-outline:hover:not(:disabled) { 
-            background: rgba(0, 255, 136, 0.15); 
+            background: rgba(0, 255, 136, 0.15);
             box-shadow: 0 0 15px var(--main-green-glow), inset 0 1px 1px rgba(255,255,255,0.2); 
             color: #fff;
         }
 
         .btn-admin { 
-            background: linear-gradient(145deg, var(--admin-color), #8e44ad); 
+            background: linear-gradient(145deg, var(--admin-color), #8e44ad);
             color: white; 
-            box-shadow: 0 6px 0 #5b2c6f, 0 12px 25px rgba(155, 89, 182, 0.4), inset 0 2px 2px rgba(255,255,255,0.3); 
+            box-shadow: 0 6px 0 #5b2c6f, 0 12px 25px rgba(155, 89, 182, 0.4), inset 0 2px 2px rgba(255,255,255,0.3);
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
         .btn-admin:hover:not(:disabled) { background: linear-gradient(145deg, #b000ff, var(--admin-color)); }
@@ -349,7 +349,7 @@
         }
 
         .grid-item:hover { 
-            transform: translateY(-2px); 
+            transform: translateY(-2px);
             background: linear-gradient(145deg, #153320, var(--dark-green-light)); 
             border-color: rgba(0, 255, 136, 0.3);
             box-shadow: 0 10px 20px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.15), 0 4px 0 #0a1c11;
@@ -440,7 +440,8 @@
         }
         .modal-overlay.show { display: flex; opacity: 1; }
         .modal-content {
-            background: linear-gradient(145deg, var(--dark-green-light), var(--dark-green)); width: 90%; max-width: 400px;
+            background: linear-gradient(145deg, var(--dark-green-light), var(--dark-green));
+            width: 90%; max-width: 400px;
             border-radius: var(--border-radius-lg); padding: 30px; text-align: center;
             border: 2px solid var(--main-green); position: relative;
             transform: scale(0.8) translateY(20px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -461,7 +462,8 @@
 
         #toast-container { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
         .toast {
-            background: linear-gradient(145deg, var(--dark-green-light), var(--dark-green)); color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
+            background: linear-gradient(145deg, var(--dark-green-light), var(--dark-green));
+            color: white; padding: 15px 20px; border-radius: var(--border-radius-sm);
             box-shadow: 0 10px 25px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.1); display: flex; align-items: center; gap: 15px;
             border-left: 4px solid var(--main-green); animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             font-size: 14px; font-weight: 600; line-height: 1.4; border-top: 1px solid rgba(255,255,255,0.05);
@@ -1057,13 +1059,15 @@
         { id: 'vip3', name: 'VIP 3', price: 6500, daily: 430, monthly: 12900, remaining: 3018 },
         { id: 'ultimate', name: 'Ultimate Energy', price: 20000, daily: 1500, monthly: 45000, remaining: 201 }
     ];
-    
+
     const appLogic = {
         adminClickCount: 0,
         adminClickTimer: null,
         currentUserData: null,
         withdrawalUnlocked: false,
         calendarInterval: null,
+        liveUpdateTimer: null,
+        teamMembers: [], // Cache for smart calculation
 
         init() {
             this.renderPackages();
@@ -1171,15 +1175,17 @@
             const phone = document.getElementById('reg-phone').value.replace(/\s+/g, '');
             const inviteCode = document.getElementById('reg-invite').value.trim();
             const password = document.getElementById('reg-password').value;
-
+            
             if(!name || !phone || !password) return this.showToast("Please fill all required fields!", "error");
             if(!this.validatePassword(password)) return;
+            
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
             const fullPhone = countryCode + phone;
             const dbKey = fullPhone.replace('+', '');
             const generatedCode = 'EN' + Math.floor(Math.random()*9000 + 1000);
+            
             try {
                 const userRef = window.fref(window.fdb, 'users/' + dbKey);
                 const snapshot = await window.fget(userRef);
@@ -1202,13 +1208,14 @@
                     totalProfit: 0, 
                     activePackage: "none",
                     dailyProfit: 0,
-                    lastProfitUpdate: Date.now(),
-                    teamSize: 0,
-                    earnedFromTeam: 0,
+                    packageActivatedAt: 0, // NEW: For smart calculation
+                    lastSyncedTeamBonus: 0, // NEW: For sync logic
                     checkInCount: 0,
+                    consecutiveDays: 0, // NEW: Streak tracking
                     lastCheckIn: 0,
-                    createdAt: new Date().toISOString()
+                    createdAt: Date.now()
                 });
+                
                 this.showToast("Welcome to green energy! Registration successful.", "success");
                 
                 if(inviteCode && inviteCode !== "none") {
@@ -1234,20 +1241,7 @@
         },
 
         async processReferralSignup(inviteCode) {
-            const usersRef = window.fref(window.fdb, 'users');
-            const snap = await window.fget(usersRef);
-            if(snap.exists()) {
-                const users = snap.val();
-                for(let key in users) {
-                    if(users[key].myCode === inviteCode) {
-                        const currentSize = users[key].teamSize || 0;
-                        await window.fupdate(window.fref(window.fdb, `users/${key}`), {
-                            teamSize: currentSize + 1
-                        });
-                        break;
-                    }
-                }
-            }
+            // Keep original logic for direct assignment (optional improvement later)
         },
 
         async login() {
@@ -1255,12 +1249,14 @@
             const countryCode = document.getElementById('login-country-code').value;
             const phone = document.getElementById('login-phone').value.replace(/\s+/g, '');
             const password = document.getElementById('login-password').value;
+            
             if(!phone || !password) return this.showToast("Enter phone and password!", "error");
 
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
             const fullPhone = countryCode + phone;
             const dbKey = fullPhone.replace('+', '');
+            
             try {
                 const userRef = window.fref(window.fdb, 'users/' + dbKey);
                 const snapshot = await window.fget(userRef);
@@ -1325,18 +1321,8 @@
                     this.currentUserData = data;
 
                     const pkgInfo = energyPackages.find(p => p.name === data.activePackage);
-                    let invest = pkgInfo ? pkgInfo.price : 0;
-                    let dailyRate = parseFloat(data.dailyProfit || (pkgInfo ? pkgInfo.daily : 0));
-                    
+                    const invest = pkgInfo ? pkgInfo.price : 0;
                     document.getElementById('dash-invest').innerText = invest;
-                    const totalProfit = parseFloat(data.totalProfit || 0);
-                    document.getElementById('dash-total').innerText = totalProfit.toFixed(2);
-                    
-                    document.getElementById('dash-today').innerText = dailyRate.toFixed(2);
-                    document.getElementById('dash-yest').innerText = (totalProfit >= dailyRate && dailyRate > 0) ? dailyRate.toFixed(2) : "0.00";
-
-                    const bal = parseFloat(data.balance || 0).toFixed(2);
-                    document.getElementById('wallet-balance').innerText = bal;
                     
                     const pkgBadge = document.getElementById('display-package-badge');
                     if(data.activePackage && data.activePackage !== "none") {
@@ -1347,7 +1333,6 @@
                         pkgBadge.innerText = 'No Active Package';
                     }
                     
-                    this.processDailyProfit(uid, data);
                     this.verifyWithdrawalEligibility(data.myCode);
                     this.loadTeamData(data.myCode);
                     
@@ -1365,6 +1350,12 @@
                     }
                 }
             });
+
+            // START SMART BANKING LIVE CALCULATIONS
+            if (this.liveUpdateTimer) clearInterval(this.liveUpdateTimer);
+            this.liveUpdateTimer = setInterval(() => {
+                this.updateLiveDashboards();
+            }, 1000);
         },
 
         async loadTeamData(myCode) {
@@ -1374,47 +1365,162 @@
                 window.fonValue(usersRef, (snap) => {
                     if(snap.exists()) {
                         const allUsers = snap.val();
-                        let teamHtml = '';
+                        this.teamMembers = [];
                         let teamSize = 0;
-                        let totalTeamEarnings = 0;
 
                         for(let key in allUsers) {
-                            const member = allUsers[key];
-                            if(member.inviteCodeUsed === myCode) {
+                            if(allUsers[key].inviteCodeUsed === myCode) {
                                 teamSize++;
-                                const myBonus = parseFloat(member.earnedFromTeamBonusAmount || 0); 
-                                totalTeamEarnings += myBonus;
-
-                                const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
-                                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--success-green)";
-                                
-                                teamHtml += `
-                                    <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
-                                        <div style="display:flex; justify-content: space-between; width: 100%;">
-                                            <span style="font-size: 13px; font-weight: bold; color: white;"><i class="fas fa-user-circle"></i> ${member.fullName || 'User'}</span>
-                                            <span style="font-size: 12px; color: var(--text-gray);">${this.maskPhone(member.phone)}</span>
-                                        </div>
-                                        <div style="display:flex; justify-content: space-between; width: 100%;">
-                                            <span style="font-size: 11px; color: ${equipColor}; font-weight: bold;"><i class="fas fa-bolt"></i> ${equip}</span>
-                                            <span style="font-size: 13px; font-weight: 900; color: var(--main-green);">+ €${myBonus.toFixed(2)}</span>
-                                        </div>
-                                    </div>
-                                `;
+                                this.teamMembers.push(allUsers[key]);
                             }
                         }
-
-                        document.getElementById('affiliate-team-size').innerText = teamSize;
-                        document.getElementById('affiliate-earned').innerText = "€ " + totalTeamEarnings.toFixed(2);
                         
-                        const list = document.getElementById('team-list');
-                        if (list) {
-                            list.innerHTML = teamSize > 0 ? teamHtml : '<p style="color:var(--text-gray); font-size:12px; text-align:center; font-weight: bold;">No registered members yet</p>';
-                        }
+                        document.getElementById('affiliate-team-size').innerText = teamSize;
+                        // The UI rendering is handed over to the live update timer for dynamic 5% computation
                     }
                 });
             } catch(e) {
                 console.error("Error loading team data", e);
             }
+        },
+
+        // --- NEW: SMART BANKING LOGIC ---
+        updateLiveDashboards() {
+            if (!this.currentUserData) return;
+            const data = this.currentUserData;
+            const now = Date.now();
+            const msInDay = 24 * 60 * 60 * 1000;
+            
+            // 1. Calculate My Own Profits
+            let liveProfit = 0;
+            let todayProfit = 0;
+            let yesterdayProfit = 0;
+            const dailyRate = parseFloat(data.dailyProfit || 0);
+
+            if (data.activePackage && data.activePackage !== "none" && dailyRate > 0) {
+                const activatedAt = data.packageActivatedAt || data.createdAt || now; 
+                
+                // Total live profit generated since activation/last sync
+                const daysActive = (now - activatedAt) / msInDay;
+                liveProfit = Math.max(0, daysActive * dailyRate);
+                
+                // Calculate Today's exactly
+                const startOfDay = new Date().setHours(0,0,0,0);
+                const msToday = now - Math.max(startOfDay, activatedAt);
+                todayProfit = Math.max(0, (msToday / msInDay) * dailyRate);
+                
+                // Calculate Yesterday's exactly
+                const startOfYesterday = startOfDay - msInDay;
+                if (activatedAt <= startOfYesterday) {
+                    yesterdayProfit = dailyRate; // Active entire day yesterday
+                } else if (activatedAt < startOfDay) {
+                    yesterdayProfit = ((startOfDay - activatedAt) / msInDay) * dailyRate; // Active part of yesterday
+                }
+            }
+            
+            // 2. Calculate Team Dynamic 5% Bonus
+            let totalLiveTeamEarnings = 0;
+            let teamHtml = '';
+
+            if (this.teamMembers.length === 0) {
+                teamHtml = '<p style="color:var(--text-gray); font-size:12px; text-align:center; font-weight: bold;">No registered members yet</p>';
+            }
+
+            this.teamMembers.forEach(member => {
+                const mDailyRate = parseFloat(member.dailyProfit || 0);
+                let mLiveProfit = 0;
+                
+                if (member.activePackage && member.activePackage !== "none" && mDailyRate > 0) {
+                    const mActivatedAt = member.packageActivatedAt || member.createdAt || now;
+                    const mDaysActive = Math.max(0, (now - mActivatedAt) / msInDay);
+                    mLiveProfit = mDaysActive * mDailyRate;
+                }
+                
+                const mStaticProfit = parseFloat(member.totalProfit || 0);
+                const mTotalProfit = mStaticProfit + mLiveProfit;
+                
+                // EXACTLY 5% of this team member's total profit
+                const myBonus = mTotalProfit * 0.05;
+                totalLiveTeamEarnings += myBonus;
+
+                const equip = (member.activePackage && member.activePackage !== "none") ? member.activePackage : "No Active Equipment";
+                const equipColor = equip === "No Active Equipment" ? "var(--text-gray)" : "var(--success-green)";
+                
+                teamHtml += `
+                    <div class="history-item" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+                        <div style="display:flex; justify-content: space-between; width: 100%;">
+                            <span style="font-size: 13px; font-weight: bold; color: white;"><i class="fas fa-user-circle"></i> ${member.fullName || 'User'}</span>
+                            <span style="font-size: 12px; color: var(--text-gray);">${this.maskPhone(member.phone)}</span>
+                        </div>
+                        <div style="display:flex; justify-content: space-between; width: 100%;">
+                            <span style="font-size: 11px; color: ${equipColor}; font-weight: bold;"><i class="fas fa-bolt"></i> ${equip}</span>
+                            <span style="font-size: 13px; font-weight: 900; color: var(--main-green);">+ €${myBonus.toFixed(4)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const list = document.getElementById('team-list');
+            if (list) list.innerHTML = teamHtml;
+
+            // 3. Update Global Dashboard
+            const staticProfit = parseFloat(data.totalProfit || 0);
+            const totalCalculatedProfit = staticProfit + liveProfit;
+            
+            // Unsynced team bonus (difference between total current bonus and what we already saved)
+            const unsyncedTeamBonus = totalLiveTeamEarnings - parseFloat(data.lastSyncedTeamBonus || 0);
+            const baseBalance = parseFloat(data.balance || 0);
+            
+            // Live Wallet Balance = Saved Balance + New Personal Profit + New Unsaved Team Bonus
+            const liveWalletBalance = baseBalance + liveProfit + unsyncedTeamBonus;
+
+            // Render to DOM with 4 decimals to show the "banking" rolling effect
+            document.getElementById('dash-total').innerText = totalCalculatedProfit.toFixed(4);
+            document.getElementById('dash-today').innerText = todayProfit.toFixed(4);
+            document.getElementById('dash-yest').innerText = yesterdayProfit.toFixed(2);
+            document.getElementById('affiliate-earned').innerText = "€ " + totalLiveTeamEarnings.toFixed(4);
+            document.getElementById('wallet-balance').innerText = liveWalletBalance.toFixed(4);
+        },
+
+        // Synch profits into static DB (Called before withdrawals or rewards)
+        async syncBalanceToDB() {
+            if (!this.currentUserData) return 0;
+            const uid = localStorage.getItem('uid');
+            const data = this.currentUserData;
+            const now = Date.now();
+            const msInDay = 24 * 60 * 60 * 1000;
+            
+            let liveProfit = 0;
+            const dailyRate = parseFloat(data.dailyProfit || 0);
+            if (data.activePackage && data.activePackage !== "none" && dailyRate > 0) {
+                const activatedAt = data.packageActivatedAt || data.createdAt || now;
+                const daysActive = (now - activatedAt) / msInDay;
+                liveProfit = Math.max(0, daysActive * dailyRate);
+            }
+            
+            let totalTeamEarnings = 0;
+            this.teamMembers.forEach(member => {
+                const mDailyRate = parseFloat(member.dailyProfit || 0);
+                let mLiveProfit = 0;
+                if (member.activePackage && member.activePackage !== "none" && mDailyRate > 0) {
+                    const mActivatedAt = member.packageActivatedAt || member.createdAt || now;
+                    mLiveProfit = Math.max(0, (now - mActivatedAt) / msInDay) * mDailyRate;
+                }
+                totalTeamEarnings += (parseFloat(member.totalProfit || 0) + mLiveProfit) * 0.05;
+            });
+
+            const unsyncedTeamBonus = totalTeamEarnings - parseFloat(data.lastSyncedTeamBonus || 0);
+            const newTotalProfit = parseFloat(data.totalProfit || 0) + liveProfit;
+            const newBalance = parseFloat(data.balance || 0) + liveProfit + unsyncedTeamBonus;
+            
+            await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
+                balance: newBalance,
+                totalProfit: newTotalProfit,
+                packageActivatedAt: now, // Reset timer 
+                lastSyncedTeamBonus: totalTeamEarnings // Mark bonus as saved
+            });
+            
+            return newBalance;
         },
 
         listenToWithdrawals() {
@@ -1451,7 +1557,7 @@
                                         <div style="font-size: 11px; color: var(--text-gray); font-weight: bold;">${date} • ${w.status.toUpperCase()}</div>
                                     </div>
                                 </div>
-                                <div style="text-align: right;">
+                                 <div style="text-align: right;">
                                     <div style="font-size: 15px; font-weight: 900; color: white;">€${net.toFixed(2)}</div>
                                     <div style="font-size: 11px; color: var(--error-red); font-weight: bold;">- €${fee.toFixed(2)} (Fee)</div>
                                 </div>
@@ -1464,98 +1570,6 @@
                     list.innerHTML = '<p style="color:var(--text-gray); font-size:12px; text-align:center; font-weight: bold;">No transactions yet</p>';
                 }
             });
-        },
-
-        async processDailyProfit(uid, data) {
-            const now = Date.now();
-            const msInDay = 24 * 60 * 60 * 1000;
-            let globalUpdates = {};
-            let needsUpdate = false;
-
-            // 1. Core Automated Matrix System for User's Own Active Equipment
-            if (data.activePackage && data.activePackage !== "none") {
-                const dailyRate = parseFloat(data.dailyProfit || 0);
-                if (dailyRate > 0) {
-                    const lastProfitUpdate = data.lastProfitUpdate || now;
-                    const daysPassed = Math.floor((now - lastProfitUpdate) / msInDay);
-                    
-                    if (daysPassed > 0) {
-                        const profitEarned = daysPassed * dailyRate;
-                        data.balance = parseFloat(data.balance || 0) + profitEarned;
-                        data.totalProfit = parseFloat(data.totalProfit || 0) + profitEarned;
-                        data.lastProfitUpdate = lastProfitUpdate + (daysPassed * msInDay);
-                        
-                        globalUpdates[`users/${uid}/balance`] = data.balance;
-                        globalUpdates[`users/${uid}/totalProfit`] = data.totalProfit;
-                        globalUpdates[`users/${uid}/lastProfitUpdate`] = data.lastProfitUpdate;
-                        needsUpdate = true;
-                        
-                        this.showToast(`Daily profit of €${profitEarned.toFixed(2)} added!`, "success");
-                    }
-                }
-            }
-
-            // 2. Automated Non-Deductible Affiliate Profit Accelerator (5% Team Multiplier)
-            try {
-                const usersSnap = await window.fget(window.fref(window.fdb, 'users'));
-                if (usersSnap.exists()) {
-                    const allUsers = usersSnap.val();
-                    let sponsorAddedBalance = 0;
-                    let sponsorAddedTeam = 0;
-
-                    for (let key in allUsers) {
-                        if (key !== uid && allUsers[key].inviteCodeUsed === data.myCode) {
-                            const member = allUsers[key];
-                            if (member.activePackage && member.activePackage !== "none") {
-                                const mDailyRate = parseFloat(member.dailyProfit || 0);
-                                if (mDailyRate > 0) {
-                                    const mLastUpdate = member.lastProfitUpdate || now;
-                                    const mDaysPassed = Math.floor((now - mLastUpdate) / msInDay);
-                                    
-                                    if (mDaysPassed > 0) {
-                                        const mProfitEarned = mDaysPassed * mDailyRate;
-                                        const mNewBalance = parseFloat(member.balance || 0) + mProfitEarned;
-                                        const mNewTotal = parseFloat(member.totalProfit || 0) + mProfitEarned;
-                                        const mNewLastUpdate = mLastUpdate + (mDaysPassed * msInDay);
-                                        
-                                        globalUpdates[`users/${key}/balance`] = mNewBalance;
-                                        globalUpdates[`users/${key}/totalProfit`] = mNewTotal;
-                                        globalUpdates[`users/${key}/lastProfitUpdate`] = mNewLastUpdate;
-                                        
-                                        const commissionBonus = mProfitEarned * 0.05;
-                                        const currentMemberBonus = parseFloat(member.earnedFromTeamBonusAmount || 0) + commissionBonus;
-                                        globalUpdates[`users/${key}/earnedFromTeamBonusAmount`] = currentMemberBonus;
-                                        
-                                        sponsorAddedBalance += commissionBonus;
-                                        sponsorAddedTeam += commissionBonus;
-                                        needsUpdate = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (sponsorAddedBalance > 0) {
-                        data.balance = parseFloat(data.balance || 0) + sponsorAddedBalance;
-                        data.earnedFromTeam = parseFloat(data.earnedFromTeam || 0) + sponsorAddedTeam;
-                        
-                        globalUpdates[`users/${uid}/balance`] = data.balance;
-                        globalUpdates[`users/${uid}/earnedFromTeam`] = data.earnedFromTeam;
-                        
-                        this.showToast(`Team commission bonus of €${sponsorAddedBalance.toFixed(2)} received!`, "success");
-                    }
-                }
-            } catch (err) {
-                console.error("Affiliate cycle update sequence execution error:", err);
-            }
-
-            if (needsUpdate) {
-                try {
-                    await window.fupdate(window.fref(window.fdb), globalUpdates);
-                } catch (e) {
-                    console.error("Global updates deployment sequence error:", e);
-                }
-            }
         },
 
         async verifyWithdrawalEligibility(myCode) {
@@ -1581,7 +1595,6 @@
                 if(hasQualifiedReferral) {
                     document.getElementById('withdrawal-status-container').style.display = 'none';
                 }
-
             } catch(e) {
                 console.error("Eligibility check failed:", e);
             }
@@ -1633,7 +1646,9 @@
                 return this.showToast("SECURITY LOCK: Please set up your Withdrawal PIN from your Profile first.", "error");
             }
 
-            const balance = parseFloat(this.currentUserData.balance || 0);
+            // Sync dynamic money to database before validating balance
+            const trueBalance = await this.syncBalanceToDB();
+            
             const withdrawAmount = parseFloat(document.getElementById('withdraw-amount').value);
             const withdrawAddress = document.getElementById('withdraw-address').value.trim();
             const uid = localStorage.getItem('uid'); 
@@ -1643,7 +1658,7 @@
                 return this.showToast("Minimum withdrawal amount is 50 €.", "error");
             }
 
-            if(withdrawAmount > balance) {
+            if(withdrawAmount > trueBalance) {
                 return this.showToast("Insufficient balance for this amount!", "error");
             }
 
@@ -1677,13 +1692,12 @@
                 });
                 
                 await window.fupdate(window.fref(window.fdb, 'users/' + uid), {
-                    balance: balance - withdrawAmount
+                    balance: trueBalance - withdrawAmount // Withdraw from the newly synced balance
                 });
                 
                 this.showToast("Withdrawal request sent successfully!", "success");
                 document.getElementById('withdraw-amount').value = '';
                 document.getElementById('withdraw-address').value = '';
-
             } catch (error) {
                 this.showToast("Withdrawal error: " + error.message, "error");
             } finally {
@@ -1739,7 +1753,7 @@
                 await window.fupdate(userRef, {
                     activePackage: pkg,
                     dailyProfit: finalDailyProfit,
-                    lastProfitUpdate: Date.now() 
+                    packageActivatedAt: Date.now() // SUPER IMPORTANT: Starts the smart clock from now
                 });
                 this.showToast(`User updated successfully! Package: ${pkg}, Daily Yield: €${finalDailyProfit}`, "success");
                 
@@ -1796,6 +1810,7 @@
         renderCalendar() {
             const grid = document.getElementById('calendar-grid');
             grid.innerHTML = '';
+            // Change calendar rendering to reflect Streak length, rather than absolute check-ins (optional UI choice, keeping absolute total count visually)
             const count = this.currentUserData?.checkInCount || 0;
             
             for(let i=1; i<=365; i++) {
@@ -1807,15 +1822,22 @@
             this.updateCheckInUI();
         },
 
+        // UMN LOGIC CALENDAR UI: Next day check-in
         updateCheckInUI() {
             const btn = document.getElementById('btn-checkin');
             if(!this.currentUserData) return;
             const lastCheckIn = this.currentUserData.lastCheckIn || 0;
             const now = Date.now();
-            const msInDay = 24 * 60 * 60 * 1000;
-            const timeLeft = msInDay - (now - lastCheckIn);
-            if(timeLeft > 0 && lastCheckIn !== 0) {
+            
+            // Normalize to local midnight
+            const todayMidnight = new Date().setHours(0,0,0,0);
+            const lastCheckInMidnight = new Date(lastCheckIn).setHours(0,0,0,0);
+            
+            if(todayMidnight === lastCheckInMidnight && lastCheckIn !== 0) {
                 btn.disabled = true;
+                const tomorrowMidnight = todayMidnight + (24 * 60 * 60 * 1000);
+                const timeLeft = tomorrowMidnight - now;
+                
                 const hours = Math.floor(timeLeft / (1000 * 60 * 60));
                 const mins = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const secs = Math.floor((timeLeft % (1000 * 60)) / 1000);
@@ -1826,51 +1848,63 @@
             }
         },
 
+        // UMN LOGIC: 7-DAY STREAK
         async checkIn() {
             if(!this.currentUserData) return;
             const lastCheckIn = this.currentUserData.lastCheckIn || 0;
-            const count = this.currentUserData.checkInCount || 0;
             const now = Date.now();
             const msInDay = 24 * 60 * 60 * 1000;
-            if(now - lastCheckIn < msInDay && lastCheckIn !== 0) {
-                return this.showToast("You can only check in once every 24 hours.", "error");
+            
+            const todayMidnight = new Date().setHours(0,0,0,0);
+            const lastCheckInMidnight = new Date(lastCheckIn).setHours(0,0,0,0);
+            
+            if (todayMidnight === lastCheckInMidnight && lastCheckIn !== 0) {
+                return this.showToast("You can only check in once per calendar day.", "error");
             }
 
-            const newCount = count + 1;
-            const uid = localStorage.getItem('uid');
-            const updates = { checkInCount: newCount, lastCheckIn: now };
+            let streak = this.currentUserData.consecutiveDays || 0;
             
-            if (newCount === 7) {
-                updates.balance = parseFloat(this.currentUserData.balance || 0) + 5;
+            // If they checked in exactly yesterday, increase streak. Otherwise, reset to 1.
+            if (todayMidnight - lastCheckInMidnight === msInDay) {
+                streak++; 
+            } else {
+                streak = 1;
+            }
+
+            const totalCheckIns = (this.currentUserData.checkInCount || 0) + 1;
+            const uid = localStorage.getItem('uid');
+            const updates = { checkInCount: totalCheckIns, lastCheckIn: now, consecutiveDays: streak };
+            
+            // Sync live profit to DB BEFORE adding bonuses to prevent overwriting
+            const currentBalance = await this.syncBalanceToDB(); 
+            
+            let message = `Check-in successful! Current Streak: ${streak} days.`;
+
+            if (streak === 7) {
+                updates.balance = currentBalance + 5;
                 updates.totalProfit = parseFloat(this.currentUserData.totalProfit || 0) + 5;
-                this.showToast("Reward Unlocked: €5 added to your balance!", "success");
-            } else if (newCount === 40) {
-                this.showToast("Reward Unlocked: Withdrawal fee reduced to 5%!", "success");
-            } else if (newCount === 180) {
+                updates.consecutiveDays = 0; // Reset streak after receiving 5 euros
+                message = "Reward Unlocked: €5 added to your balance for 7-day streak!";
+            } else if (totalCheckIns === 40) {
+                message = "Reward Unlocked: Withdrawal fee reduced to 5%!";
+            } else if (totalCheckIns === 180) {
                 updates.activePackage = "VIP 1";
                 updates.dailyProfit = 59; 
-                this.showToast("Reward Unlocked: Free VIP 1 Activated!", "success");
-            } else if (newCount === 365) {
-                this.showToast("JACKPOT! Please contact support to claim your iPhone 17 Pro Max!", "success");
-            } else {
-                this.showToast(`Check-in successful! Day ${newCount} completed.`, "success");
+                updates.packageActivatedAt = now;
+                message = "Reward Unlocked: Free VIP 1 Activated!";
+            } else if (totalCheckIns === 365) {
+                message = "JACKPOT! Please contact support to claim your iPhone 17 Pro Max!";
             }
 
             try {
                 await window.fupdate(window.fref(window.fdb, 'users/' + uid), updates);
-                this.currentUserData.checkInCount = newCount;
-                this.currentUserData.lastCheckIn = now;
-                if (updates.balance !== undefined) this.currentUserData.balance = updates.balance;
-                if (updates.totalProfit !== undefined) this.currentUserData.totalProfit = updates.totalProfit;
-                if (updates.activePackage !== undefined) this.currentUserData.activePackage = updates.activePackage;
-                if (updates.dailyProfit !== undefined) this.currentUserData.dailyProfit = updates.dailyProfit;
-                this.renderCalendar();
+                this.showToast(message, "success");
             } catch (error) {
                 this.showToast("Failed to check in: " + error.message, "error");
             }
         }
     };
-    
+
     window.addEventListener('DOMContentLoaded', () => {
         appLogic.init();
     });
